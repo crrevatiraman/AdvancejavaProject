@@ -40,6 +40,18 @@ public class Address {
 	}
 
 
+	public Address(int addressId, String line1, String line2, String city, String district, String state, int pinCode,
+			User user) {
+		this.addressId = addressId;
+		this.line1 = line1;
+		this.line2 = line2;
+		this.city = city;
+		this.district = district;
+		this.state = state;
+		this.pinCode = pinCode;
+		this.user = user;
+	}
+
 
 	public Address(int addressId, String line1, String line2, String city, String district, String state, int pinCode) {
 		this.addressId = addressId;
@@ -52,12 +64,9 @@ public class Address {
 	}
 
 
-	
-
 	public int getAddressId() {
 		return addressId;
 	}
-
 
 
 	public void setAddressId(int addressId) {
@@ -65,11 +74,9 @@ public class Address {
 	}
 
 
-
 	public String getLine1() {
 		return line1;
 	}
-
 
 
 	public void setLine1(String line1) {
@@ -77,11 +84,9 @@ public class Address {
 	}
 
 
-
 	public String getLine2() {
 		return line2;
 	}
-
 
 
 	public void setLine2(String line2) {
@@ -89,11 +94,9 @@ public class Address {
 	}
 
 
-
 	public String getCity() {
 		return city;
 	}
-
 
 
 	public void setCity(String city) {
@@ -101,11 +104,9 @@ public class Address {
 	}
 
 
-
 	public String getDistrict() {
 		return district;
 	}
-
 
 
 	public void setDistrict(String district) {
@@ -113,11 +114,9 @@ public class Address {
 	}
 
 
-
 	public String getState() {
 		return state;
 	}
-
 
 
 	public void setState(String state) {
@@ -125,11 +124,9 @@ public class Address {
 	}
 
 
-
 	public int getPinCode() {
 		return pinCode;
 	}
-
 
 
 	public void setPinCode(int pinCode) {
@@ -137,12 +134,27 @@ public class Address {
 	}
 
 
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	@Override
 	public String toString() {
-		return String.format("Address [addressId=%s, line1=%s, line2=%s, city=%s, district=%s, state=%s, pinCode=%s]",
-				addressId, line1, line2, city, district, state, pinCode);
+		return String.format(
+				"Address [addressId=%s, line1=%s, line2=%s, city=%s, district=%s, state=%s, pinCode=%s, user=%s]",
+				addressId, line1, line2, city, district, state, pinCode, user);
 	}
+
+
+	
+	
+	
 	
 	
 	

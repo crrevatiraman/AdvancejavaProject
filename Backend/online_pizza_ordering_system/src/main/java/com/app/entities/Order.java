@@ -43,8 +43,80 @@ public class Order {
 	public Order() {
 	}
 
+	public Order(int orderId, Date orderDateTime, double totalAmount, String paymentMode, User user,
+			List<OrderDetail> orderDetailList) {
+		this.orderId = orderId;
+		this.orderDateTime = orderDateTime;
+		this.totalAmount = totalAmount;
+		this.paymentMode = paymentMode;
+		this.user = user;
+		this.orderDetailList = orderDetailList;
+	}
+
+	public Order(int orderId, Date orderDateTime, double totalAmount, String paymentMode) {
+		this.orderId = orderId;
+		this.orderDateTime = orderDateTime;
+		this.totalAmount = totalAmount;
+		this.paymentMode = paymentMode;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public Date getOrderDateTime() {
+		return orderDateTime;
+	}
+
+	public void setOrderDateTime(Date orderDateTime) {
+		this.orderDateTime = orderDateTime;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<OrderDetail> getOrderDetailList() {
+		return orderDetailList;
+	}
+
+	public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+		this.orderDetailList = orderDetailList;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"Order [orderId=%s, orderDateTime=%s, totalAmount=%s, paymentMode=%s, user=%s, orderDetailList=%s]",
+				orderId, orderDateTime, totalAmount, paymentMode, user, orderDetailList);
+	}
 
 
+	
 	
 
 	

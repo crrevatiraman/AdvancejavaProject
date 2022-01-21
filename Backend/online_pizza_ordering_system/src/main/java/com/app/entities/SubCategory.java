@@ -1,31 +1,28 @@
 package com.app.entities;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="sub_category")
-public class SubCategory implements Serializable {
+public class SubCategory {
 
 	
 	@Id
-	@Column(name = "product_id")
-	private int productId;
-	@Id
+	@Column(name = "sub_category_id")
+	private int subCategoryId;
 	@Column(length= 20)
 	private String size;
-	@Column(name = "crust_size",length = 100)
-	private String crustSize;
+	@Column(name = "crust_type",length = 100)
+	private String crustType;
 	private double price;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
@@ -34,26 +31,31 @@ public class SubCategory implements Serializable {
 	}
 
 
-
-	public SubCategory(int productId, String size, String crustSize, double price) {
-		this.productId = productId;
+	public SubCategory(int subCategoryId, String size, String crustType, double price, Product product) {
+		this.subCategoryId = subCategoryId;
 		this.size = size;
-		this.crustSize = crustSize;
+		this.crustType = crustType;
+		this.price = price;
+		this.product = product;
+	}
+
+
+	public SubCategory(int subCategoryId, String size, String crustType, double price) {
+		this.subCategoryId = subCategoryId;
+		this.size = size;
+		this.crustType = crustType;
 		this.price = price;
 	}
 
 
-
-	public int getProductId() {
-		return productId;
+	public int getSubCategoryId() {
+		return subCategoryId;
 	}
 
 
-
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setSubCategoryId(int subCategoryId) {
+		this.subCategoryId = subCategoryId;
 	}
-
 
 
 	public String getSize() {
@@ -61,23 +63,19 @@ public class SubCategory implements Serializable {
 	}
 
 
-
 	public void setSize(String size) {
 		this.size = size;
 	}
 
 
-
-	public String getCrustSize() {
-		return crustSize;
+	public String getCrustType() {
+		return crustType;
 	}
 
 
-
-	public void setCrustSize(String crustSize) {
-		this.crustSize = crustSize;
+	public void setCrustType(String crustType) {
+		this.crustType = crustType;
 	}
-
 
 
 	public double getPrice() {
@@ -85,19 +83,28 @@ public class SubCategory implements Serializable {
 	}
 
 
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
 
 
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 
 	@Override
 	public String toString() {
-		return String.format("SubCategory [productId=%s, size=%s, crustSize=%s, price=%s]", productId, size, crustSize,
-				price);
+		return String.format("SubCategory [subCategoryId=%s, size=%s, crustType=%s, price=%s, product=%s]",
+				subCategoryId, size, crustType, price, product);
 	}
+
 	
-	
+
 	
 }

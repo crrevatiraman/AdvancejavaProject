@@ -1,6 +1,6 @@
 package com.app.entities;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,12 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="user")
@@ -35,8 +33,9 @@ public class User {
 	private String password;
 	@Column(unique=true,name = "mobile_no",length = 50)
 	private String mobileNo;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "dob")
-	private LocalDate dateOfBirth;
+	private Date dateOfBirth;
 	@Column(length = 20)
 	private String role;
 	@Column(name = "is_free")
@@ -59,11 +58,210 @@ public class User {
 		
 	}
 
-	
+
+
+	public User(int userId, String firstName, String lastName, String gender, String email, String password,
+			String mobileNo, Date dateOfBirth, String role, Boolean isFree, List<Order> orderList,
+			List<Feedback> feedbackList, List<ProductLikeStatus> productLikeStatus) {
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.email = email;
+		this.password = password;
+		this.mobileNo = mobileNo;
+		this.dateOfBirth = dateOfBirth;
+		this.role = role;
+		this.isFree = isFree;
+		this.orderList = orderList;
+		this.feedbackList = feedbackList;
+		this.productLikeStatus = productLikeStatus;
+	}
 
 
 
+	public User(int userId, String firstName, String lastName, String gender, String email, String password,
+			String mobileNo, Date dateOfBirth, String role, Boolean isFree) {
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.email = email;
+		this.password = password;
+		this.mobileNo = mobileNo;
+		this.dateOfBirth = dateOfBirth;
+		this.role = role;
+		this.isFree = isFree;
+	}
+
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
+
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+
+
+	public String getRole() {
+		return role;
+	}
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+	public Boolean getIsFree() {
+		return isFree;
+	}
+
+
+
+	public void setIsFree(Boolean isFree) {
+		this.isFree = isFree;
+	}
+
+
+
+	public List<Order> getOrderList() {
+		return orderList;
+	}
+
+
+
+	public void setOrderList(List<Order> orderList) {
+		this.orderList = orderList;
+	}
+
+
+
+	public List<Feedback> getFeedbackList() {
+		return feedbackList;
+	}
+
+
+
+	public void setFeedbackList(List<Feedback> feedbackList) {
+		this.feedbackList = feedbackList;
+	}
+
+
+
+	public List<ProductLikeStatus> getProductLikeStatus() {
+		return productLikeStatus;
+	}
+
+
+
+	public void setProductLikeStatus(List<ProductLikeStatus> productLikeStatus) {
+		this.productLikeStatus = productLikeStatus;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return String.format(
+				"User [userId=%s, firstName=%s, lastName=%s, gender=%s, email=%s, password=%s, mobileNo=%s, dateOfBirth=%s, role=%s, isFree=%s, orderList=%s, feedbackList=%s, productLikeStatus=%s]",
+				userId, firstName, lastName, gender, email, password, mobileNo, dateOfBirth, role, isFree, orderList,
+				feedbackList, productLikeStatus);
+	}
+
+
 	
 	
-	
+
 }

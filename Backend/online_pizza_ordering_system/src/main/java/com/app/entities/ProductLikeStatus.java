@@ -40,6 +40,14 @@ public class ProductLikeStatus {
 	}
 
 
+	public ProductLikeStatus(int likeId, Boolean likeStatus, User user, Product product) {
+		this.likeId = likeId;
+		this.likeStatus = likeStatus;
+		this.user = user;
+		this.product = product;
+	}
+
+
 	public int getLikeId() {
 		return likeId;
 	}
@@ -60,10 +68,33 @@ public class ProductLikeStatus {
 	}
 
 
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
 	@Override
 	public String toString() {
-		return String.format("ProductLikeStatus [likeId=%s, likeStatus=%s]", likeId, likeStatus);
+		return String.format("ProductLikeStatus [likeId=%s, likeStatus=%s, user=%s, product=%s]", likeId, likeStatus,
+				user, product);
 	}
+
+
 	
 	
 }
