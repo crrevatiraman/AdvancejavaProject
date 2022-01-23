@@ -35,12 +35,7 @@ public class UserController {
 		return Response.success(userDto);
 	}
 	
-//	 @PostMapping("/user/register")
-//		public ResponseEntity<?> registerUser(@RequestBody User user)
-//		{
-//			System.out.println("in save products " + user);
-//			return new ResponseEntity<>(userservice.saveUserDetails(user), HttpStatus.CREATED);
-//		}
+
 	 
 	 @PostMapping("/user/register")
 		public ResponseEntity<?> registerUser(@RequestBody UserDTO userDto)

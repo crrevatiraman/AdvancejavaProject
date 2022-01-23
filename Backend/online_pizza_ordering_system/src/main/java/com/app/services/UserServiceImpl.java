@@ -40,10 +40,8 @@ public class UserServiceImpl {
 		}
 		return null;
 	}
-	
-	
-	
-	
+
+
 	
 	public UserDTO saveUserDetails(UserDTO userDto) {
 		String rawPassword = userDto.getPassword();
