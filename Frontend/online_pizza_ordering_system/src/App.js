@@ -3,7 +3,7 @@ import Register from './pages/Register'
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-//import Home from './pages/Home'
+import ForgotPassword from './pages/ForgotPassword'
 import './App.css';
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<Signin />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
       
         </Routes>
       </BrowserRouter>

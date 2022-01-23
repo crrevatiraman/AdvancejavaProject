@@ -19,6 +19,8 @@ const Register = () => {
   const navigate = useNavigate();
 
   const signupUser = () => {
+
+    
     if (firstName.length == 0) {
       toast.warning("Please enter first name");
     } else if (lastName.length == 0) {

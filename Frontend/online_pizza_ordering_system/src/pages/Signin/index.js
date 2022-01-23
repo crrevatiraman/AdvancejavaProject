@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './index.css'
 import { toast } from 'react-toastify'
-import React, { Component } from 'react';
+import React ,{Component} from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import { URL } from '../../config'
@@ -65,7 +65,7 @@ const Signin = () => {
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control margin">
-                Email address
+                Email
               </label>
               <input
                 onChange={(e) => {
