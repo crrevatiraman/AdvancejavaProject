@@ -30,6 +30,24 @@ public class DtoEntityConverter {
 		return entity;		
 	}
 	
+	public Credential toCredDto(User entity) {
+		Credential dto = new Credential();
+		dto.setEmail(entity.getEmail());
+		dto.setMobileNo(entity.getMobileNo());
+		dto.setPassword(entity.getPassword());
+		
+		return dto;
+	}
+	
+	public User toUserEntity(Credential dto) {
+		User entity = new User();
+		
+//		entity.setEmail(dto.getEmail());
+//		entity.setMobileNo(dto.getMobileNo());
+		entity.setPassword(dto.getPassword());
+		
+		return entity;		
+	}
 	
 	
 
