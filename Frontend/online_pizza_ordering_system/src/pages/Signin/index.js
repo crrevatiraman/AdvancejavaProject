@@ -100,7 +100,7 @@ const Signin = () => {
               </button>
              
               </div>
-              <div className='col top-margin'>
+              <div className='col '>
                  <Link to="/forgot-password">Forgot Password?</Link>
               
               </div>
