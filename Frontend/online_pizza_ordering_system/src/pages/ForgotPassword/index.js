@@ -66,7 +66,7 @@ const ForgotPassword = () =>{
 
 
     return (
-        <div className='background-img '>
+        <div className='background-img example'>
           <h1 className="title">Forgot Password</h1>
     
           <div className="row ">

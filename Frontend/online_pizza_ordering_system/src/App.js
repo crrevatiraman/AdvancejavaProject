@@ -5,6 +5,11 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ForgotPassword from './pages/ForgotPassword'
 import './App.css';
+import SearchEmp from './pages/Admin_Pages/SearchEmp'
+import UpdateEmployee from './pages/Admin_Pages/updateEmp'
+import Addcombo from './pages/Admin_Pages/addCombo'
+import Addproduct from './pages/Admin_Pages/addproduct'
+import Addfeedback from './pages/Customer_Pages/feedback'
 
 function App() {
   return (
@@ -16,7 +21,11 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-      
+          <Route path="/search-emp" element={<SearchEmp />} />
+          <Route path="/update-employee" element={<UpdateEmployee />} />
+          <Route path = "/add-product" element = {<Addproduct/>}/>
+          <Route path = "/add-combo" element = {<Addcombo/>}/>
+          <Route path = "/add-feedback" element = {<Addfeedback/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

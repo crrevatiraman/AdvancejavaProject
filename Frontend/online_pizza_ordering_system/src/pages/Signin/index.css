@@ -39,14 +39,5 @@ margin-bottom: 20px;
   
 }
 
-.logo
-{
-  background-image: url("../../images/cartoon.jpg");
-  background-size: auto;
-  background-position: left center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  height: auto;
-  width:100vw;
-}
+
 

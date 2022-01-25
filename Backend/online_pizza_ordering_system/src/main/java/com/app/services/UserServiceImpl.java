@@ -71,4 +71,19 @@ public class UserServiceImpl {
 		
 	}
 	
+	
+	public UserDTO findUserByEmail(String email)
+	{
+		
+		User user = userDao.findByEmail(email);
+		if(user !=null)
+		{
+			UserDTO userDto = converter.toUserDto(user);
+			userDto.setPassword("******************");
+			return userDto;
+		}
+			return null;
+	
+	}
+	
 }

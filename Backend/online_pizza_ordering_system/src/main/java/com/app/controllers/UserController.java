@@ -2,6 +2,8 @@ package com.app.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,6 +59,15 @@ public class UserController {
 		 
 	 }
 	 
+	 
+	 @GetMapping("/user/search-employee/{email}")
+	 public ResponseEntity<?> searchEmployee(@PathVariable("email") String email)
+	 {
+		 UserDTO userDto = userService.findUserByEmail(email);
+		 if(userDto == null )
+			 return Response.error("user not found");
+		return Response.success(userDto);
+	 }
 
 	
 }
