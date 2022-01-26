@@ -10,7 +10,7 @@ const UpdateEmployee = () => {
   const {state} = useLocation()
   const [email,setEmail] = useState("")
   const [userId,setUserId] = useState("")
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("employee");
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [line1, setLine1] = useState("");
@@ -116,10 +116,12 @@ useEffect(() => {
                 Role
               </label>
               <input
-                onChange={(e) => {
-                  setRole(e.target.value);
-                }}
-                type="text"
+                // onChange={(e) => {
+                //   setRole(e.target.value);
+                // }}
+                //type="text"
+                value={role}
+                readOnly="true"
                 className="form-control"
               />
             </div>
@@ -133,8 +135,9 @@ useEffect(() => {
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}>
-                  <option class="text-dark" value="Male">Male</option>
-                  <option class="text-dark" value="Female">Female</option>
+                  <option className="text-dark" selected> Select Gender </option>
+                  <option className="text-dark" value="Male">Male</option>
+                  <option className="text-dark" value="Female">Female</option>
                 </select>
             </div>
                 

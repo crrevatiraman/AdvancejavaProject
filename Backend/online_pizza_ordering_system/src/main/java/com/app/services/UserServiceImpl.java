@@ -94,25 +94,42 @@ public class UserServiceImpl {
 	{
 			
 		User user = userDao.getById(userId);
-		if(user != null && user.getAddress() == null)
+		if(user != null )
 		{
 			userAddressDto.setUserId(userId);
-			//User userData = converter.toUserEntity(userAddressDto);
-			user.setAddress(userAddressDto.getAddress());
-			user.setRole(userAddressDto.getRole());
-			user.setDateOfBirth(userAddressDto.getDateOfBirth());
-			user.setGender(userAddressDto.getGender());
-			
-			user.getAddress().setUser(user);
-			
-			
-			user = userDao.save(user);
-			return Collections.singletonMap("changedRows", 1);
+					
+				if(user.getAddress() == null)
+				{
+					user.setAddress(userAddressDto.getAddress());
+					user.setRole(userAddressDto.getRole());
+					user.setDateOfBirth(userAddressDto.getDateOfBirth());
+					user.setGender(userAddressDto.getGender());
+					
+					user.getAddress().setUser(user);
+					
+					
+					user = userDao.save(user);
+					return Collections.singletonMap("changedRows", 1);
+				}
+				else {
+						
+					int addId=user.getAddress().getAddressId();				
+					userAddressDto.getAddress().setAddressId(addId);
+					user.setAddress(userAddressDto.getAddress());
+					user.setRole(userAddressDto.getRole());
+					user.setDateOfBirth(userAddressDto.getDateOfBirth());
+					user.setGender(userAddressDto.getGender());
+					user.getAddress().setUser(user);
+					
+					user = userDao.save(user);
+					return Collections.singletonMap("changedRows", 2);
+				}
+		
 		}
 		
+		
 			return Collections.singletonMap("changedRows", 0);
-		
-		
+
 	}
 	
 }

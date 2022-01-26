@@ -26,7 +26,7 @@ const SearchEmp = () => {
         if (result["status"] == "success") {
           setEmployee(result["data"]);
           setCheck(true);
-          console.log(result)
+          console.log(result);
         } else {
           toast.error("email does not exist");
         }
@@ -86,10 +86,49 @@ const SearchEmp = () => {
         </div>
         <div className="col"></div>
       </div>
-
-      {check && (
+      <div className="row margin-top">
+        <div className="col"></div>
+        <div className="col">
+          {check && (
+            <div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{employee.userId}</td>
+                    <td>{employee.firstName}</td>
+                    <td>{employee.lastName}</td>
+                    <td>{employee.email}</td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          navigate("/update-employee", {
+                            state: { employee: employee },
+                          });
+                        }}
+                        className="btn btn-info"
+                      >
+                        Update
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+        <div className="col"></div>
+      </div>
+      {/* {check && (
         <div>
-          {" "}
           <div className="row margin-top">
             <div className="col"></div>
             <div className="col">ID</div>
@@ -109,7 +148,7 @@ const SearchEmp = () => {
               <button
                 onClick={() => {
                   navigate("/update-employee", {
-                    state: { employee : employee },
+                    state: { employee: employee },
                   });
                 }}
                 className="btn btn-info"
@@ -120,9 +159,9 @@ const SearchEmp = () => {
             <div className="col"></div>
             <div className="col"></div>
             <div className="col"></div>
-          </div>{" "}
+          </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
