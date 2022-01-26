@@ -49,6 +49,25 @@ public class DtoEntityConverter {
 		return entity;		
 	}
 	
+	public UserAddressDTO toUserAddressDto(User entity) {
+		UserAddressDTO dto = new UserAddressDTO();
+		dto.setUserId(entity.getUserId());
+		dto.setRole(entity.getRole());
+		dto.setGender(entity.getGender());
+		dto.setDateOfBirth(entity.getDateOfBirth());
+		dto.setAddress(entity.getAddress());
+		return dto;
+	}
+	
+	public User toUserEntity(UserAddressDTO dto) {
+		User entity = new User();
+		entity.setUserId(dto.getUserId());
+		entity.setRole(dto.getRole());
+		entity.setGender(dto.getGender());
+		entity.setDateOfBirth(dto.getDateOfBirth());
+		entity.setAddress(dto.getAddress());
+		return entity;		
+	}
 	
 
 }

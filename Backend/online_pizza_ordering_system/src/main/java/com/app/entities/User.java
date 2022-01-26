@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -52,6 +54,9 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<ProductLikeStatus> productLikeStatus;
 	
+	@OneToOne(mappedBy= "user" ,cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+	private Address address;
 	
 
 	public User() {
@@ -60,24 +65,7 @@ public class User {
 
 
 
-	public User(int userId, String firstName, String lastName, String gender, String email, String password,
-			String mobileNo, Date dateOfBirth, String role, Boolean isFree, List<Order> orderList,
-			List<Feedback> feedbackList, List<ProductLikeStatus> productLikeStatus) {
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-		this.email = email;
-		this.password = password;
-		this.mobileNo = mobileNo;
-		this.dateOfBirth = dateOfBirth;
-		this.role = role;
-		this.isFree = isFree;
-		this.orderList = orderList;
-		this.feedbackList = feedbackList;
-		this.productLikeStatus = productLikeStatus;
-	}
-
+	
 
 
 	public User(int userId, String firstName, String lastName, String gender, String email, String password,
@@ -93,6 +81,33 @@ public class User {
 		this.role = role;
 		this.isFree = isFree;
 	}
+
+
+
+
+
+
+	public User(int userId, String firstName, String lastName, String gender, String email, String password,
+			String mobileNo, Date dateOfBirth, String role, Boolean isFree, List<Order> orderList,
+			List<Feedback> feedbackList, List<ProductLikeStatus> productLikeStatus, Address address) {
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.email = email;
+		this.password = password;
+		this.mobileNo = mobileNo;
+		this.dateOfBirth = dateOfBirth;
+		this.role = role;
+		this.isFree = isFree;
+		this.orderList = orderList;
+		this.feedbackList = feedbackList;
+		this.productLikeStatus = productLikeStatus;
+		this.address = address;
+	}
+
+
+
 
 
 
@@ -249,6 +264,24 @@ public class User {
 	public void setProductLikeStatus(List<ProductLikeStatus> productLikeStatus) {
 		this.productLikeStatus = productLikeStatus;
 	}
+
+	
+
+	public Address getAddress() {
+		return address;
+	}
+
+
+
+
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+
 
 
 

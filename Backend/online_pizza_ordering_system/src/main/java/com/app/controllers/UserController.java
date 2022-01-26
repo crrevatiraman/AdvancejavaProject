@@ -1,5 +1,7 @@
 package com.app.controllers;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.Credential;
 import com.app.dtos.Response;
+import com.app.dtos.UserAddressDTO;
 import com.app.dtos.UserDTO;
 import com.app.entities.User;
 import com.app.services.UserServiceImpl;
@@ -67,6 +70,15 @@ public class UserController {
 		 if(userDto == null )
 			 return Response.error("user not found");
 		return Response.success(userDto);
+	 }
+	 
+	 @PutMapping("/user/update-employee/{userId}")
+	 public ResponseEntity<?> updateEmployeeDetails(@PathVariable("userId") int userId,@RequestBody UserAddressDTO userAddressDto)
+	 {
+		 Map<String, Object> result = userService.updateEmployeeDetails(userId, userAddressDto);
+		
+		 return Response.success(result);
+		 	
 	 }
 
 	

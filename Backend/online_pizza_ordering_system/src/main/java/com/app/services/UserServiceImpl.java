@@ -1,15 +1,20 @@
 package com.app.services;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.daos.IUserDao;
 import com.app.dtos.Credential;
 import com.app.dtos.DtoEntityConverter;
+import com.app.dtos.UserAddressDTO;
 import com.app.dtos.UserDTO;
+import com.app.entities.Address;
 import com.app.entities.User;
 
 @Transactional
@@ -84,6 +89,27 @@ public class UserServiceImpl {
 		}
 			return null;
 	
+	}
+	
+	public Map<String, Object> updateEmployeeDetails(int userId,UserAddressDTO userAddressDto)
+	{
+			
+		User user = userDao.getById(userId);
+		if(user != null )
+		{
+			userAddressDto.setUserId(userId);
+			//User userData = converter.toUserEntity(userAddressDto);
+			user.setAddress(userAddressDto.getAddress());
+			user.setRole(userAddressDto.getRole());
+			user.setDateOfBirth(userAddressDto.getDateOfBirth());
+			user.setGender(userAddressDto.getGender());
+			
+			
+			
+			user = userDao.save(user);
+			Collections.singletonMap("changedRows", 1);
+		}
+		return Collections.singletonMap("changedRows", 0);
 	}
 	
 }
