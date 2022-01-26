@@ -9,6 +9,7 @@ import { URL } from '../../../config'
 const UpdateEmployee = () => {
   const {state} = useLocation()
   const [email,setEmail] = useState("")
+  const [userId,setUserId] = useState("")
   const [role, setRole] = useState("");
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
@@ -26,14 +27,12 @@ const UpdateEmployee = () => {
     navigate('/search-emp')
 }
 
-// const emailsetter= ()=>{
-//   const { email } = empState
-// }
 
 useEffect(() => {
   const { employee } = state
 
   setEmail(employee.email)
+  setUserId(employee.userId)
 
 }, [])
 
@@ -60,21 +59,22 @@ useEffect(() => {
       const body = {
         role,
         gender,
-        dateOfBirth,     
-        line1,
-        line2,
-        city,
-        district,
-        state:State,
-        pinCode
-        
+        dateOfBirth,
+        address:{     
+                line1,
+                line2,
+                city,
+                district,
+                state:State,
+                pinCode
+                }
       };
 
       // url to call the api
-      const url = `${URL}/user/update-employee`;
+      const url = `${URL}/user/update-employee/${userId}`;
 
       
-      axios.post(url, body).then((response) => {
+      axios.put(url, body).then((response) => {
         
         const result = response.data;
         console.log(result);

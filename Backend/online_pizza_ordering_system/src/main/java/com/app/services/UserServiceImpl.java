@@ -14,7 +14,6 @@ import com.app.dtos.Credential;
 import com.app.dtos.DtoEntityConverter;
 import com.app.dtos.UserAddressDTO;
 import com.app.dtos.UserDTO;
-import com.app.entities.Address;
 import com.app.entities.User;
 
 @Transactional
@@ -95,7 +94,7 @@ public class UserServiceImpl {
 	{
 			
 		User user = userDao.getById(userId);
-		if(user != null )
+		if(user != null && user.getAddress() == null)
 		{
 			userAddressDto.setUserId(userId);
 			//User userData = converter.toUserEntity(userAddressDto);
@@ -104,12 +103,16 @@ public class UserServiceImpl {
 			user.setDateOfBirth(userAddressDto.getDateOfBirth());
 			user.setGender(userAddressDto.getGender());
 			
+			user.getAddress().setUser(user);
 			
 			
 			user = userDao.save(user);
-			Collections.singletonMap("changedRows", 1);
+			return Collections.singletonMap("changedRows", 1);
 		}
-		return Collections.singletonMap("changedRows", 0);
+		
+			return Collections.singletonMap("changedRows", 0);
+		
+		
 	}
 	
 }
