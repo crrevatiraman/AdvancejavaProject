@@ -36,7 +36,7 @@ const SearchEmp = () => {
 
   return (
     <div className="background-img example">
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light background-color">
         <div class="container-fluid">
           <button
             class="navbar-toggler"

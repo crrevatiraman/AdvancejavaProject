@@ -10,6 +10,7 @@ import UpdateEmployee from './pages/Admin_Pages/updateEmp'
 import Addcombo from './pages/Admin_Pages/addCombo'
 import Addproduct from './pages/Admin_Pages/addproduct'
 import Addfeedback from './pages/Customer_Pages/feedback'
+import AddTopping from './pages/Admin_Pages/addTopping'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path = "/add-product" element = {<Addproduct/>}/>
           <Route path = "/add-combo" element = {<Addcombo/>}/>
           <Route path = "/add-feedback" element = {<Addfeedback/>}/>
+          <Route path = "/add-topping" element = {<AddTopping/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

@@ -109,7 +109,7 @@ public class UserServiceImpl {
 					
 					
 					user = userDao.save(user);
-					return Collections.singletonMap("changedRows", 1);
+					return Collections.singletonMap("InsertedRows", 1);
 				}
 				else {
 						
@@ -122,7 +122,7 @@ public class UserServiceImpl {
 					user.getAddress().setUser(user);
 					
 					user = userDao.save(user);
-					return Collections.singletonMap("changedRows", 2);
+					return Collections.singletonMap("UpdatedRows", 1);
 				}
 		
 		}

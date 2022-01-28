@@ -1,32 +1,39 @@
+
+
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './index.css'
+
 import { toast } from 'react-toastify'
 import React ,{Component} from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router'
-import { URL } from '../../config'
+import { URL } from '../../../config'
 
 
-const Signin = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+const AddTopping = () => {
+  const [toppingName, setToppingName] = useState('')
+  const [toppingPrice, setToppingPrice] = useState('')
 
   const navigate = useNavigate()
 
-  const signinUser = () => {
-    if (email.length == 0) {
-      toast.warning('please enter email')
-    } else if (password.length == 0) {
-      toast.warning('please enter password')
+  const cancelAddProduct = () => {
+    navigate("/home");
+  };
+
+
+
+  const addDetails = () => {
+    if (toppingName.length == 0) {
+      toast.warning('please enter topping name')
+    } else if (toppingPrice == 0) {
+      toast.warning('please enter price')
     } else {
       const body = {
-        email,
-        password
+        toppingName,
+        toppingPrice
       }
 
       // url to make signin api call
-      const url = `${URL}/user/signin`
+      const url = `${URL}/product/add-topping`
 
       // make api call using axios
       axios.post(url, body).then((response) => {
@@ -34,21 +41,12 @@ const Signin = () => {
         const result = response.data
         console.log(result)
         if (result['status'] == 'success') {
-          toast.success('Welcome to the application')
-
-          // get the data sent by server
-          const { id, firstName, lastName } = result['data']
-
-          // persist the logged in user's information for future use
-          sessionStorage['id'] = id
-          sessionStorage['firstName'] = firstName
-          sessionStorage['lastName'] = lastName
-          sessionStorage['loginStatus'] = 1
+          toast.success('topping added successfully')
 
           // navigate to home component
           navigate('/home')
         } else {
-          toast.error('Invalid user name or password')
+          toast.error('Invalid details')
         }
       })
     }
@@ -56,7 +54,7 @@ const Signin = () => {
 
   return (
     <div className='background-img example'>
-      <h1 className="title">Log In</h1>
+      <h1 className="title">Add Topping</h1>
 
       <div className="row ">
         <div className="col"></div>
@@ -65,11 +63,11 @@ const Signin = () => {
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control margin">
-                Email
+                Topping Name
               </label>
               <input
                 onChange={(e) => {
-                  setEmail(e.target.value)
+                  setToppingName(e.target.value)
                 }}
                 type="text"
                 className="form-control"
@@ -78,34 +76,36 @@ const Signin = () => {
 
             <div className="mb-3">
               <label htmlFor="" className="label-control">
-                Password
+                Price
               </label>
               <input
                 onChange={(e) => {
-                  setPassword(e.target.value)
+                  setToppingPrice(e.target.value)
                 }}
-                type="password"
+                type="number"
                 className="form-control"
               />
             </div>
 
             <div className="mb-3">
-              <div className='btn-margin'>
-                No account yet? <Link to="/register">Signup here</Link>
-              </div>
+              
               <div className='row'>
               <div className='col'>
-              <button onClick={signinUser} className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after">
-                Signin
+              <button onClick={addDetails} className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after">
+                Add
               </button>
              
               </div>
-              <div className='col '>
-                 <Link to="/forgot-password">Forgot Password?</Link>
               
+                <div className='col'></div>
+              <div className='col'>
+              <button
+                onClick={cancelAddProduct}
+                className="css-button-arrow--sky1 css-button-arrow--sky1:hover css-button-arrow--sky1:hover:after css-button-arrow--sky1:after"
+              >
+                Cancel
+              </button>
               </div>
-            
-              <div className='col'></div>
               </div>
             </div>
           </div>
@@ -117,4 +117,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default AddTopping

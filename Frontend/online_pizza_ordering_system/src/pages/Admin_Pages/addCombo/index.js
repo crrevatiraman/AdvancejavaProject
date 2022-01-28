@@ -27,7 +27,7 @@ const Addcombo= () => {
   const addtheCombo = () => {
     const body = {
       comboName,
-      comboImage,
+      //comboImage,
       comboPrice,
       description,
       comboCategory
@@ -109,13 +109,13 @@ const Addcombo= () => {
                 </label>
               </div>
               <select  type="radio"
-                class="form-select"
+                className="form-select"
                 onChange={(e) => {
                   setComboCategory(e.target.value);
                 }}
               >
-                <option class="text-dark" value="Veg">Veg</option>
-                <option class="text-dark" value="NonVeg">Non-Veg</option>
+                <option className="text-dark" value="Veg">Veg</option>
+                <option className="text-dark" value="NonVeg">Non-Veg</option>
                
               </select>
             </div>

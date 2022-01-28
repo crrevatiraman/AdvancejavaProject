@@ -88,10 +88,35 @@ useEffect(() => {
         }
       });
     }
+
+    
   };
   
   return (
-    <div className="background-img2">
+    <div className="background-img example">
+     
+      {/* <nav class="navbar navbar-light background-color">
+        <div class="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent"
+            aria-controls="navbarToggleExternalContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+ 
+        </div>
+      </nav> */}
+{/* 
+<div id="navbar">
+  <a href="#home">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+</div> */}
       <h1 className="title5 ">Update Employee Details</h1>
 
       <div className="row ">
@@ -252,6 +277,8 @@ useEffect(() => {
         </div>
         <div className="col"></div>
       </div>
+      
+              
     </div>
   );
 };
