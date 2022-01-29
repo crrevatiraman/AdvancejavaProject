@@ -12,7 +12,7 @@ import { URL } from "../../../config";
 
 const Addcombo= () => {
   const [comboName, setComboName] = useState("");
-  const [comboImage, setComboImage] = useState("");
+  const [comboImage, setComboImage] = useState(undefined);
   const [comboPrice, setComboPrice] = useState("");
   const [description, setDescription] = useState("");
   const [comboCategory, setComboCategory] = useState("");
@@ -25,21 +25,37 @@ const Addcombo= () => {
     navigate("/home");
   };
   const addtheCombo = () => {
-    const body = {
-      comboName,
-      //comboImage,
-      comboPrice,
-      description,
-      comboCategory
-     
-    };
 
+    if (comboName.length == 0) {
+      toast.warning("Please enter combo name");
+    }
+     else if (comboCategory.length == 0) {
+      toast.warning("Please enter category");
+    }
+    else if (description.length == 0) {
+      toast.warning("Please enter description");
+    }
+      else if (comboPrice == 0) {
+        toast.warning("Please enter price");
+      }
+      else if (!comboImage) {
+        toast.warning("Please select combo image");
+      }
+      else{
+        const data = new FormData()
+        data.append('comboName', comboName)
+      data.append('comboCategory',comboCategory )
+      data.append('description',description )
+      data.append('comboPrice',comboPrice )
+      data.append('comboImage',comboImage )
+
+      
     // url to call the api
-    const url = `${URL}/user/add-combo`;
+    const url = `${URL}/product/add-combo`;
 
     // http method: post
     // body: contains the data to be sent to the API
-    axios.post(url, body).then((response) => {
+    axios.post(url, data).then((response) => {
       // get the data from the response
       const result = response.data;
       console.log(result);
@@ -52,6 +68,7 @@ const Addcombo= () => {
         toast.error(result["error"]);
       }
     });
+  }
   };
 
 

@@ -1,13 +1,10 @@
 package com.app.entities;
 
-import java.util.Arrays;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +17,8 @@ public class Combo {
 	private int comboId;
 	@Column(name = "combo_name",length=100)
 	private String comboName;
-	@Lob
 	@Column(name = "combo_image")
-	private byte[] comboImage;
+	private String comboImage;
 	@Column(name = "combo_price")
 	private double comboPrice;
 	@Column(length=250)
@@ -39,7 +35,7 @@ public class Combo {
 
 
 
-	public Combo(int comboId, String comboName, byte[] comboImage, double comboPrice, String description,
+	public Combo(int comboId, String comboName, String comboImage, double comboPrice, String description,
 			String comboCategory) {
 		this.comboId = comboId;
 		this.comboName = comboName;
@@ -80,14 +76,14 @@ public class Combo {
 
 
 
-	public byte[] getComboImage() {
+	public String getComboImage() {
 		return comboImage;
 	}
 
 
 
 
-	public void setComboImage(byte[] comboImage) {
+	public void setComboImage(String comboImage) {
 		this.comboImage = comboImage;
 	}
 
@@ -136,12 +132,7 @@ public class Combo {
 
 
 
-	@Override
-	public String toString() {
-		return String.format(
-				"Combo [comboId=%s, comboName=%s, comboImage=%s, comboPrice=%s, description=%s, comboCategory=%s]",
-				comboId, comboName, Arrays.toString(comboImage), comboPrice, description, comboCategory);
-	}
+	
 
 
 

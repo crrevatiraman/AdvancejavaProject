@@ -1,10 +1,10 @@
 package com.app.dtos;
 
-import java.io.IOException;
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.app.entities.Combo;
+import com.app.entities.Topping;
 import com.app.entities.User;
 
 @Component
@@ -72,39 +72,36 @@ public class DtoEntityConverter {
 		return entity;		
 	}
 	
-//	public ComboDTO toComboDTO(Combo entity)
-//	{
-//		ComboDTO dto = new ComboDTO();
-//		
-//		dto.setComboId(entity.getComboId());
-//		dto.setComboName(entity.getComboName());
-//		dto.setComboCategory(entity.getComboCategory());
-//		dto.setComboPrice(entity.getComboPrice());
-//		dto.setDescription(entity.getComboCategory());
-//		dto.setComboImage(entity.getComboImage());
-//		
-//		return dto;
-//	}
-	
-	public Combo toComboEntity(ComboDTO dto)
-	{
-		if(dto.getComboImage() == null)
-			return null;
-		Combo entity = new Combo();
-		
-		entity.setComboId(dto.getComboId());
-		entity.setComboName(dto.getComboName());
-		entity.setComboCategory(dto.getComboCategory());
-		entity.setComboPrice(dto.getComboPrice());
-		entity.setDescription(dto.getComboCategory());
-		try {
-			entity.setComboImage(dto.getComboImage().getBytes());
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-		
-		return entity;
-	}
 
+	
+
+	public Combo toComboEntity(ComboFormDTO comboDto)
+	{
+		
+		Combo entity = new Combo();
+		BeanUtils.copyProperties(comboDto, entity, "comboImage");
+		if(comboDto.getComboImage() != null)
+			entity.setComboImage(comboDto.getComboImage().getOriginalFilename());
+		return entity;
+		
+
+	}
+	
+	public Topping toToppingEntity(ToppingDTO dto) {
+		Topping entity = new Topping();
+		
+		entity.setToppingName(dto.getToppingName());
+		entity.setToppingPrice(dto.getToppingPrice());
+		
+		return entity;		
+	}
+	
+	public ToppingDTO toToppingDto(Topping entity) {
+		ToppingDTO dto = new ToppingDTO();
+		
+		dto.setToppingName(entity.getToppingName());
+		dto.setToppingPrice(entity.getToppingPrice());
+		
+		return dto;		
+	}
 }

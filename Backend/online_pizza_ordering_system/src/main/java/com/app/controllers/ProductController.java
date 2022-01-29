@@ -2,35 +2,59 @@ package com.app.controllers;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dtos.ComboDTO;
+import com.app.dtos.ComboFormDTO;
+import com.app.dtos.DtoEntityConverter;
 import com.app.dtos.Response;
+import com.app.dtos.ToppingDTO;
+import com.app.entities.Combo;
 import com.app.services.ComboServiceImpl;
+import com.app.services.DiskStorageServiceImpl;
+import com.app.services.ToppingServiceImpl;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class ProductController {
 
-	//@Autowired
+	@Autowired
 	private ComboServiceImpl comboService;
+	@Autowired
+	private DtoEntityConverter converter;
+	@Autowired
+	private ToppingServiceImpl toppingService;
+	
+	@Autowired
+	private DiskStorageServiceImpl storageService;
 
-	public ProductController(ComboServiceImpl comboService) {
-		this.comboService = comboService;
-	}
-	
-	
+
+
 	@PostMapping("/product/add-combo")
-	public ResponseEntity<?> addComboDetails(@ModelAttribute ComboDTO comboDto)
-	{
-		 Map<String, Object> result = comboService.addComboDetails(comboDto);
-		 
-		 return Response.success(result);
-		
+	public ResponseEntity<?> saveAlbum(ComboFormDTO comboDto) {
+		Combo combo = converter.toComboEntity(comboDto);
+		String image = storageService.store(comboDto.getComboImage());
+		combo.setComboImage(image);
+		comboService.saveCombo(combo);
+		return Response.success(combo);
 	}
+	
+	
+	@PostMapping("/product/add-topping")
+	public ResponseEntity<?> addTopping(@RequestBody ToppingDTO toppingDto)
+	{
+		Map<String, Object> result = toppingService.addTopping(toppingDto);
+		return Response.success(result);
+	}
+	
+	
+
+	
+	
+
 	
 }

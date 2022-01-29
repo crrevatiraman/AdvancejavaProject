@@ -2,7 +2,7 @@ package com.app.dtos;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class ComboDTO {
+public class ComboFormDTO {
 
 	private int comboId;
 	private String comboName;
@@ -12,7 +12,7 @@ public class ComboDTO {
 	private String comboCategory;
 	
 	
-	public ComboDTO() {
+	public ComboFormDTO() {
 		
 	}
 
@@ -20,7 +20,7 @@ public class ComboDTO {
 	
 
 
-	public ComboDTO(int comboId, String comboName, MultipartFile comboImage, double comboPrice, String description,
+	public ComboFormDTO(int comboId, String comboName, MultipartFile comboImage, double comboPrice, String description,
 			String comboCategory) {
 		this.comboId = comboId;
 		this.comboName = comboName;

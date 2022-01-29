@@ -2,6 +2,7 @@ package com.app.controllers;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,17 +23,9 @@ import com.app.services.UserServiceImpl;
 @RestController
 public class UserController {
 
-	//@Autowired
+	@Autowired
 	private UserServiceImpl userService;
 	
-	
-	
-	public UserController(UserServiceImpl userService) {
-		super();
-		this.userService = userService;
-	}
-
-
 
 	@PostMapping("/user/signin")
 	public ResponseEntity<?> signIn(@RequestBody Credential cred) {
