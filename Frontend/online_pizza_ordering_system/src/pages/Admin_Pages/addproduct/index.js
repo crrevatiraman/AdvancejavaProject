@@ -11,7 +11,8 @@ const Addproduct = () => {
   const [productImage, setProductImage] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
- 
+  const [price , setPrice] = useState([])
+
   // used to navigate from one component to another
   const navigate = useNavigate();
 
@@ -24,8 +25,7 @@ const Addproduct = () => {
       productName,
       productImage,
       category,
-      description
-     
+      description,
     };
 
     // url to call the api
@@ -58,7 +58,7 @@ const Addproduct = () => {
 
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col-6">
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -91,108 +91,153 @@ const Addproduct = () => {
                   Product Category
                 </label>
               </div>
-              <select  type="radio"
+              <select
+                type="radio"
                 class="form-select"
                 onChange={(e) => {
                   setCategory(e.target.value);
                 }}
               >
-                <option class="text-dark" value="Veg">Veg</option>
-                <option class="text-dark" value="NonVeg">Non-Veg</option>
-               
-              </select>
-            </div>
-
-
-            <div className="mb-3">
-              <div className="form">
-                <label htmlFor="" className="label-control">
-                  Size
-                </label>
-              </div>
-              <select
-                class="form-select"
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              >
-                <option class="text-dark" value="Regular">
-                  Regular
+                <option class="text-dark" value="Veg">
+                  Veg
                 </option>
-                <option class="text-dark" value="Medium">
-                  Medium
-                </option>
-                <option class="text-dark" value="Large">
-                  Large
+                <option class="text-dark" value="NonVeg">
+                  Non-Veg
                 </option>
               </select>
             </div>
             <div className="mb-3">
-              <div className="form">
+              <div>
                 <label htmlFor="" className="label-control">
-                  Crust :
+                  Pizza Price:
                 </label>
               </div>
-              <select
-                class="form-select"
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              >
-                <option class="text-dark" value="Red Hand Tossed">
-                  Red Hand Tossed
-                </option>
-                <option class="text-dark" value="Cheese Burst">
-                  Cheese Burst
-                </option>
-                <option class="text-dark" value="Wheat Crust">
-                  Wheat Crust
-                </option>
-                <option class="text-dark" value="Classic Hand Tossed ">
-                  Classic Hand Tossed{" "}
-                </option>
-              </select>
+              <label htmlFor="" className="label-control">
+                Regular
+              </label>
+  
+              <div className="row">
+                <div className="col">
+                  <label for="ex1">New Hand Tossed</label>
+                  <input 
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                   className="form-control inputbox-size"
+                    type="number" 
+                    />
+                  </div>
+     
+                <div className="col">
+                <label for="ex1">Cheese Burst</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+                <div className="col">
+                <label for="ex1">Wheat Crust</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+                <div className="col">
+                <label for="ex1">Classic Hand Tossed</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+              </div>
+             
+              <label htmlFor="" className="label-control">
+                Medium
+              </label>
+              <div className="row">
+                <div className="col">
+                  <label for="ex1">New Hand Tossed</label>
+                  <input className="form-control inputbox-size" type="number" />
+                  </div>
+     
+                <div className="col">
+                <label for="ex1">Cheese Burst</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+                <div className="col">
+                <label for="ex1">Wheat Crust</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+                <div className="col">
+                <label for="ex1">Classic Hand Tossed</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+              </div>
+             
+              <label htmlFor="" className="label-control">
+                Large
+              </label>
+
+              <div className="row">
+                <div className="col">
+                  <label for="ex1">New Hand Tossed</label>
+                  <input className="form-control inputbox-size" type="number" />
+                  </div>
+     
+                <div className="col">
+                <label for="ex1">Cheese Burst</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+                <div className="col">
+                <label for="ex1">Wheat Crust</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+                <div className="col">
+                <label for="ex1">Classic Hand Tossed</label>
+                  <input className="form-control inputbox-size" type="number" />
+                </div>
+              </div>
+             
+              
+              
             </div>
 
+            
+            
             <div className="mb-3">
               <label htmlFor="" className="label-control">
                 Description
               </label>
-              <input
+
+              <textarea
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
                 type="text"
                 className="form-control"
-              />
+                cols="40"
+                rows="5"
+              ></textarea>
             </div>
 
             <div className="mb-3">
-              <div className = 'row'>
-              <div className = 'col'>
-              <button
-                onClick={addtheProduct}
-                className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after"
-              >
-                Add Product
-              </button>
-              </div>
-              <div className = 'col'></div>
-              <div className = 'col'>
-              <div className = 'col'></div>
-              <button
-                onClick={cancelAddProduct}
-                className="css-button-arrow--sky1 css-button-arrow--sky1:hover css-button-arrow--sky1:hover:after css-button-arrow--sky1:after"
-              >
-                Cancel
-              </button>
-              </div>
+              <div className="row">
+                <div className="col">
+                  <button
+                    onClick={addtheProduct}
+                    className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after"
+                  >
+                    Add Product
+                  </button>
+                </div>
+                <div className="col"></div>
+                <div className="col">
+                  <div className="col"></div>
+                  <button
+                    onClick={cancelAddProduct}
+                    className="css-button-arrow--sky1 css-button-arrow--sky1:hover css-button-arrow--sky1:hover:after css-button-arrow--sky1:after"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="col"></div>
       </div>
+      
     </div>
   );
 };
