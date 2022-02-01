@@ -127,41 +127,7 @@ const SearchEmp = () => {
         </div>
         <div className="col"></div>
       </div>
-      {/* {check && (
-        <div>
-          <div className="row margin-top">
-            <div className="col"></div>
-            <div className="col">ID</div>
-            <div className="col">NAME</div>
-            <div className="col">EMAIL</div>
-            <div className="col">ACTION</div>
-            <div className="col"></div>
-            <div className="col"></div>
-            <div className="col"></div>
-          </div>
-          <div className="row margin-top">
-            <div className="col"></div>
-            <div className="col">{employee.userId}</div>
-            <div className="col">{employee.firstName}</div>
-            <div className="col">{employee.email}</div>
-            <div className="col">
-              <button
-                onClick={() => {
-                  navigate("/update-employee", {
-                    state: { employee: employee },
-                  });
-                }}
-                className="btn btn-info"
-              >
-                Update
-              </button>
-            </div>
-            <div className="col"></div>
-            <div className="col"></div>
-            <div className="col"></div>
-          </div>
-        </div>
-      )} */}
+     
     </div>
   );
 };

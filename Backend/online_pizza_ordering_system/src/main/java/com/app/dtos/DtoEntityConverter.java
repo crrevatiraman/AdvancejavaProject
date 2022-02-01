@@ -4,6 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.app.entities.Combo;
+import com.app.entities.Product;
+import com.app.entities.SubCategory;
 import com.app.entities.Topping;
 import com.app.entities.User;
 
@@ -103,5 +105,37 @@ public class DtoEntityConverter {
 		dto.setToppingPrice(entity.getToppingPrice());
 		
 		return dto;		
+	}
+	
+	public Product toProductEntity(ProductDTO productDto)
+	{
+		
+		Product entity = new Product();
+		BeanUtils.copyProperties(productDto, entity, "productImage");
+		if(productDto.getProductImage() != null)
+			entity.setProductImage(productDto.getProductImage().getOriginalFilename());
+		return entity;
+
+	}
+	
+	public SubCategoryDTO toSubCategoryDto(SubCategory entity) {
+		SubCategoryDTO dto = new SubCategoryDTO();
+		dto.setSubCategoryId(entity.getSubCategoryId());
+		dto.setCrustType(entity.getCrustType());
+		dto.setPrice(entity.getPrice());
+		dto.setSize(entity.getSize());
+	
+		return dto;
+	}
+	
+	
+	public SubCategory toSubCategoryEntity(SubCategoryDTO dto) {
+		SubCategory entity = new SubCategory();
+		entity.setSubCategoryId(dto.getSubCategoryId());
+		entity.setCrustType(dto.getCrustType());
+		entity.setPrice(dto.getPrice());
+		entity.setSize(dto.getSize());
+		
+		return entity;
 	}
 }

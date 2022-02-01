@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -11,7 +10,7 @@ const Addproduct = () => {
   const [productImage, setProductImage] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [price , setPrice] = useState([])
+  
 
   // used to navigate from one component to another
   const navigate = useNavigate();
@@ -20,37 +19,57 @@ const Addproduct = () => {
     navigate("/home");
   };
 
+  
   const addtheProduct = () => {
-    const body = {
-      productName,
-      productImage,
-      category,
-      description,
-    };
+
+    if (productName.length == 0) {
+      toast.warning("Please enter product name");
+    }
+     else if (category.length == 0) {
+      toast.warning("Please enter category");
+    }
+    else if (description.length == 0) {
+      toast.warning("Please enter description");
+    }    
+      else if (!productImage) {
+        toast.warning("Please select product image");
+      }
+      else{
+        const data = new FormData()
+        data.append('productName', productName)
+      data.append('category',category )
+      data.append('description',description )
+      data.append('productImage',productImage )
+
+    
 
     // url to call the api
-    const url = `${URL}/user/add-product`;
+    const url = `${URL}/product/add-product`;
 
     // http method: post
     // body: contains the data to be sent to the API
-    axios.post(url, body).then((response) => {
+    axios.post(url, data).then((response) => {
       // get the data from the response
       const result = response.data;
       console.log(result);
       if (result["status"] == "success") {
         toast.success("Successfully added product");
-
+        
+        console.log(result['data'])
         // navigate to the signin page
-        navigate("/home");
+       navigate("/add-subcategory",{
+        state: { product: result['data'] },
+      })
+     
+         
       } else {
         toast.error(result["error"]);
       }
     });
   };
 
-  // url to call the api
-  // url to call the api
-  // url to call the api
+}
+ 
 
   return (
     <div className="background-img example">
@@ -58,7 +77,7 @@ const Addproduct = () => {
 
       <div className="row">
         <div className="col"></div>
-        <div className="col-6">
+        <div className="col border2">
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -98,6 +117,7 @@ const Addproduct = () => {
                   setCategory(e.target.value);
                 }}
               >
+                <option className="text-dark" selected> Select Category </option>
                 <option class="text-dark" value="Veg">
                   Veg
                 </option>
@@ -106,93 +126,7 @@ const Addproduct = () => {
                 </option>
               </select>
             </div>
-            <div className="mb-3">
-              <div>
-                <label htmlFor="" className="label-control">
-                  Pizza Price:
-                </label>
-              </div>
-              <label htmlFor="" className="label-control">
-                Regular
-              </label>
-  
-              <div className="row">
-                <div className="col">
-                  <label for="ex1">New Hand Tossed</label>
-                  <input 
-                    onChange={(e) => {
-                      setDescription(e.target.value);
-                    }}
-                   className="form-control inputbox-size"
-                    type="number" 
-                    />
-                  </div>
-     
-                <div className="col">
-                <label for="ex1">Cheese Burst</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-                <div className="col">
-                <label for="ex1">Wheat Crust</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-                <div className="col">
-                <label for="ex1">Classic Hand Tossed</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-              </div>
-             
-              <label htmlFor="" className="label-control">
-                Medium
-              </label>
-              <div className="row">
-                <div className="col">
-                  <label for="ex1">New Hand Tossed</label>
-                  <input className="form-control inputbox-size" type="number" />
-                  </div>
-     
-                <div className="col">
-                <label for="ex1">Cheese Burst</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-                <div className="col">
-                <label for="ex1">Wheat Crust</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-                <div className="col">
-                <label for="ex1">Classic Hand Tossed</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-              </div>
-             
-              <label htmlFor="" className="label-control">
-                Large
-              </label>
-
-              <div className="row">
-                <div className="col">
-                  <label for="ex1">New Hand Tossed</label>
-                  <input className="form-control inputbox-size" type="number" />
-                  </div>
-     
-                <div className="col">
-                <label for="ex1">Cheese Burst</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-                <div className="col">
-                <label for="ex1">Wheat Crust</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-                <div className="col">
-                <label for="ex1">Classic Hand Tossed</label>
-                  <input className="form-control inputbox-size" type="number" />
-                </div>
-              </div>
-             
-              
-              
-            </div>
-
+            
             
             
             <div className="mb-3">
@@ -230,6 +164,7 @@ const Addproduct = () => {
                   >
                     Cancel
                   </button>
+
                 </div>
               </div>
             </div>
@@ -242,4 +177,4 @@ const Addproduct = () => {
   );
 };
 
-export default Addproduct;
+export default Addproduct

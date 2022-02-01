@@ -1,6 +1,5 @@
 package com.app.entities;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,9 +21,8 @@ public class Product {
 	@Column(name = "product_id")
 	private int productId;
 	private String productName;
-	@Lob
 	@Column(name = "product_image")
-	private byte[] productImage;
+	private String productImage;
 	private String category;
 	private String description;
 	
@@ -40,7 +37,7 @@ public class Product {
 	}
 
 
-	public Product(int productId, String productName, byte[] productImage, String category, String description,
+	public Product(int productId, String productName, String productImage, String category, String description,
 			OrderDetail orderDetail, List<SubCategory> subCategory) {
 		this.productId = productId;
 		this.productName = productName;
@@ -52,7 +49,7 @@ public class Product {
 	}
 
 
-	public Product(int productId, String productName, byte[] productImage, String category, String description) {
+	public Product(int productId, String productName, String productImage, String category, String description) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productImage = productImage;
@@ -81,12 +78,12 @@ public class Product {
 	}
 
 
-	public byte[] getProductImage() {
+	public String getProductImage() {
 		return productImage;
 	}
 
 
-	public void setProductImage(byte[] productImage) {
+	public void setProductImage(String productImage) {
 		this.productImage = productImage;
 	}
 
@@ -131,13 +128,7 @@ public class Product {
 	}
 
 
-	@Override
-	public String toString() {
-		return String.format(
-				"Product [productId=%s, productName=%s, productImage=%s, category=%s, description=%s, orderDetail=%s, subCategory=%s]",
-				productId, productName, Arrays.toString(productImage), category, description, orderDetail, subCategory);
-	}
-
+	
 	
 	
 	
