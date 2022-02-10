@@ -12,6 +12,8 @@ import Addproduct from './pages/Admin_Pages/addproduct'
 import Addfeedback from './pages/Customer_Pages/feedback'
 import AddTopping from './pages/Admin_Pages/addTopping'
 import AddSubCategory from './pages/Admin_Pages/addSubCategory'
+import Editproduct from './pages/Admin_Pages/EditProduct'
+import Home from './pages/Admin_Pages/Home'
 // import CustomerFeedback from './pages/Admin_Pages/CustomerFeedback'
 
 function App() {
@@ -31,7 +33,8 @@ function App() {
           <Route path = "/add-feedback" element = {<Addfeedback/>}/>
           <Route path = "/add-topping" element = {<AddTopping/>}/>
           <Route path = "/add-subcategory" element = {<AddSubCategory/>}/>
-          {/* <Route path = "/customer-feeback" element = {<CustomerFeedback/>}/> */}
+          <Route path = "/edit-product" element = {<Editproduct/>}/>
+          <Route path = "/home" element = {<Home/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

@@ -51,7 +51,9 @@ const SearchEmp = () => {
           </button>
           <button
             className="btn btn-secondary btn-menu"
-            onClick={searchEmployee}
+            onClick={() =>{
+              navigate('/home')
+            } }
           >
             Menu
           </button>

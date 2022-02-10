@@ -64,4 +64,9 @@ public class ProductServiceImpl {
 			return null;
 	}
 
+	public List<Product> getAllProduct()
+	{
+		return productDao.findAll();
+	}
+	
 }

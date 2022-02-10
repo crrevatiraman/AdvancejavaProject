@@ -107,7 +107,7 @@ public class DtoEntityConverter {
 		return dto;		
 	}
 	
-	public Product toProductEntity(ProductDTO productDto)
+	public Product toProductEntity(ProductFormDTO productDto)
 	{
 		
 		Product entity = new Product();
@@ -138,4 +138,19 @@ public class DtoEntityConverter {
 		
 		return entity;
 	}
+	
+	public ProductDTO toProductDto(Product entity) {
+		ProductDTO dto = new ProductDTO();
+		
+		dto.setCategory(entity.getCategory());
+		dto.setDescription(entity.getDescription());
+		dto.setProductId(entity.getProductId());
+		dto.setProductImage(entity.getProductImage());
+		dto.setProductName(entity.getProductName());
+		dto.setSubCategoryList(entity.getSubCategory());
+		
+		return dto;		
+	}
+	
+	
 }
