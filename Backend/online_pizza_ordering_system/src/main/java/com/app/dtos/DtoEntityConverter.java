@@ -1,6 +1,5 @@
 package com.app.dtos;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.app.entities.Combo;
@@ -77,14 +76,48 @@ public class DtoEntityConverter {
 
 	
 
-	public Combo toComboEntity(ComboFormDTO comboDto)
+//	public Combo toComboEntity(ComboFormDTO comboDto)
+//	{
+//		
+//		Combo entity = new Combo();
+//		BeanUtils.copyProperties(comboDto, entity, "comboImage");
+//		if(comboDto.getComboImage() != null)
+//			entity.setComboImage(comboDto.getComboImage().getOriginalFilename());
+//		return entity;
+//		
+//
+//	}
+	
+	
+	public Combo toComboEntity(ComboDTO dto)
 	{
 		
 		Combo entity = new Combo();
-		BeanUtils.copyProperties(comboDto, entity, "comboImage");
-		if(comboDto.getComboImage() != null)
-			entity.setComboImage(comboDto.getComboImage().getOriginalFilename());
+		entity.setComboCategory(dto.getComboCategory());
+		entity.setComboId(dto.getComboId());
+		entity.setComboImage(dto.getComboImage());
+		entity.setComboName(dto.getComboName());
+		entity.setComboPrice(dto.getComboPrice());
+		entity.setDescription(dto.getDescription());
+		
 		return entity;
+		
+
+	}
+	
+	
+	public ComboDTO toComboDto(Combo entity)
+	{
+		
+		ComboDTO dto = new ComboDTO();
+		dto.setComboCategory(entity.getComboCategory());
+		dto.setComboId(entity.getComboId());
+		dto.setComboImage(entity.getComboImage());
+		dto.setComboName(entity.getComboName());
+		dto.setComboPrice(entity.getComboPrice());
+		dto.setDescription(entity.getComboCategory());
+		
+		return dto;
 		
 
 	}
@@ -107,16 +140,22 @@ public class DtoEntityConverter {
 		return dto;		
 	}
 	
-	public Product toProductEntity(ProductFormDTO productDto)
-	{
-		
-		Product entity = new Product();
-		BeanUtils.copyProperties(productDto, entity, "productImage");
-		if(productDto.getProductImage() != null)
-			entity.setProductImage(productDto.getProductImage().getOriginalFilename());
-		return entity;
+//	public Product toProductEntity(ProductFormDTO productDto)
+//	{
+//		
+//		Product entity = new Product();
+//		BeanUtils.copyProperties(productDto, entity, "productImage");
+//		if(productDto.getProductImage() != null)
+//			entity.setProductImage(productDto.getProductImage().getOriginalFilename());
+//		return entity;
+//
+//	}
+	
+	
+	
+	
+	
 
-	}
 	
 	public SubCategoryDTO toSubCategoryDto(SubCategory entity) {
 		SubCategoryDTO dto = new SubCategoryDTO();
@@ -124,6 +163,8 @@ public class DtoEntityConverter {
 		dto.setCrustType(entity.getCrustType());
 		dto.setPrice(entity.getPrice());
 		dto.setSize(entity.getSize());
+		dto.setProductId(entity.getProductId());
+		
 	
 		return dto;
 	}
@@ -152,5 +193,15 @@ public class DtoEntityConverter {
 		return dto;		
 	}
 	
+	public Product toProductEntity(ProductDTO dto) {
+		Product entity = new Product();
+		entity.setCategory(dto.getCategory());
+		entity.setDescription(dto.getDescription());
+		entity.setProductId(dto.getProductId());
+		entity.setProductImage(dto.getProductImage());
+		entity.setProductName(dto.getProductName());
+		entity.setSubCategory(dto.getSubCategoryList());
 	
+		return entity;
+	}
 }

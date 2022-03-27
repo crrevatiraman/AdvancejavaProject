@@ -1,7 +1,5 @@
 package com.app.dtos;
 
-import com.app.entities.Product;
-
 public class SubCategoryDTO {
 	
 	private int productId;
@@ -9,7 +7,7 @@ public class SubCategoryDTO {
 	private String size;
 	private String crustType;
 	private double price;
-	private Product product;
+	//private Product product;
 	
 	public SubCategoryDTO() {
 	}
@@ -73,32 +71,17 @@ public class SubCategoryDTO {
 		this.price = price;
 	}
 
-	
-
-
-
-	public Product getProduct() {
-		return product;
-	}
-
-
-
-
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
 
 
 
 
 	@Override
 	public String toString() {
-		return String.format(
-				"SubCategoryDTO [productId=%s, subCategoryId=%s, size=%s, crustType=%s, price=%s, product=%s]",
-				productId, subCategoryId, size, crustType, price, product);
+		return String.format("SubCategoryDTO [productId=%s, subCategoryId=%s, size=%s, crustType=%s, price=%s]",
+				productId, subCategoryId, size, crustType, price);
 	}
+
+
 
 
 

@@ -2,7 +2,6 @@ package com.app.dtos;
 
 import java.util.List;
 
-import com.app.entities.Product;
 import com.app.entities.SubCategory;
 
 public class ProductDTO {

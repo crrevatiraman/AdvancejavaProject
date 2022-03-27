@@ -149,15 +149,16 @@
     * Logout
 ------------------------------
 ##### Database Tables
-    * customer
-    * employee
-    * delivery_boy
+    * user
     * address
     * feedback
     * order
-    * amount
+    * order_details
+    * topping
+    * combo
     * product
-    * status
-    * linking_tbl (for link order and product)
+    * sub_category
+    * order_status
+    * product_like_status
 
 ------------------------------

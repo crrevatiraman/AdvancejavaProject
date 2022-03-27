@@ -1,18 +1,16 @@
 package com.app.dtos;
 
-import org.springframework.web.multipart.MultipartFile;
-
-public class ComboFormDTO {
+public class ComboDTO {
 
 	private int comboId;
 	private String comboName;
-	private MultipartFile comboImage;
+	private String comboImage;
 	private double comboPrice;
 	private String description;
 	private String comboCategory;
 	
 	
-	public ComboFormDTO() {
+	public ComboDTO() {
 		
 	}
 
@@ -20,7 +18,7 @@ public class ComboFormDTO {
 	
 
 
-	public ComboFormDTO(int comboId, String comboName, MultipartFile comboImage, double comboPrice, String description,
+	public ComboDTO(int comboId, String comboName, String comboImage, double comboPrice, String description,
 			String comboCategory) {
 		this.comboId = comboId;
 		this.comboName = comboName;
@@ -66,7 +64,7 @@ public class ComboFormDTO {
 
 
 
-	public MultipartFile getComboImage() {
+	public String getComboImage() {
 		return comboImage;
 	}
 
@@ -74,7 +72,7 @@ public class ComboFormDTO {
 
 
 
-	public void setComboImage(MultipartFile comboImage) {
+	public void setComboImage(String comboImage) {
 		this.comboImage = comboImage;
 	}
 
@@ -129,6 +127,7 @@ public class ComboFormDTO {
 
 
 
+
 	@Override
 	public String toString() {
 		return String.format(
@@ -138,10 +137,6 @@ public class ComboFormDTO {
 
 
 
-	
 
-
-	
-	
 	
 }

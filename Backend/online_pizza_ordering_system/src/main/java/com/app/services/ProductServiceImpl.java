@@ -1,5 +1,6 @@
 package com.app.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.app.daos.IProductDao;
 import com.app.daos.ISubCategoryDao;
 import com.app.dtos.DtoEntityConverter;
+import com.app.dtos.ProductDTO;
 import com.app.dtos.SubCategoryDTO;
 import com.app.entities.Product;
 import com.app.entities.SubCategory;
@@ -32,8 +34,11 @@ public class ProductServiceImpl {
 	private DtoEntityConverter converter;
 	
 	
-	public Product saveProduct(Product product) {
-		return productDao.save(product);
+	public Product saveProduct(ProductDTO productDto) {
+		Product product = converter.toProductEntity(productDto);
+		
+		Product product1 =  productDao.save(product);
+		return product1;
 	}
 	
 	
@@ -52,10 +57,11 @@ public class ProductServiceImpl {
 		{
 		SubCategory subCategory = new SubCategory();
 		subCategory.setCrustType(subCategoryDto.getCrustType());
-		subCategory.setSubCategoryId(subCategoryDto.getSubCategoryId());		
+		//subCategory.setSubCategoryId(subCategoryDto.getSubCategoryId());		
 		subCategory.setPrice(subCategoryDto.getPrice());
 		subCategory.setSize(subCategoryDto.getSize());
-		subCategory.setProduct(subCategoryDto.getProduct());
+		subCategory.setProductId(subCategoryDto.getProductId());
+		
 
 		subCategoryDao.save(subCategory);
 		return Collections.singletonMap("InsertedRows", 1);
@@ -64,9 +70,69 @@ public class ProductServiceImpl {
 			return null;
 	}
 
-	public List<Product> getAllProduct()
+
+	
+	public List<ProductDTO> getAllVegProducts()
 	{
-		return productDao.findAll();
+		List<ProductDTO> productDtoList = new ArrayList<>(); 
+		List<Product> productList = productDao.findAll();
+		for (Product product : productList) {
+			if(product.getCategory().equals("Veg"))
+			{
+				productDtoList.add(converter.toProductDto(product));
+			}
+		}
+		
+		return productDtoList;
+	}
+	
+	public List<ProductDTO> getAllNonVegProducts()
+	{
+		List<ProductDTO> productDtoList = new ArrayList<>(); 
+		List<Product> productList = productDao.findAll();
+		for (Product product : productList) {
+			if(product.getCategory().equals("NonVeg"))
+			{
+				productDtoList.add(converter.toProductDto(product));
+			}
+		}
+		
+		return productDtoList;
+	}
+	
+	
+	public SubCategoryDTO getDefaultPrice(int productId)
+	{
+		List<SubCategory> subCategoryList = subCategoryDao.findByProductId(productId);		
+		for (SubCategory sub : subCategoryList) {
+			if(sub.getSize().equals("Regular") && sub.getCrustType().equals("New Hand Tossed"))
+			{
+				return converter.toSubCategoryDto(sub);
+			}
+		}
+		return null;
+	
+	}
+	
+	public SubCategoryDTO getProductPrice(SubCategoryDTO subCategoryDto)
+	{
+		List<SubCategory> subCategoryList = subCategoryDao.findByProductId(subCategoryDto.getProductId());
+		
+		for (SubCategory sub : subCategoryList) {
+			if(sub.getSize().equals(subCategoryDto.getSize()) && sub.getCrustType().equals(subCategoryDto.getCrustType()))
+			{
+				return converter.toSubCategoryDto(sub);
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	public Map<String,Object> deleteProduct(int productId)
+	{
+		productDao.deleteById(productId);
+		return Collections.singletonMap("deleted row", 1);
 	}
 	
 }

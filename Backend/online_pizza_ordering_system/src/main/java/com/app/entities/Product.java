@@ -2,6 +2,7 @@ package com.app.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Product {
 	@OneToOne(mappedBy = "product")
 	private OrderDetail orderDetail;
 	
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "productId",cascade = CascadeType.ALL)
 	private List<SubCategory> subCategory;
 
 	

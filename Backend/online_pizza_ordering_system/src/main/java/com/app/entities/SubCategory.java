@@ -24,89 +24,77 @@ public class SubCategory {
 	@Column(name = "crust_type",length = 100)
 	private String crustType;
 	private double price;
+	private int productId;
 	
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product product;
+//	@ManyToOne
+//	@JoinColumn(name = "product_id")
+//	private Product product;
 	
 	
 	public SubCategory() {
 	}
 
 
-	public SubCategory(int subCategoryId, String size, String crustType, double price, Product product) {
-		this.subCategoryId = subCategoryId;
-		this.size = size;
-		this.crustType = crustType;
-		this.price = price;
-		this.product = product;
-	}
+public SubCategory(int subCategoryId, String size, String crustType, double price, int productId) {
+	this.subCategoryId = subCategoryId;
+	this.size = size;
+	this.crustType = crustType;
+	this.price = price;
+	this.productId = productId;
+}
 
 
-	public SubCategory(int subCategoryId, String size, String crustType, double price) {
-		this.subCategoryId = subCategoryId;
-		this.size = size;
-		this.crustType = crustType;
-		this.price = price;
-	}
+
+public int getProductId() {
+	return productId;
+}
 
 
-	public int getSubCategoryId() {
-		return subCategoryId;
-	}
+public void setProductId(int productId) {
+	this.productId = productId;
+}
 
 
-	public void setSubCategoryId(int subCategoryId) {
-		this.subCategoryId = subCategoryId;
-	}
+public int getSubCategoryId() {
+	return subCategoryId;
+}
+
+public void setSubCategoryId(int subCategoryId) {
+	this.subCategoryId = subCategoryId;
+}
+
+public String getSize() {
+	return size;
+}
+
+public void setSize(String size) {
+	this.size = size;
+}
+
+public String getCrustType() {
+	return crustType;
+}
+
+public void setCrustType(String crustType) {
+	this.crustType = crustType;
+}
+
+public double getPrice() {
+	return price;
+}
+
+public void setPrice(double price) {
+	this.price = price;
+}
+
+@Override
+public String toString() {
+	return String.format("SubCategory [subCategoryId=%s, size=%s, crustType=%s, price=%s]", subCategoryId, size,
+			crustType, price);
+}
 
 
-	public String getSize() {
-		return size;
-	}
-
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
-
-	public String getCrustType() {
-		return crustType;
-	}
-
-
-	public void setCrustType(String crustType) {
-		this.crustType = crustType;
-	}
-
-
-	public double getPrice() {
-		return price;
-	}
-
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-
-	public Product getProduct() {
-		return product;
-	}
-
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-
-	@Override
-	public String toString() {
-		return String.format("SubCategory [subCategoryId=%s, size=%s, crustType=%s, price=%s, product=%s]",
-				subCategoryId, size, crustType, price, product);
-	}
-
+	
 	
 
 	
