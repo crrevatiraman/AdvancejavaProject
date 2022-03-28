@@ -22,13 +22,14 @@ const Editproduct = () => {
     navigate("/home");
   };
 
-  // useEffect(() => {
-  //   const { product } = state
-    //    setProducts(product)
-  //   setProductId(product.productId)
+  useEffect(() => {
+    const { product } = state
+       setProducts(product)
+    setProductId(product.productId)
+    setProductName(product.productName)
     
   
-  // }, [])
+  }, [])
 
   
   const updateProduct = () => {
@@ -42,20 +43,24 @@ const Editproduct = () => {
     else if (description.length == 0) {
       toast.warning("Please enter description");
     }    
-      else if (!productImage) {
-        toast.warning("Please select product image");
+      else if (productImage.length == 0) {
+        toast.warning("Please enter image url");
       }
       else{
-        const data = new FormData()
-        data.append('productName', productName)
-      data.append('category',category )
-      data.append('description',description )
-      data.append('productImage',productImage )
-
+        const data = {
+          productName,
+          category,
+          description,
+          productImage
+    
+        }
+       
     
 
     // url to call the api
-    const url = `${URL}/product/edit-product`;
+    const url = `${URL}/product/edit-product/${productId}`;
+    //const id = 34;
+    //const url = `${URL}/product/edit-product/${id}`;
 
     // http method: post
     // body: contains the data to be sent to the API
@@ -68,7 +73,7 @@ const Editproduct = () => {
         
         console.log(result['data'])
         // navigate to the signin page
-       navigate("/add-subcategory",{
+       navigate("/edit-product",{
         state: { product: result['data'] },
       })
      
@@ -101,7 +106,7 @@ const Editproduct = () => {
           <button
             className="btn btn-secondary btn-menu"
             onClick={()=>{
-              navigate('/update-subcategory',{ state : {product : products}})
+              navigate('/edit-subcategory',{ state : {product : products}})
             }}
           >
             Update SubCategory
@@ -120,6 +125,7 @@ const Editproduct = () => {
                 Product Name
               </label>
               <input
+              value={productName}
                 onChange={(e) => {
                   setProductName(e.target.value);
                 }}
@@ -129,13 +135,13 @@ const Editproduct = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="">Product Image</label>
+              <label htmlFor="">Image URL</label>
               <input
                 onChange={(e) => {
-                  setProductImage(e.target.files[0]);
+                  setProductImage(e.target.value);
                 }}
-                accept="image/*"
-                type="file"
+                
+                type="text"
                 className="form-control"
               />
             </div>

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -12,7 +11,7 @@ import { URL } from "../../../config";
 
 const Addcombo= () => {
   const [comboName, setComboName] = useState("");
-  const [comboImage, setComboImage] = useState(undefined);
+  const [comboImage, setComboImage] = useState("");
   const [comboPrice, setComboPrice] = useState("");
   const [description, setDescription] = useState("");
   const [comboCategory, setComboCategory] = useState("");
@@ -38,7 +37,7 @@ const Addcombo= () => {
       else if (comboPrice == 0) {
         toast.warning("Please enter price");
       }
-      else if (!comboImage) {
+      else if (comboImage.length == 0) {
         toast.warning("Please select combo image");
       }
       else{
@@ -95,13 +94,12 @@ const Addcombo= () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="">Combo Image</label>
+              <label htmlFor="">Combo Image URL</label>
               <input
                 onChange={(e) => {
-                  setComboImage(e.target.files[0]);
-                }}
-                accept="image/*"
-                type="file"
+                  setComboImage(e.target.value);
+                }}              
+                type="text"
                 className="form-control"
               />
             </div>
@@ -131,6 +129,7 @@ const Addcombo= () => {
                   setComboCategory(e.target.value);
                 }}
               >
+                <option className="text-dark" selected> Select Category </option>
                 <option className="text-dark" value="Veg">Veg</option>
                 <option className="text-dark" value="NonVeg">Non-Veg</option>
                
@@ -143,13 +142,15 @@ const Addcombo= () => {
               <label htmlFor="" className="label-control">
                 Description
               </label>
-              <input
+              <textarea
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
-                type=""
+                type="text"
                 className="form-control"
-              />
+                cols="40"
+                rows="5"
+              ></textarea>
             </div>
 
             <div>

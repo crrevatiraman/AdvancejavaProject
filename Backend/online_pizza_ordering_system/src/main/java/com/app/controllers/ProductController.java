@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -82,14 +83,13 @@ public class ProductController {
 		return Response.success(result);
 	}
 	
-//	@PutMapping("/product/edit-product")
-//	public ResponseEntity<?> editProduct(ProductDTO productDto) {
-//		Product product = converter.toProductEntity(productDto);
-//		String image = storageService.store(productDto.getProductImage());
-//		product.setProductImage(image);
-//		product = productService.saveProduct(product);
-//		return Response.success(product);
-//	}
+	@PutMapping("/product/edit-product/{productId}")
+	public ResponseEntity<?> editProduct(@PathVariable("productId") int productId,@RequestBody ProductDTO productDto) {
+		ProductDTO result = productService.editProduct(productId,productDto);
+		if(result != null)
+			return Response.success(result);
+		return Response.error("product does not exist");
+	}
 	
 	
 	@DeleteMapping("/product/delete-product/{productId}")
@@ -105,6 +105,15 @@ public class ProductController {
 		if(result == null)
 			return Response.error("sub-category already exist");
 		return Response.success(result);
+	}
+	
+	
+	@PutMapping("/product/edit-subcategory/{productId}")
+	public ResponseEntity<?> editSubCategory(@PathVariable("productId") int productId,@RequestBody SubCategoryDTO subCategoryDto) {
+		Map<String, Object> result = productService.editSubCategory(productId,subCategoryDto);
+		if(result != null)
+			return Response.success(result);
+		return Response.error("product does not exist");
 	}
 
 	@GetMapping("/product/getall-vegproducts")

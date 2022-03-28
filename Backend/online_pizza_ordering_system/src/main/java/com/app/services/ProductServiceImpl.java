@@ -135,4 +135,46 @@ public class ProductServiceImpl {
 		return Collections.singletonMap("deleted row", 1);
 	}
 	
+	public ProductDTO editProduct(int productId,ProductDTO productDto)
+	{
+		Product product = productDao.getById(productId);
+		if(product != null)
+		{
+			product.setCategory(productDto.getCategory());
+			product.setDescription(productDto.getDescription());
+			product.setProductImage(productDto.getProductImage());
+			product.setProductName(productDto.getProductName());
+			product = productDao.save(product);
+			return converter.toProductDto(product);
+		}
+		
+		return null;
+	}
+	
+	
+	public Map<String, Object> editSubCategory(int productId,SubCategoryDTO subCategoryDto)
+	{
+		List<SubCategory> subCategoryList = subCategoryDao.findByProductId(productId);
+		if(subCategoryList != null)
+		{
+			for (SubCategory sub : subCategoryList) {
+				if(sub.getCrustType().equals(subCategoryDto.getCrustType()) && sub.getSize().equals(subCategoryDto.getSize()))
+				{
+					SubCategory subCategory = subCategoryDao.getById(sub.getSubCategoryId());
+					subCategory.setPrice(subCategoryDto.getPrice());
+					subCategory = subCategoryDao.save(subCategory);
+					return Collections.singletonMap("updated Id", subCategory.getSubCategoryId());
+				}
+			}
+		}
+		SubCategory subCategory = new SubCategory();
+		subCategory.setCrustType(subCategoryDto.getCrustType());	
+		subCategory.setPrice(subCategoryDto.getPrice());
+		subCategory.setSize(subCategoryDto.getSize());
+		subCategory.setProductId(productId);
+		
+
+		subCategory = subCategoryDao.save(subCategory);
+		return Collections.singletonMap("inserted Id", subCategory.getSubCategoryId());
+	}
 }

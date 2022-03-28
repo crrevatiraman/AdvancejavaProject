@@ -31,8 +31,8 @@ const Addproduct = () => {
     else if (description.length == 0) {
       toast.warning("Please enter description");
     }    
-      else if (!productImage) {
-        toast.warning("Please select product image");
+      else if (productImage.length == 0) {
+        toast.warning("Please enter image url");
       }
       else{
         const data = new FormData()
@@ -93,13 +93,13 @@ const Addproduct = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="">Product Image</label>
+              <label htmlFor="">Image URL</label>
               <input
                 onChange={(e) => {
-                  setProductImage(e.target.files[0]);
+                  setProductImage(e.target.value);
                 }}
-                accept="image/*"
-                type="file"
+                
+                type="text"
                 className="form-control"
               />
             </div>
