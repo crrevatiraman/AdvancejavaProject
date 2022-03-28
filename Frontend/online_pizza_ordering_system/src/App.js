@@ -8,6 +8,7 @@ import './App.css';
 import SearchEmp from './pages/Admin_Pages/SearchEmp'
 import UpdateEmployee from './pages/Admin_Pages/updateEmp'
 import Addcombo from './pages/Admin_Pages/addCombo'
+import EditCombo from './pages/Admin_Pages/EditCombo'
 import Addproduct from './pages/Admin_Pages/addproduct'
 import Addfeedback from './pages/Customer_Pages/feedback'
 import AddTopping from './pages/Admin_Pages/addTopping'
@@ -37,6 +38,7 @@ function App() {
           <Route path = "/edit-product" element = {<Editproduct/>}/>
           <Route path = "/home" element = {<Home/>}/>
           <Route path = "/edit-subcategory" element = {<EditSubCategory/>}/>
+          <Route path = "/edit-combo" element = {<EditCombo/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

@@ -12,11 +12,30 @@ const Combo = ({item}) => {
 
 
     const editCombo = () => {
-        navigate("edit-combo", {state:{product:item}})
+        navigate("/edit-combo", {state:{combo:item}})
     }
+ 
+
     const deleteCombo = () => {
-        navigate("delete-product")
+        const url = `${URL}/product/delete-combo/${item.comboId}`;
+
+        axios.delete(url).then((response)=>{
+            const result = response.data
+            if(result['status'] == 'success')
+            {
+                navigate("/home")
+                toast.success("combo deleted.....")
+            }
+            else
+            {
+                toast.error("error....")
+            }
+        })
+        //navigate("/home")
+        
+        
     }
+
 
 
 
@@ -32,7 +51,7 @@ const Combo = ({item}) => {
                     <button onClick={() => editCombo(item)} className="btn btn-success" type="button">
                         Edit
                     </button>
-                    <button onClick={() => deleteCombo(item)} className="btn btn-success" type="button">
+                    <button onClick={deleteCombo} className="btn btn-success" type="button">
                         Delete
                     </button>
                     

@@ -66,7 +66,20 @@ public class ProductController {
 		return Response.success(productDtoList);
 	}
 	
+	@PutMapping("/product/edit-combo/{comboId}")
+	public ResponseEntity<?> editCombo(@PathVariable("comboId") int comboId,@RequestBody ComboDTO comboDto) {
+		Map<String, Object> result = comboService.editCombo(comboId,comboDto);
+		if(result != null)
+			return Response.success(result);
+		return Response.error("combo does not exist");
+	}
 	
+	
+	@DeleteMapping("/product/delete-combo/{comboId}")
+	public ResponseEntity<?> deleteCombo(@PathVariable("comboId") int comboId) {
+		Map<String, Object> result = comboService.deleteCombo(comboId);
+		return Response.success(result);
+	}
 	
 	@PostMapping("/product/add-topping")
 	public ResponseEntity<?> addTopping(@RequestBody ToppingDTO toppingDto)

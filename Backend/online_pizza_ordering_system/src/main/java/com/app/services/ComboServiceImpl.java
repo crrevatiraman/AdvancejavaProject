@@ -39,6 +39,31 @@ public class ComboServiceImpl {
 	{
 		return comboDao.findAll();
 	}
+	
+	public Map<String, Object> editCombo(int comboId,ComboDTO comboDto)
+	{
+		Combo combo = comboDao.getById(comboId);
+		if(combo != null)
+		{
+			combo.setComboCategory(comboDto.getComboCategory());
+			combo.setComboImage(comboDto.getComboImage());
+			combo.setComboName(comboDto.getComboName());
+			combo.setComboPrice(comboDto.getComboPrice());
+			combo.setDescription(comboDto.getDescription());
+			
+			combo = comboDao.save(combo);
+			return Collections.singletonMap("updated id", combo.getComboId());
+		}
+		
+		return null;
+	}
+	
+	public Map<String,Object> deleteCombo(int comboId)
+	{
+		comboDao.deleteById(comboId);
+		return Collections.singletonMap("deleted row", 1);
+	}
+	
 }
 
 

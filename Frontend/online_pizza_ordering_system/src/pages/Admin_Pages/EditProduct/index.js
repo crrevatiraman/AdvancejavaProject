@@ -27,7 +27,8 @@ const Editproduct = () => {
        setProducts(product)
     setProductId(product.productId)
     setProductName(product.productName)
-    
+    setProductImage(product.productImage)
+    setDescription(product.description)
   
   }, [])
 
@@ -137,6 +138,7 @@ const Editproduct = () => {
             <div className="mb-3">
               <label htmlFor="">Image URL</label>
               <input
+              value={productImage}
                 onChange={(e) => {
                   setProductImage(e.target.value);
                 }}
@@ -177,6 +179,7 @@ const Editproduct = () => {
               </label>
 
               <textarea
+              value={description}
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
