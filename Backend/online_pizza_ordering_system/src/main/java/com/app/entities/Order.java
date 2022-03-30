@@ -3,6 +3,7 @@ package com.app.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="orders")
@@ -30,35 +34,37 @@ public class Order {
 	private double totalAmount;
 	@Column(name = "payment_mode",length = 20)
 	private String paymentMode;
-	
+	@Column(name = "status_type",length= 50)
+	private String statusType;
 
-
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@OneToMany(mappedBy = "order")
+	@JsonManagedReference
+	@OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
 	private List<OrderDetail> orderDetailList;
 
+
+	
 	public Order() {
 	}
 
-	public Order(int orderId, Date orderDateTime, double totalAmount, String paymentMode, User user,
-			List<OrderDetail> orderDetailList) {
-		this.orderId = orderId;
-		this.orderDateTime = orderDateTime;
-		this.totalAmount = totalAmount;
-		this.paymentMode = paymentMode;
-		this.user = user;
-		this.orderDetailList = orderDetailList;
-	}
 
-	public Order(int orderId, Date orderDateTime, double totalAmount, String paymentMode) {
-		this.orderId = orderId;
-		this.orderDateTime = orderDateTime;
-		this.totalAmount = totalAmount;
-		this.paymentMode = paymentMode;
-	}
+
+
+	public Order(int orderId, Date orderDateTime, double totalAmount, String paymentMode, String statusType, User user,
+		List<OrderDetail> orderDetailList) {
+	this.orderId = orderId;
+	this.orderDateTime = orderDateTime;
+	this.totalAmount = totalAmount;
+	this.paymentMode = paymentMode;
+	this.statusType = statusType;
+	this.user = user;
+	this.orderDetailList = orderDetailList;
+}
+
 
 	public int getOrderId() {
 		return orderId;
@@ -108,17 +114,26 @@ public class Order {
 		this.orderDetailList = orderDetailList;
 	}
 
-	@Override
-	public String toString() {
-		return String.format(
-				"Order [orderId=%s, orderDateTime=%s, totalAmount=%s, paymentMode=%s, user=%s, orderDetailList=%s]",
-				orderId, orderDateTime, totalAmount, paymentMode, user, orderDetailList);
+
+	public String getStatusType() {
+		return statusType;
 	}
 
 
-	
-	
 
-	
+	public void setStatusType(String statusType) {
+		this.statusType = statusType;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return String.format(
+				"Order [orderId=%s, orderDateTime=%s, totalAmount=%s, paymentMode=%s, statusType=%s, user=%s, orderDetailList=%s]",
+				orderId, orderDateTime, totalAmount, paymentMode, statusType, user, orderDetailList);
+	}
+
+
 	
 }

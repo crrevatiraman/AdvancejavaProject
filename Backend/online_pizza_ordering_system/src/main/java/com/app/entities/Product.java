@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 @Table(name="product")
@@ -22,13 +24,15 @@ public class Product {
 	@Column(name = "product_id")
 	private int productId;
 	private String productName;
-	@Column(name = "product_image")
+	@Column(name = "product_image",length=500)
 	private String productImage;
 	private String category;
 	private String description;
 	
+	@JsonBackReference
 	@OneToOne(mappedBy = "product")
 	private OrderDetail orderDetail;
+	
 	
 	@OneToMany(mappedBy = "productId",cascade = CascadeType.ALL)
 	private List<SubCategory> subCategory;

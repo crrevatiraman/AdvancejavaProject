@@ -1,4 +1,4 @@
-import "../../src/assets/css/nav-bar.css";
+import "../../../src/assets/css/nav-bar.css";
 
 const Header = ({name, basket}) => {
     const openNav = () => {

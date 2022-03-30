@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="product_like_status")
 public class ProductLikeStatus {
@@ -21,6 +23,7 @@ public class ProductLikeStatus {
 	@Column(name = "like_status")
 	private Boolean likeStatus;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

@@ -15,7 +15,8 @@ import AddTopping from './pages/Admin_Pages/addTopping'
 import AddSubCategory from './pages/Admin_Pages/addSubCategory'
 import EditSubCategory from './pages/Admin_Pages/EditSubCategory'
 import Editproduct from './pages/Admin_Pages/EditProduct'
-import Home from './pages/Admin_Pages/Home'
+import AdminHome from './pages/Admin_Pages/AdminHome'
+import CustomerHome from './pages/Customer_Pages/CustomerHome'
 // import CustomerFeedback from './pages/Admin_Pages/CustomerFeedback'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+           {/* Admin routes */}
           <Route path="/search-emp" element={<SearchEmp />} />
           <Route path="/update-employee" element={<UpdateEmployee />} />
           <Route path = "/add-product" element = {<Addproduct/>}/>
@@ -36,9 +38,11 @@ function App() {
           <Route path = "/add-topping" element = {<AddTopping/>}/>
           <Route path = "/add-subcategory" element = {<AddSubCategory/>}/>
           <Route path = "/edit-product" element = {<Editproduct/>}/>
-          <Route path = "/home" element = {<Home/>}/>
+          <Route path = "/admin-home" element = {<AdminHome/>}/>
           <Route path = "/edit-subcategory" element = {<EditSubCategory/>}/>
           <Route path = "/edit-combo" element = {<EditCombo/>}/>
+          {/* Customer routes */}
+          <Route path = "/customer-home" element = {<CustomerHome/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

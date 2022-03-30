@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { URL } from "../config";
+import { URL } from "../../config";
 import { useNavigate } from 'react-router'
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -32,8 +32,9 @@ const Item = ({item}) => {
             if(result['status'] == 'success')
             {
                 toast.success("product deleted.....")
-                navigate("/home")
-
+                //navigate("/home")
+                window.location = "/admin-home"
+                
             }
             else
             {

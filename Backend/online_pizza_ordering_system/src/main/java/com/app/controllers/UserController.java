@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dtos.AddressDTO;
 import com.app.dtos.Credential;
 import com.app.dtos.Response;
 import com.app.dtos.UserAddressDTO;
@@ -74,5 +75,10 @@ public class UserController {
 		 	
 	 }
 
+	 @PostMapping("/user/add-address/{userId}")
+		public ResponseEntity<?> addAddress(@PathVariable("userId") int userId, @RequestBody AddressDTO addressDto) {
+			Map<String, Object> result = userService.addAddress(userId, addressDto);
+			return Response.success(result);
+		}
 	
 }

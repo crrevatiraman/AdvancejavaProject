@@ -1,5 +1,5 @@
-import Header from "../../../components/Header";
-import Menu from "../../../components/Menu";
+import CHeader from "../../../components/Customer/CHeader";
+import CMenu from "../../../components/Customer/CMenu";
 import "../../../assets/css/styles.css";
 import "../../../assets/css/box.css";
 import { URL } from "../../../config";
@@ -7,7 +7,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const Home = () => {
+const CustomerHome = () => {
   const [vegProductList, setVegProductList] = useState([]);
   const [nonVegProductList, setNonVegProductList] = useState([]);
   const [comboList, setComboList] = useState([]);
@@ -74,20 +74,20 @@ const Home = () => {
   return (
     <div>
       {/* <h1 className="title" style={{color:"black"}}>Home</h1>  */}
-      <Header name="City Pizzeria" />
-      <Menu
+      <CHeader name="City Pizzeria" />
+      <CMenu
         name="Veg"
         desc="Tasty pizzas made with fresh ingredients"
         check = "product"
         menu={vegProductList}
       />
-      <Menu
+      <CMenu
         name="Non-Veg"
         desc="Tasty pizzas made with fresh ingredients"
         menu={nonVegProductList}
         check = "product"
       />
-      <Menu
+      <CMenu
         name="Combo"
         desc="Tasty pizzas made with fresh ingredients"
         check='combo'
@@ -97,4 +97,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CustomerHome;

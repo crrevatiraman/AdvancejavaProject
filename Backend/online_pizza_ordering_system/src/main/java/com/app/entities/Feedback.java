@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="feedback")
 public class Feedback {
@@ -22,14 +24,14 @@ public class Feedback {
 	private String foodQuality;
 	@Column(name = "delivery_service",length=20)
 	private String deliveryService;
-	@Column(name = "order_aacuracy",length=20)
+	@Column(name = "order_accuracy",length=20)
 	private String orderAccuracy;
 	@Column(name = "overall_experience",length=20)
 	private String overallExperience;
-	@Column(length=20)
+	@Column(length=500)
 	private String comment; 
 	
-	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

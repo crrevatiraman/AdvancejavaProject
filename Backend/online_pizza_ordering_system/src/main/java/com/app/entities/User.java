@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -43,17 +45,19 @@ public class User {
 	@Column(name = "is_free")
 	private Boolean isFree;
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Order> orderList;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Feedback> feedbackList;
 	
-
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<ProductLikeStatus> productLikeStatus;
 	
+	@JsonManagedReference
 	@OneToOne(mappedBy= "user" ,cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private Address address;
@@ -65,7 +69,6 @@ public class User {
 
 
 
-	
 
 
 	public User(int userId, String firstName, String lastName, String gender, String email, String password,

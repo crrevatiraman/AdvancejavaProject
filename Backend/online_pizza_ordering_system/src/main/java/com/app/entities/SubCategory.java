@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,10 +24,7 @@ public class SubCategory {
 	private double price;
 	private int productId;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "product_id")
-//	private Product product;
-	
+
 	
 	public SubCategory() {
 	}

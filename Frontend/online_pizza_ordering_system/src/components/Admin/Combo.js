@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { URL } from "../config";
+import { URL } from "../../config";
 import { useNavigate } from 'react-router'
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -23,8 +23,11 @@ const Combo = ({item}) => {
             const result = response.data
             if(result['status'] == 'success')
             {
-                navigate("/home")
+                //navigate("/home")
                 toast.success("combo deleted.....")
+                window.location = "/admin-home"
+                //location = "/home"
+                
             }
             else
             {

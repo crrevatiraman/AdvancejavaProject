@@ -3,6 +3,8 @@ package com.app.dtos;
 import org.springframework.stereotype.Component;
 
 import com.app.entities.Combo;
+import com.app.entities.Feedback;
+import com.app.entities.Order;
 import com.app.entities.Product;
 import com.app.entities.SubCategory;
 import com.app.entities.Topping;
@@ -18,7 +20,7 @@ public class DtoEntityConverter {
 		dto.setFirstName(entity.getFirstName());
 		dto.setLastName(entity.getLastName());
 		dto.setEmail(entity.getEmail());
-		dto.setPassword(entity.getPassword());
+		dto.setPassword("********");
 		dto.setMobileNo(entity.getMobileNo());
 		return dto;
 	}
@@ -204,4 +206,60 @@ public class DtoEntityConverter {
 	
 		return entity;
 	}
+	
+	
+	public Order toOrderEntity(OrderDTO dto)
+	{
+		Order entity = new Order();
+		entity.setOrderId(dto.getOrderId());
+		entity.setOrderDateTime(dto.getOrderDateTime());
+		entity.setPaymentMode(dto.getPaymentMode());
+		entity.setTotalAmount(dto.getTotalAmount());
+		entity.setOrderDetailList(dto.getOrderDetailList());
+		//entity.setUser(dto.getUserId());
+		
+		return entity;
+	}
+	
+	public OrderDTO toOrderDto(Order entity)
+	{
+		OrderDTO dto = new OrderDTO();
+		dto.setOrderId(entity.getOrderId());
+		dto.setOrderDateTime(entity.getOrderDateTime());
+		dto.setPaymentMode(entity.getPaymentMode());
+		dto.setTotalAmount(entity.getTotalAmount());
+		dto.setOrderDetailList(entity.getOrderDetailList());
+		dto.setUser(entity.getUser());
+		
+		return dto;
+	}
+	
+	public Feedback toFeedbackEntity(FeedbackDTO dto)
+	{
+		
+		Feedback entity = new Feedback();
+		entity.setFeedbackId(dto.getFeedbackId());
+		entity.setComment(dto.getComment());
+		entity.setDeliveryService(dto.getDeliveryService());
+		entity.setFoodQuality(dto.getFoodQuality());
+		entity.setOrderAccuracy(dto.getOrderAccuracy());
+		entity.setOverallExperience(dto.getOverallExperience());
+		
+		return entity;
+	}
+	
+	public FeedbackDTO toFeedbackDto(Feedback entity) {
+		FeedbackDTO dto = new FeedbackDTO();
+		dto.setFeedbackId(entity.getFeedbackId());
+		dto.setComment(entity.getComment());
+		dto.setDeliveryService(entity.getDeliveryService());
+		dto.setFoodQuality(entity.getFoodQuality());
+		dto.setOrderAccuracy(entity.getOrderAccuracy());
+		dto.setOverallExperience(entity.getOverallExperience());
+		dto.setOrderId(entity.getOrder().getOrderId());
+		dto.setUserId(entity.getUser().getUserId());
+		
+		return dto;
+	}
+	
 }

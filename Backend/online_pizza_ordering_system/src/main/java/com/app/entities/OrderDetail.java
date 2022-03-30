@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="order_detail")
@@ -21,19 +25,20 @@ public class OrderDetail {
 	private int quantity;
 	private double amount;
 		
-	
+	@JsonManagedReference
 	@OneToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "combo_id")
 	private Combo combo;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "topping_id")
 	private Topping topping;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;

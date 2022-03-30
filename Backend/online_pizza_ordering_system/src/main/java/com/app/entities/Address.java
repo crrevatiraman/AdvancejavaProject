@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="address")
 public class Address {
@@ -30,6 +32,7 @@ public class Address {
 	@Column(name = "pin_code")
 	private int pinCode;
 	
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
