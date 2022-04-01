@@ -37,16 +37,17 @@ const Signin = () => {
           toast.success('Welcome to the application')
 
           // get the data sent by server
-          const { id, firstName, lastName } = result['data']
+          const { userId, firstName, lastName } = result['data']
 
           // persist the logged in user's information for future use
-          sessionStorage['id'] = id
+          sessionStorage['userId'] = userId
           sessionStorage['firstName'] = firstName
           sessionStorage['lastName'] = lastName
           sessionStorage['loginStatus'] = 1
 
           // navigate to home component
-          navigate('/home')
+          //navigate('/home')
+          navigate('/add-feedback')
         } else {
           toast.error('Invalid user name or password')
         }

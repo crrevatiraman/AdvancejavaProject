@@ -2,6 +2,7 @@ package com.app.services;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.daos.IAssignOrderDao;
+import com.app.daos.ICartDao;
+import com.app.daos.ICartDetailDao;
 import com.app.daos.IComboDao;
 import com.app.daos.IFeedbackDao;
 import com.app.daos.IOrderDao;
@@ -19,11 +22,14 @@ import com.app.daos.IProductDao;
 import com.app.daos.IToppingDao;
 import com.app.daos.IUserDao;
 import com.app.dtos.AssignOrderDTO;
+import com.app.dtos.CartDTO;
 import com.app.dtos.DtoEntityConverter;
 import com.app.dtos.FeedbackDTO;
 import com.app.dtos.OrderDTO;
 import com.app.dtos.UserDTO;
 import com.app.entities.AssignOrder;
+import com.app.entities.Cart;
+import com.app.entities.CartDetail;
 import com.app.entities.Combo;
 import com.app.entities.Feedback;
 import com.app.entities.Order;
@@ -54,6 +60,11 @@ public class OrderServiceImpl {
 	private DtoEntityConverter converter;
 	@Autowired
 	private IFeedbackDao feedbackDao;
+	@Autowired
+	private ICartDao cartDao;
+	@Autowired
+	private ICartDetailDao cartDetailDao;
+
 	
 	public List<OrderDTO> getAllOrders()
 	{
@@ -120,8 +131,9 @@ public class OrderServiceImpl {
 		order.setPaymentMode(orderDto.getPaymentMode());
 		order.setStatusType(orderDto.getStatusType());
 		order.setTotalAmount(orderDto.getTotalAmount());
+		order.setOrderDateTime(new Date());
 		order.setUser(user);
-	
+		
 		order = orderDao.save(order);
 		
 		
@@ -180,5 +192,84 @@ public class OrderServiceImpl {
 		}
 		return feedbackDtoList;
 	}
+	
+	
+
+	
+	public Cart createNewCart(int userId)
+	{
+		Cart newCart = new Cart();
+		newCart.setUserId(userId);
+		return cartDao.save(newCart);
+	}
+	
+
+	
+	public Map<String,Object> addToCart(CartDTO cartDto)
+	{
+		System.out.println("cart dto details "+cartDto.getCartDetail());
+		System.out.println("cart dto details "+cartDto);
+		double totalAmount = 0;
+		//checking cart is exist or not
+		Cart cart = cartDao.findByUserId(cartDto.getUserId());
+		//if cart doesn't exist create new cart for user
+		if(cart == null)
+			cart = createNewCart(cartDto.getUserId());
+		List<CartDetail> cartList = cartDetailDao.findByCartId(cart.getCartId());
+		//if cart is empty then add new object in cart
+		if(cartList.size() == 0 )
+		{
+			
+			CartDetail cartDetail = converter.toCartDetailEntity(cartDto);
+			cartDetail.setCartId(cart.getCartId());
+			cartDetail = cartDetailDao.save(cartDetail);
+			
+		}
+		else
+		{
+			//if cart is not empty then check if same product already exist 
+			//if product already exist then update qty in cart
+			for (CartDetail cd : cartList) {
+			
+			
+				if((cd.getSubCategoryId() == cartDto.getCartDetail().getSubCategoryId() && 
+						cartDto.getCartDetail().getSubCategoryId() != 0) ||
+						(cd.getComboId() == cartDto.getCartDetail().getComboId() && 
+						cartDto.getCartDetail().getComboId() != 0))
+				{
+					
+					//update qty of product
+					cd.setQuantity(cd.getQuantity() + 1);
+					cd = cartDetailDao.save(cd);
+					
+					 cartList = cartDetailDao.findByCartId(cart.getCartId());
+					 //update total cart amount 
+					for (CartDetail cd1 : cartList) {
+						totalAmount = totalAmount + (cd1.getPrice() * cd1.getQuantity());					
+					}
+					cart.setTotalAmount(totalAmount);
+					cart = cartDao.save(cart);
+					return Collections.singletonMap("updated id",cart.getCartId());
+					
+				}			
+			}
+			
+			//if product already not exist in cart then insert new
+			CartDetail cartDetail = converter.toCartDetailEntity(cartDto);
+			cartDetail.setCartId(cart.getCartId());
+			cartDetail = cartDetailDao.save(cartDetail);
+		}
+		
+		//update total amount of cart
+		 cartList = cartDetailDao.findByCartId(cart.getCartId());
+		 System.out.println(cartList);
+		for (CartDetail cd1 : cartList) {
+			totalAmount = totalAmount + (cd1.getPrice() * cd1.getQuantity());					
+		}
+		cart.setTotalAmount(totalAmount);
+		cart = cartDao.save(cart);
+		return Collections.singletonMap("inserted id",cart.getCartId());
+
+}
 	
 }

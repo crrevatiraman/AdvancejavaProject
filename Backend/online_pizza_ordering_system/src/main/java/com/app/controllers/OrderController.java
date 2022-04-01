@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AssignOrderDTO;
+import com.app.dtos.CartDTO;
 import com.app.dtos.FeedbackDTO;
 import com.app.dtos.OrderDTO;
 import com.app.dtos.Response;
@@ -69,7 +70,7 @@ public class OrderController {
 	}
 	
 	
-	@PostMapping("/order/give-feedback")
+	@PostMapping("/order/add-feedback")
 	public ResponseEntity<?> giveFeedback(@RequestBody FeedbackDTO feedbackDto) {
 		Map<String, Object> result = orderService.saveFeedback(feedbackDto);
 		return Response.success(result);
@@ -82,6 +83,16 @@ public class OrderController {
 		List<FeedbackDTO> feedbackDtoList = orderService.getAllFeedback();
 		
 		return Response.success(feedbackDtoList);
+	}
+	
+	
+	@PostMapping("/order/addtocart")
+	public ResponseEntity<?> addToCart(@RequestBody CartDTO cartDto)
+	{
+		Map<String,Object> result = orderService.addToCart(cartDto);
+			if(result != null )
+				return Response.success(result);
+			return Response.error("error in add into cart");
 	}
 	
 }

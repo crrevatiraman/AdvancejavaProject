@@ -2,6 +2,7 @@ package com.app.dtos;
 
 import org.springframework.stereotype.Component;
 
+import com.app.entities.CartDetail;
 import com.app.entities.Combo;
 import com.app.entities.Feedback;
 import com.app.entities.Order;
@@ -262,4 +263,21 @@ public class DtoEntityConverter {
 		return dto;
 	}
 	
+	
+	public CartDetail toCartDetailEntity(CartDTO dto)
+	{
+		CartDetail entity = new CartDetail();
+		entity.setComboName(dto.getCartDetail().getComboName());
+		entity.setCrustType(dto.getCartDetail().getCrustType());
+		entity.setPrice(dto.getCartDetail().getPrice());
+		entity.setComboId(dto.getCartDetail().getComboId());
+		entity.setProductName(dto.getCartDetail().getProductName());
+		entity.setQuantity(1);
+		entity.setProductId(dto.getCartDetail().getProductId());
+		entity.setSubCategoryId(dto.getCartDetail().getSubCategoryId());
+		entity.setSize(dto.getCartDetail().getSize());
+		//entity.setCartId(dto.getCartId());
+		
+		return entity;
+	}
 }

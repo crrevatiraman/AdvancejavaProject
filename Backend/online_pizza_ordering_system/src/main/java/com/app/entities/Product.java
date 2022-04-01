@@ -9,10 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -29,9 +26,9 @@ public class Product {
 	private String category;
 	private String description;
 	
-	@JsonBackReference
-	@OneToOne(mappedBy = "product")
-	private OrderDetail orderDetail;
+//	@JsonBackReference
+//	@OneToOne(mappedBy = "product")
+//	private OrderDetail orderDetail;
 	
 	
 	@OneToMany(mappedBy = "productId",cascade = CascadeType.ALL)
@@ -42,25 +39,19 @@ public class Product {
 	}
 
 
+	
+
 	public Product(int productId, String productName, String productImage, String category, String description,
-			OrderDetail orderDetail, List<SubCategory> subCategory) {
+			List<SubCategory> subCategory) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productImage = productImage;
 		this.category = category;
 		this.description = description;
-		this.orderDetail = orderDetail;
 		this.subCategory = subCategory;
 	}
 
 
-	public Product(int productId, String productName, String productImage, String category, String description) {
-		this.productId = productId;
-		this.productName = productName;
-		this.productImage = productImage;
-		this.category = category;
-		this.description = description;
-	}
 
 
 	public int getProductId() {
@@ -113,14 +104,7 @@ public class Product {
 	}
 
 
-	public OrderDetail getOrderDetail() {
-		return orderDetail;
-	}
-
-
-	public void setOrderDetail(OrderDetail orderDetail) {
-		this.orderDetail = orderDetail;
-	}
+	
 
 
 	public List<SubCategory> getSubCategory() {
@@ -130,6 +114,16 @@ public class Product {
 
 	public void setSubCategory(List<SubCategory> subCategory) {
 		this.subCategory = subCategory;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return String.format(
+				"Product [productId=%s, productName=%s, productImage=%s, category=%s, description=%s, subCategory=%s]",
+				productId, productName, productImage, category, description, subCategory);
 	}
 
 

@@ -22,7 +22,21 @@ const CItem = ({item}) => {
 
 
     const addToCart = () => {
-        navigate("/edit-product", {state:{product:item}})
+        const url = `${URL}/order/addtocart`;
+        
+        const body = {
+            userId: sessionStorage['userId'],
+            // cartDetail :{
+            //     productId,
+            //     toppingId,
+            //     comboId,
+            //     subCategoryId:subCategory.subCategoryId,
+            //     price:subCategory.price,
+            //     productName:item.productName,
+            //     size,
+            //     crustType,
+            // }
+        }
     }
 
 

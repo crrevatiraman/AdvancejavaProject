@@ -17,6 +17,8 @@ import EditSubCategory from './pages/Admin_Pages/EditSubCategory'
 import Editproduct from './pages/Admin_Pages/EditProduct'
 import AdminHome from './pages/Admin_Pages/AdminHome'
 import CustomerHome from './pages/Customer_Pages/CustomerHome'
+import GetFeedback from './pages/Admin_Pages/Getallfeedback'
+import Checkout from './pages/Customer_Pages/Checkout/Checkout'
 // import CustomerFeedback from './pages/Admin_Pages/CustomerFeedback'
 
 function App() {
@@ -41,8 +43,10 @@ function App() {
           <Route path = "/admin-home" element = {<AdminHome/>}/>
           <Route path = "/edit-subcategory" element = {<EditSubCategory/>}/>
           <Route path = "/edit-combo" element = {<EditCombo/>}/>
+          <Route path = "/get-feedbacks" element = {<GetFeedback/>}/>
           {/* Customer routes */}
           <Route path = "/customer-home" element = {<CustomerHome/>}/>
+          <Route path = "/checkout" element = {<Checkout/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

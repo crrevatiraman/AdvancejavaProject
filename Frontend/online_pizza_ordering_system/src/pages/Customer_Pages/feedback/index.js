@@ -12,6 +12,8 @@ const Addfeedback = () => {
   const [orderAccuracy, setOrderAccuracy] = useState("");
   const [overallExperience, setOverallExperience] = useState("");
   const [comment, setComment] = useState("");
+  const [userId, setUserId] = useState("");
+  const [orderId, setOrderId] = useState("");
 
   // used to navigate from one component to another
   const navigate = useNavigate();
@@ -21,16 +23,19 @@ const Addfeedback = () => {
   };
 
   const addtheFeedback = () => {
+    const orderId = 3 
     const body = {
       foodQuality,
       deliveryService,
       orderAccuracy,
       overallExperience,
       comment,
+      userId:sessionStorage['userId'],
+      orderId
     };
 
     // url to call the api
-    const url = `${URL}/user/add-feedback`;
+    const url = `${URL}/order/add-feedback`;
 
     // http method: post
     // body: contains the data to be sent to the API

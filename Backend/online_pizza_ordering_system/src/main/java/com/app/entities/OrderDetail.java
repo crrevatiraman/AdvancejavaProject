@@ -12,7 +12,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="order_detail")
@@ -25,7 +24,7 @@ public class OrderDetail {
 	private int quantity;
 	private double amount;
 		
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToOne
 	@JoinColumn(name = "product_id")
 	private Product product;

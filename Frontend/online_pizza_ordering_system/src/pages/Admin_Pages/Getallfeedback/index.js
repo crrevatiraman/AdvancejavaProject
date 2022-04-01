@@ -17,7 +17,7 @@ const GetFeedback = () => {
   const navigate = useNavigate();
 
   const getallfeedback = () => {
-    const url = `${URL}/user/get-feedback`;
+    const url = `${URL}/order/getall-feedback`;
 
     axios.get(url).then((response) => {
       const result = response.data;
@@ -104,12 +104,12 @@ const GetFeedback = () => {
             </div>
           )}
           
-          <button
+          {/* <button
             onClick={getallfeedback}
             className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after"
           >
             GetallFeedback
-          </button>
+          </button> */}
         </div>
         <div className="col"></div>
       </div>
