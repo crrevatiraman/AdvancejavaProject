@@ -16,7 +16,7 @@ const Addproduct = () => {
   const navigate = useNavigate();
 
   const cancelAddProduct = () => {
-    navigate("/home");
+    navigate("/admin-home");
   };
 
   

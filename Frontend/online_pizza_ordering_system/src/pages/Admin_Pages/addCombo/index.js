@@ -62,7 +62,7 @@ const Addcombo= () => {
         toast.success("Successfully added combo");
 
         // navigate to the signin page
-        navigate("/home");
+        navigate("/admin-home");
       } else {
         toast.error(result["error"]);
       }

@@ -44,7 +44,7 @@ const AddTopping = () => {
           toast.success('topping added successfully')
 
           // navigate to home component
-          navigate('/home')
+          navigate('/admin-home')
         } else {
           toast.error('Invalid details')
         }

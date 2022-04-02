@@ -46,8 +46,8 @@ const Addfeedback = () => {
       if (result["status"] == "success") {
         toast.success("Successfully added feedback");
 
-        // navigate to the signin page
-        navigate("/home");
+        // navigate to order page
+        navigate("/customer-home");
       } else {
         toast.error(result["error"]);
       }

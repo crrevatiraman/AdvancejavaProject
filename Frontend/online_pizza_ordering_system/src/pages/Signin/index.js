@@ -47,7 +47,7 @@ const Signin = () => {
 
           // navigate to home component
           //navigate('/home')
-          navigate('/add-feedback')
+          navigate('/customer-home')
         } else {
           toast.error('Invalid user name or password')
         }

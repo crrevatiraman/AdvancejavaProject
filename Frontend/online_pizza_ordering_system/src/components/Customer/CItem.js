@@ -26,18 +26,30 @@ const CItem = ({item}) => {
         
         const body = {
             userId: sessionStorage['userId'],
-            // cartDetail :{
-            //     productId,
-            //     toppingId,
-            //     comboId,
-            //     subCategoryId:subCategory.subCategoryId,
-            //     price:subCategory.price,
-            //     productName:item.productName,
-            //     size,
-            //     crustType,
-            // }
+            cartDetail :{
+                productId:item.productId,
+                subCategoryId:subCategory.subCategoryId,
+                price:subCategory.price,
+                productName:item.productName,
+                size:subCategory.size,
+                crustType:subCategory.crustType,
+            }
         }
-    }
+            axios.post(url,body).then((response) => {
+               
+                const result = response.data;
+                //console.log(result);
+                if (result["status"] == "success") {
+                    toast.success('added to cart');
+                    console.log('added to cart');
+    
+                } else {
+                  toast.error(result["error"]);
+                }
+              });
+
+        }
+    
 
 
     const getProductDefaultPrice = ()=>{
@@ -61,24 +73,7 @@ const CItem = ({item}) => {
     }
 
 
-    // const getProductPrice = async () =>{
-    //     const url = `${URL}/product/get-ProductPrice`;
-    //     const productId = item.productId;
-        
-    //     const body = {
-    //         productId,
-    //         crustType,
-    //         size
-    //     }
-    //     console.log(body);
-    //     await axios.post(url,body).then((response)=>{
-    //         const result = response.data
-    //         console.log(result);
-    //         setSubCategory(result['data'])
-    //         console.log(result['data'].price);
-    //     })
-       
-    // }
+    
 
     const getProductPrice = () =>{
         const url = `${URL}/product/get-ProductPrice`;
@@ -176,7 +171,7 @@ const CItem = ({item}) => {
                 </div>
                 
                 <div className="d-flex justify-content-around align-items-center">
-                    <button onClick={() => addToCart(item)} className="btn btn-success" type="button">
+                    <button onClick={addToCart} className="btn btn-success" type="button">
                         Add to Cart
                     </button>
                    

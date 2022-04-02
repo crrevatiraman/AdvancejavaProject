@@ -11,34 +11,36 @@ const CCombo = ({item}) => {
     const navigate = useNavigate()
 
 
-    const editCombo = () => {
-        navigate("/edit-combo", {state:{combo:item}})
-    }
  
-
-    const deleteCombo = () => {
-        const url = `${URL}/product/delete-combo/${item.comboId}`;
-
-        axios.delete(url).then((response)=>{
-            const result = response.data
-            if(result['status'] == 'success')
-            {
-                //navigate("/home")
-                toast.success("combo deleted.....")
-                window.location = "/home"
-                //location = "/home"
+    const addToCart = () => {
+        const url = `${URL}/order/addtocart`;
+        
+        const body = {
+            userId: sessionStorage['userId'],
+            cartDetail :{
+                comboId:item.comboId,
+                price:item.price,
+                comboName:item.comboName,
+        
                 
             }
-            else
-            {
-                toast.error("error....")
-            }
-        })
-        //navigate("/home")
-        
-        
-    }
+        }
+            axios.post(url,body).then((response) => {
+               
+                const result = response.data;
+                //console.log(result);
+                if (result["status"] == "success") {
+                    toast.success('added to cart');
+                    console.log('added to cart');
+    
+                } else {
+                  toast.error(result["error"]);
+                }
+              });
 
+        }
+
+    
 
 
 
@@ -51,12 +53,10 @@ const CCombo = ({item}) => {
                 <p className="description">{item.description}</p>
 
                 <div className="d-flex justify-content-around align-items-center">
-                    <button onClick={() => editCombo(item)} className="btn btn-success" type="button">
-                        Edit
+                    <button onClick={addToCart} className="btn btn-success" type="button">
+                        Add to Cart
                     </button>
-                    <button onClick={deleteCombo} className="btn btn-success" type="button">
-                        Delete
-                    </button>
+                    
                     
                     <span className="badge rounded-pill bg-danger price">₹{item.comboPrice}</span>
                 </div>
