@@ -20,6 +20,8 @@ public class Cart {
 	private int cartId;
 	@Column(name = "total_amount")
 	private double totalAmount;
+	@Column(name = "total_quantity")
+	private int totalQuantity;
 	@Column(name = "user_id")
 	private int userId;
 	
@@ -33,12 +35,19 @@ public class Cart {
 	}
 
 
-	public Cart(int cartId, double totalAmount, int userId, List<CartDetail> cartDetailList) {
+
+
+
+	public Cart(int cartId, double totalAmount, int totalQuantity, int userId, List<CartDetail> cartDetailList) {
 		this.cartId = cartId;
 		this.totalAmount = totalAmount;
+		this.totalQuantity = totalQuantity;
 		this.userId = userId;
 		this.cartDetailList = cartDetailList;
 	}
+
+
+
 
 
 	public int getCartId() {
@@ -81,12 +90,32 @@ public class Cart {
 		this.cartDetailList = cartDetailList;
 	}
 
+	
+
+	public int getTotalQuantity() {
+		return totalQuantity;
+	}
+
+
+
+
+
+	public void setTotalQuantity(int totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {
-		return String.format("Cart [cartId=%s, totalAmount=%s, userId=%s, cartDetailList=%s]", cartId, totalAmount,
-				userId, cartDetailList);
+		return String.format("Cart [cartId=%s, totalAmount=%s, totalQuantity=%s, userId=%s, cartDetailList=%s]", cartId,
+				totalAmount, totalQuantity, userId, cartDetailList);
 	}
+
+
+
 
 
 	

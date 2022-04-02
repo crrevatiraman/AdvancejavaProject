@@ -207,8 +207,7 @@ public class OrderServiceImpl {
 	
 	public Map<String,Object> addToCart(CartDTO cartDto)
 	{
-		System.out.println("cart dto details "+cartDto.getCartDetail());
-		System.out.println("cart dto details "+cartDto);
+		int totalQuantity = 0;
 		double totalAmount = 0;
 		//checking cart is exist or not
 		Cart cart = cartDao.findByUserId(cartDto.getUserId());
@@ -245,9 +244,11 @@ public class OrderServiceImpl {
 					 cartList = cartDetailDao.findByCartId(cart.getCartId());
 					 //update total cart amount 
 					for (CartDetail cd1 : cartList) {
-						totalAmount = totalAmount + (cd1.getPrice() * cd1.getQuantity());					
+						totalAmount = totalAmount + (cd1.getPrice() * cd1.getQuantity());
+						totalQuantity = totalQuantity + cd1.getQuantity();
 					}
 					cart.setTotalAmount(totalAmount);
+					cart.setTotalQuantity(totalQuantity);
 					cart = cartDao.save(cart);
 					return Collections.singletonMap("updated id",cart.getCartId());
 					
@@ -264,12 +265,28 @@ public class OrderServiceImpl {
 		 cartList = cartDetailDao.findByCartId(cart.getCartId());
 		 System.out.println(cartList);
 		for (CartDetail cd1 : cartList) {
-			totalAmount = totalAmount + (cd1.getPrice() * cd1.getQuantity());					
+			totalAmount = totalAmount + (cd1.getPrice() * cd1.getQuantity());	
+			totalQuantity = totalQuantity + cd1.getQuantity();
 		}
 		cart.setTotalAmount(totalAmount);
+		cart.setTotalQuantity(totalQuantity);
 		cart = cartDao.save(cart);
 		return Collections.singletonMap("inserted id",cart.getCartId());
 
 }
+	
+	public CartDTO getAllCartItem(int userId)
+	{
+		Cart cart = cartDao.findByUserId(userId);
+		if(cart != null)
+		{
+		List<CartDetail> cartDetailList = cartDetailDao.findByCartId(cart.getCartId());
+		
+		CartDTO cartDto =  converter.toCartDto(cart);
+		cartDto.setCartDetailList(cartDetailList);
+		return cartDto;
+		}
+		return null;
+	}
 	
 }
