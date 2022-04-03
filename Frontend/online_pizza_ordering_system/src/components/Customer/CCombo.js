@@ -21,7 +21,7 @@ const CCombo = ({item}) => {
                 comboId:item.comboId,
                 price:item.price,
                 comboName:item.comboName,
-        
+                image:item.comboImage,
                 
             }
         }

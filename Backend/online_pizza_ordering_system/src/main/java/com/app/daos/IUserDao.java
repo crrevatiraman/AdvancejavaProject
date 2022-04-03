@@ -16,7 +16,7 @@ public interface IUserDao extends JpaRepository<User, Integer>{
 	
 	User findByEmailAndMobileNo(String email, String mobileNo);
 	
-	@Query(value = "select * from user u where u.role = 'employee' and u.is_free != 1 ",nativeQuery = true)
+	@Query(value = "select * from user u where u.role = 'employee' and u.is_free = 1 ",nativeQuery = true)
 			List<User> findFreeEmp();
 	
 }

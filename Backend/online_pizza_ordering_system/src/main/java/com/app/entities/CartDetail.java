@@ -31,6 +31,7 @@ public class CartDetail {
 	private String crustType;
 	@Column(name = "combo_name",length = 50)
 	private String comboName;
+	private String image;
 	@Column(name = "cart_id")
 	private int cartId;
 	
@@ -39,8 +40,13 @@ public class CartDetail {
 	public CartDetail() {
 	}
 	
+	
+	
+	
+	
 	public CartDetail(int cartDetailId, int productId, int toppingId, int comboId, int subCategoryId, int quantity,
-			double price, String productName, String size, String crustType, String comboName, int cartId) {
+			double price, String productName, String size, String crustType, String comboName, String image,
+			int cartId) {
 		this.cartDetailId = cartDetailId;
 		this.productId = productId;
 		this.toppingId = toppingId;
@@ -52,8 +58,14 @@ public class CartDetail {
 		this.size = size;
 		this.crustType = crustType;
 		this.comboName = comboName;
+		this.image = image;
 		this.cartId = cartId;
 	}
+
+
+
+
+
 	public int getCartDetailId() {
 		return cartDetailId;
 	}
@@ -128,18 +140,35 @@ public class CartDetail {
 	public void setCartId(int cartId) {
 		this.cartId = cartId;
 	}
+	
+	
+
+	public String getImage() {
+		return image;
+	}
+
+
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
+
 
 	@Override
 	public String toString() {
 		return String.format(
-				"CartDetail [cartDetailId=%s, productId=%s, toppingId=%s, comboId=%s, subCategoryId=%s, quantity=%s, price=%s, productName=%s, size=%s, crustType=%s, comboName=%s, cartId=%s]",
+				"CartDetail [cartDetailId=%s, productId=%s, toppingId=%s, comboId=%s, subCategoryId=%s, quantity=%s, price=%s, productName=%s, size=%s, crustType=%s, comboName=%s, image=%s, cartId=%s]",
 				cartDetailId, productId, toppingId, comboId, subCategoryId, quantity, price, productName, size,
-				crustType, comboName, cartId);
+				crustType, comboName, image, cartId);
 	}
-	
-	
-	
-	
-	
+
+
+
+
 	
 }

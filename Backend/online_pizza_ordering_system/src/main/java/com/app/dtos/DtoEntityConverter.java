@@ -231,6 +231,7 @@ public class DtoEntityConverter {
 		dto.setPaymentMode(entity.getPaymentMode());
 		dto.setTotalAmount(entity.getTotalAmount());
 		dto.setOrderDetailList(entity.getOrderDetailList());
+		dto.setStatusType(entity.getStatusType());
 		dto.setUser(entity.getUser());
 		
 		return dto;
@@ -277,6 +278,7 @@ public class DtoEntityConverter {
 		entity.setProductId(dto.getCartDetail().getProductId());
 		entity.setSubCategoryId(dto.getCartDetail().getSubCategoryId());
 		entity.setSize(dto.getCartDetail().getSize());
+		entity.setImage(dto.getCartDetail().getImage());
 		//entity.setCartId(dto.getCartId());
 		
 		return entity;

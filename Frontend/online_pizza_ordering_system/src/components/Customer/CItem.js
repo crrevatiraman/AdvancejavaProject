@@ -33,6 +33,7 @@ const CItem = ({item}) => {
                 productName:item.productName,
                 size:subCategory.size,
                 crustType:subCategory.crustType,
+                image:item.productImage,
             }
         }
             axios.post(url,body).then((response) => {

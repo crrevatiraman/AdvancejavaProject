@@ -19,6 +19,9 @@ import AdminHome from './pages/Admin_Pages/AdminHome'
 import CustomerHome from './pages/Customer_Pages/CustomerHome'
 import GetFeedback from './pages/Admin_Pages/Getallfeedback'
 import Checkout from './pages/Customer_Pages/Checkout/Checkout'
+import Cart1 from './pages/Customer_Pages/Cart/Cart1'
+import AdminOrder from './pages/Admin_Pages/AllOrders/AdminOrder'
+
 // import CustomerFeedback from './pages/Admin_Pages/CustomerFeedback'
 
 function App() {
@@ -46,7 +49,10 @@ function App() {
           <Route path = "/get-feedbacks" element = {<GetFeedback/>}/>
           {/* Customer routes */}
           <Route path = "/customer-home" element = {<CustomerHome/>}/>
+          {/* <Route path = "/cart" element = {<Cart/>}/> */}
           <Route path = "/checkout" element = {<Checkout/>}/>
+          <Route path = "/cart" element = {<Cart1/>}/>
+          <Route path = "/admin-order" element = {<AdminOrder/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />
