@@ -35,11 +35,12 @@ const Addproduct = () => {
         toast.warning("Please enter image url");
       }
       else{
-        const data = new FormData()
-        data.append('productName', productName)
-      data.append('category',category )
-      data.append('description',description )
-      data.append('productImage',productImage )
+        const data ={
+          productName,
+          category ,
+          description, 
+           productImage, 
+        }
 
     
 

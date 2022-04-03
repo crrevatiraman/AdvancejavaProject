@@ -42,22 +42,9 @@ public class ProductController {
 
 
 
-
-//	@PostMapping("/product/add-combo")
-//	public ResponseEntity<?> saveCombo(ComboFormDTO comboDto) {
-//		Combo combo = converter.toComboEntity(comboDto);
-//		String image = storageService.store(comboDto.getComboImage());
-//		combo.setComboImage(image);
-//		comboService.saveCombo(combo);
-//		return Response.success(combo);
-//	}
-
-	@PostMapping("/product/add-combo")
-	public ResponseEntity<?> addCombo(ComboDTO comboDto) {
-		Map<String, Object> result = comboService.saveCombo(comboDto);
-		return Response.success(result);
-	}
 	
+	
+	//get all combo details 
 	@GetMapping("/product/getall-combo")
 	public ResponseEntity<?> getAllCombo()
 	{
@@ -66,6 +53,14 @@ public class ProductController {
 		return Response.success(productDtoList);
 	}
 	
+	//add combo details 
+		@PostMapping("/product/add-combo")
+		public ResponseEntity<?> addCombo(@RequestBody ComboDTO comboDto) {
+			Map<String, Object> result = comboService.saveCombo(comboDto);
+			return Response.success(result);
+		}
+	
+	//edit combo details 
 	@PutMapping("/product/edit-combo/{comboId}")
 	public ResponseEntity<?> editCombo(@PathVariable("comboId") int comboId,@RequestBody ComboDTO comboDto) {
 		Map<String, Object> result = comboService.editCombo(comboId,comboDto);
@@ -75,12 +70,15 @@ public class ProductController {
 	}
 	
 	
+	//delete combo
 	@DeleteMapping("/product/delete-combo/{comboId}")
 	public ResponseEntity<?> deleteCombo(@PathVariable("comboId") int comboId) {
 		Map<String, Object> result = comboService.deleteCombo(comboId);
 		return Response.success(result);
 	}
 	
+	
+	//add topping
 	@PostMapping("/product/add-topping")
 	public ResponseEntity<?> addTopping(@RequestBody ToppingDTO toppingDto)
 	{
@@ -89,13 +87,15 @@ public class ProductController {
 	}
 	
 	
-	
+	//add product details 
 	@PostMapping("/product/add-product")
-	public ResponseEntity<?> addProduct(ProductDTO productDto) {
+	public ResponseEntity<?> addProduct(@RequestBody ProductDTO productDto) {
 		Product result = productService.saveProduct(productDto);
 		return Response.success(result);
 	}
 	
+	
+	//esit product details 
 	@PutMapping("/product/edit-product/{productId}")
 	public ResponseEntity<?> editProduct(@PathVariable("productId") int productId,@RequestBody ProductDTO productDto) {
 		ProductDTO result = productService.editProduct(productId,productDto);
@@ -105,12 +105,14 @@ public class ProductController {
 	}
 	
 	
+	//delete product
 	@DeleteMapping("/product/delete-product/{productId}")
 	public ResponseEntity<?> deleteProduct(@PathVariable("productId") int productId) {
 		Map<String, Object> result = productService.deleteProduct(productId);
 		return Response.success(result);
 	}
 	
+	//add subcategory to product
 	@PostMapping("/product/add-subcategory")
 	public ResponseEntity<?> addSubCategory(@RequestBody SubCategoryDTO subCategoryDto)
 	{
@@ -120,7 +122,7 @@ public class ProductController {
 		return Response.success(result);
 	}
 	
-	
+	//edit subcategory
 	@PutMapping("/product/edit-subcategory/{productId}")
 	public ResponseEntity<?> editSubCategory(@PathVariable("productId") int productId,@RequestBody SubCategoryDTO subCategoryDto) {
 		Map<String, Object> result = productService.editSubCategory(productId,subCategoryDto);
@@ -129,6 +131,7 @@ public class ProductController {
 		return Response.error("product does not exist");
 	}
 
+	//get all products have veg category
 	@GetMapping("/product/getall-vegproducts")
 	public ResponseEntity<?> getAllVegProducts()
 	{
@@ -137,7 +140,7 @@ public class ProductController {
 		return Response.success(productDtoList);
 	}
 	
-	
+	//get all product which have non-veg category
 	@GetMapping("/product/getall-nonvegproducts")
 	public ResponseEntity<?> getAllNonVegProducts()
 	{
@@ -156,6 +159,7 @@ public class ProductController {
 //		return Response.success(subCategoryList);
 //	}
 	
+	//get default price of product(i.e.price of Regular and New Hand Tossed pizza)
 	@GetMapping("/product/get-defaultPrice/{productId}")
 	public ResponseEntity<?> getDefaultPrice(@PathVariable("productId") int productId)
 	{
@@ -165,6 +169,7 @@ public class ProductController {
 		return Response.success(subCategoryDto);
 	}
 	
+	//get product price after changing size or crust type
 	@PostMapping("/product/get-ProductPrice")
 	public ResponseEntity<?> getProductPrice(@RequestBody SubCategoryDTO subCategoryDto)
 	{

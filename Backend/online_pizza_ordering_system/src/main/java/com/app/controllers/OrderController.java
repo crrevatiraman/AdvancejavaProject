@@ -49,7 +49,7 @@ public class OrderController {
 		return Response.error("no pending order available...");
 	}
 	
-	
+	//get all available delivery boy
 	@GetMapping("/order/get-deliveryboy")
 	public ResponseEntity<?> getDeliveryBoy()
 	{
@@ -59,6 +59,8 @@ public class OrderController {
 		return Response.error("no delivery boy available...");
 	}
 	
+	
+	//assign delivery boy to order
 	@PostMapping("/order/assign-deliveryboy")
 	public ResponseEntity<?> assignDeliveryBoy(@RequestBody AssignOrderDTO assignOrderDto)
 	{
@@ -66,6 +68,8 @@ public class OrderController {
 		return Response.success(result);
 	}
 	
+	
+	//update order status (placed/delivered..)
 	@PutMapping("/order/update-status/{orderId}")
 	public ResponseEntity<?> updateOrderStatus(@PathVariable("orderId") int orderId,@RequestBody OrderDTO orderDto)
 	{
@@ -75,6 +79,8 @@ public class OrderController {
 		return Response.error("Delivery boy not assigned");
 	}
 	
+	
+	//save order details after order placed
 	@PostMapping("/order/save-order")
 	public ResponseEntity<?> saveOrder(@RequestBody OrderDTO orderDto)
 	{
@@ -83,6 +89,7 @@ public class OrderController {
 	}
 	
 	
+	//add order feedback from customer 
 	@PostMapping("/order/add-feedback")
 	public ResponseEntity<?> giveFeedback(@RequestBody FeedbackDTO feedbackDto) {
 		Map<String, Object> result = orderService.saveFeedback(feedbackDto);
@@ -90,6 +97,7 @@ public class OrderController {
 	}
 	
 	
+	//get all feedback to admin
 	@GetMapping("/order/getall-feedback")
 	public ResponseEntity<?> getAllFeedback()
 	{
@@ -99,6 +107,7 @@ public class OrderController {
 	}
 	
 	
+	//add product/combo to cart or update quantity if already exist
 	@PostMapping("/order/addtocart")
 	public ResponseEntity<?> addToCart(@RequestBody CartDTO cartDto)
 	{
@@ -108,7 +117,7 @@ public class OrderController {
 			return Response.error("error in add into cart");
 	}
 	
-	
+	//get all cart items of user
 	@GetMapping("/order/getallcartitem/{userId}")
 	public ResponseEntity<?> getAllCartItem(@PathVariable("userId") int userId)
 	{
@@ -119,7 +128,7 @@ public class OrderController {
 		
 	}
 	
-	
+	//increment quantity of item in cart
 	@PutMapping("/order/increment-quantity/{cartDetailId}")
 	public ResponseEntity<?> incrementQuantity(@PathVariable("cartDetailId") int cartDetailId)
 	{
@@ -127,6 +136,8 @@ public class OrderController {
 		return Response.success(result);
 	}
 	
+	
+	//decrement quantity of item in cart
 	@PutMapping("/order/decrement-quantity/{cartDetailId}")
 	public ResponseEntity<?> decrementQuantity(@PathVariable("cartDetailId") int cartDetailId)
 	{
@@ -136,6 +147,8 @@ public class OrderController {
 		return Response.error("can't decrement");
 	}
 	
+	
+	//remove item from cart
 	@DeleteMapping("/order/delete-item/{cartDetailId}")
 	public ResponseEntity<?> deleteFromCart(@PathVariable("cartDetailId") int cartDetailId)
 	{
@@ -143,11 +156,12 @@ public class OrderController {
 				return Response.success("deleted...");
 	}
 	
+	
 	//get all orders by userId
 	@GetMapping("/order/getall-custorders/{userId}")
-	public ResponseEntity<?> getAllCustomerOrder(@PathVariable("userId") int userId)
+	public ResponseEntity<?> getCustomerAllOrder(@PathVariable("userId") int userId)
 	{
-		List<OrderDTO> orderDtoList = orderService.getAllCustomerOrder(userId);
+		List<OrderDTO> orderDtoList = orderService.getCustomerAllOrder(userId);
 		if(orderDtoList != null)
 			return Response.success(orderDtoList);
 		return Response.error("no order available...");
@@ -158,7 +172,7 @@ public class OrderController {
 		public ResponseEntity<?> getCustomerPendingOrders(@PathVariable("userId") int userId)
 		{
 			List<OrderDTO> orderDtoList = orderService.getCustomerPendingOrders(userId);
-			if(orderDtoList != null)
+			if(orderDtoList.size() != 0)
 				return Response.success(orderDtoList);
 			return Response.error("no pending order available...");
 		}

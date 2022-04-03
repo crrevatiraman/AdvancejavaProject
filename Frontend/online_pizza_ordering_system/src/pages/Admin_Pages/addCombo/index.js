@@ -41,12 +41,13 @@ const Addcombo= () => {
         toast.warning("Please select combo image");
       }
       else{
-        const data = new FormData()
-        data.append('comboName', comboName)
-      data.append('comboCategory',comboCategory )
-      data.append('description',description )
-      data.append('comboPrice',comboPrice )
-      data.append('comboImage',comboImage )
+        const data = {
+          comboName,
+          comboCategory, 
+          description, 
+          comboPrice ,
+          comboImage ,
+        }
 
       
     // url to call the api

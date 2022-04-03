@@ -93,7 +93,7 @@ public class OrderServiceImpl {
 		
 	}
 	
-	public List<OrderDTO> getAllCustomerOrder(int userId)
+	public List<OrderDTO> getCustomerAllOrder(int userId)
 	{
 		List<OrderDTO> orderDtoList = new ArrayList<>();
 		List<Order> orderList = orderDao.findByUserId(userId);

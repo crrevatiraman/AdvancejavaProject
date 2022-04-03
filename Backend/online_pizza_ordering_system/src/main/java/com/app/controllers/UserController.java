@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	private UserServiceImpl userService;
 	
-
+	//user (admin/employee,customer ) signin
 	@PostMapping("/user/signin")
 	public ResponseEntity<?> signIn(@RequestBody Credential cred) {
 		UserDTO userDto = userService.findUserByEmailAndPassword(cred);
@@ -37,7 +37,7 @@ public class UserController {
 	}
 	
 
-	 
+	 //register user(customer/employee)
 	 @PostMapping("/user/register")
 		public ResponseEntity<?> registerUser(@RequestBody UserDTO userDto)
 		{
@@ -46,6 +46,7 @@ public class UserController {
 		}
 	 
 	 
+	 //user forgot password
 	 @PutMapping("/user/forgot-password")
 	 public ResponseEntity<?> forgotPassword(@RequestBody Credential cred)
 	 {
@@ -56,7 +57,7 @@ public class UserController {
 		 
 	 }
 	 
-	 
+	 //search user(employee ) by email
 	 @GetMapping("/user/search-employee/{email}")
 	 public ResponseEntity<?> searchEmployee(@PathVariable("email") String email)
 	 {
@@ -66,6 +67,7 @@ public class UserController {
 		return Response.success(userDto);
 	 }
 	 
+	 //update employee details(emp role by admin)
 	 @PutMapping("/user/update-employee/{userId}")
 	 public ResponseEntity<?> updateEmployeeDetails(@PathVariable("userId") int userId,@RequestBody UserAddressDTO userAddressDto)
 	 {
@@ -75,6 +77,7 @@ public class UserController {
 		 	
 	 }
 
+	 //add address of user
 	 @PostMapping("/user/add-address/{userId}")
 		public ResponseEntity<?> addAddress(@PathVariable("userId") int userId, @RequestBody AddressDTO addressDto) {
 			Map<String, Object> result = userService.addAddress(userId, addressDto);
