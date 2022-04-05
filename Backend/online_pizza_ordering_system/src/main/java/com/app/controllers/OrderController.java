@@ -65,7 +65,9 @@ public class OrderController {
 	public ResponseEntity<?> assignDeliveryBoy(@RequestBody AssignOrderDTO assignOrderDto)
 	{
 		Map<String, Object> result = orderService.assignDeliveryBoy(assignOrderDto);
-		return Response.success(result);
+		if(result != null)
+			return Response.success(result);
+		return Response.error("delivery boy already assigned");
 	}
 	
 	
@@ -177,5 +179,24 @@ public class OrderController {
 			return Response.error("no pending order available...");
 		}
 		
+		
+		@GetMapping("/order/get-assignedorder/{userId}")
+		public ResponseEntity<?> getAssignedOrder(@PathVariable("userId") int userId)
+		{
+			OrderDTO orderDto = orderService.getAssignedOrder(userId);
+			
+			if(orderDto != null)
+				return Response.success(orderDto);
+			return Response.error("no order assigned");
+			
+		}
+		
+		@GetMapping("/order/get-orderstatus/{orderId}")
+		public ResponseEntity<?> getOrderDetails(@PathVariable("orderId") int orderId)
+		{
+			String orderStatus = orderService.getOrderDetails(orderId);
+				return Response.success(orderStatus);
+		}
+	
 	
 }

@@ -84,4 +84,13 @@ public class UserController {
 			return Response.success(result);
 		}
 	
+	 
+	 @GetMapping("/user/user-details/{userId}")
+	 public ResponseEntity<?> getUserDetail(@PathVariable("userId") int userId)
+	 {
+		 UserDTO userDto = userService.getUserDetails(userId);
+		 if(userDto != null)
+			 return Response.success(userDto);
+		 return Response.error("user not found");
+	 }
 }

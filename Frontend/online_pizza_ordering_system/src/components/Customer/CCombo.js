@@ -19,7 +19,7 @@ const CCombo = ({item}) => {
             userId: sessionStorage['userId'],
             cartDetail :{
                 comboId:item.comboId,
-                price:item.price,
+                price:item.comboPrice,
                 comboName:item.comboName,
                 image:item.comboImage,
                 

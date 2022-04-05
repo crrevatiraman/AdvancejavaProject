@@ -2,6 +2,7 @@ import { URL } from "../../config";
 import { useState,useEffect } from 'react';
 import axios from "axios";
 import { toast } from "react-toastify";
+import moment from "moment-timezone";
 
 const AOrder = ({order,deliveryBoy}) =>{
 
@@ -24,7 +25,7 @@ const AOrder = ({order,deliveryBoy}) =>{
       console.log(result);
       if (result["status"] == "success") {
 
-         //toast.success('delivery boy assigned...')
+         toast.success('delivery boy assigned...')
          document.location.reload();
 
       } else {
@@ -48,7 +49,7 @@ const updateStatus = () =>{
       console.log(result);
       if (result["status"] == "success") {
 
-         //toast.success('delivery boy assigned...')
+         toast.success('order status updated')
          document.location.reload();
       } else {
         toast.warning(result["error"]);
@@ -67,7 +68,7 @@ const updateStatus = () =>{
                 <div className="row">
 
                     {order.orderDetailList.map((orderDetail) => {
-                        if(orderDetail.product !== null){ return <p style={{color:"black"}} key={orderDetail.orderDetailId} >- {orderDetail.product.productName} - {orderDetail.quantity} qty.</p>;}
+                        if(orderDetail.product !== null){ return <p style={{color:"black",marginBottom:"5px"}} key={orderDetail.orderDetailId} >- {orderDetail.product.productName} - {orderDetail.quantity} qty.</p>;}
                         else{}
                 return <p style={{color:"black"}} key={orderDetail.orderDetailId} >- {orderDetail.combo.comboName} - {orderDetail.quantity} qty.</p>;             
               })}
@@ -107,7 +108,7 @@ const updateStatus = () =>{
 
                 </select>
                 <div style={{marginTop:"20px"}}>
-                <button className="btn btn-info"
+                <button className="btn btn-outline-primary"
                 onClick={assignDeliveryBoy}
                 >Assign</button>
                 </div>
@@ -136,21 +137,21 @@ const updateStatus = () =>{
                     <option className="text-dark" value="Prepared">
                     Prepared
                     </option>
-                    <option className="text-dark" value="Delivered">
-                    Delivered
+                    <option className="text-dark" value="Out For Delivery">
+                    Out For Delivery
                     </option>
                 </select>
                 <div style={{marginTop:"20px"}}>
                 <button 
                 onClick={updateStatus}
-                className="btn btn-info">Update Status</button>
+                className="btn btn-outline-primary">Update Status</button>
                 </div>
                 </div>
             </div>
             
             <div className="col">
             <h5 style={{color:"black"}}>
-            {order.orderDateTime}
+            {moment(order.orderDateTime).format('MM/DD/YYYY h:mm a')}
             </h5>
             </div>
 

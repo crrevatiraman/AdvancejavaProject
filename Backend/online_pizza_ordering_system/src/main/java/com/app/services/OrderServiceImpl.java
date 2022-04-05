@@ -140,59 +140,115 @@ public class OrderServiceImpl {
 	public Map<String,Object> assignDeliveryBoy(AssignOrderDTO assignOrderDto)
 	{
 		Order order = orderDao.getById(assignOrderDto.getOrderId());
-		AssignOrder assign = new AssignOrder();
-		assign.setOrder(order);
-		User emp =  userDao.getById(assignOrderDto.getUserId());
-		emp.setIsFree(false);
-		assign.setUser(emp);
-		assign = assignOrderDao.save(assign);
-			return Collections.singletonMap("Assigned id", assign.getAssignId());
-	
+		if(assignOrderDao.findByOrderId(assignOrderDto.getOrderId()) == null)
+		{
+			AssignOrder assign = new AssignOrder();
+			assign.setOrder(order);
+			User emp =  userDao.getById(assignOrderDto.getUserId());
+			emp.setIsFree(false);
+			assign.setUser(emp);
+			assign = assignOrderDao.save(assign);
+				return Collections.singletonMap("Assigned id", assign.getAssignId());
+		}
+		return null;
 	}
 	
 
 	
+//	public Map<String, Object> saveOrder(OrderDTO orderDto)
+//	{
+//		User user = userDao.getById(orderDto.getUser().getUserId());
+//		Order order = new Order();
+//		order.setPaymentMode(orderDto.getPaymentMode());
+//		order.setStatusType("Placed");
+//		order.setTotalAmount(orderDto.getTotalAmount());
+//		order.setOrderDateTime(new Date());
+//		order.setUser(user);
+//		
+//		order = orderDao.save(order);
+//		
+//		
+//		if(orderDto.getOrderDetailList() != null)
+//		{
+//			for (OrderDetail od : orderDto.getOrderDetailList()) {
+//				OrderDetail orderDetail = new OrderDetail();
+//				if(od.getProduct() != null)
+//				{
+//					Product product = productDao.getById(od.getProduct().getProductId());
+//					orderDetail.setProduct(product);
+//				}
+//				if(od.getCombo() != null)
+//				{
+//					Combo combo = comboDao.getById(od.getCombo().getComboId());
+//					orderDetail.setCombo(combo);
+//				}
+//				if(od.getTopping() != null)
+//				{
+//					Topping topping = toppingDao.getById(od.getCombo().getComboId());
+//					orderDetail.setTopping(topping);
+//				}
+//				orderDetail.setOrder(order);
+//				orderDetail.setAmount(od.getAmount());
+//				orderDetail.setQuantity(od.getQuantity());
+//				orderDetail = orderDetailDao.save(orderDetail);
+//			}
+//		}
+//		return Collections.singletonMap("inserted id", order.getOrderId());
+//		
+//	}
+	
+
 	public Map<String, Object> saveOrder(OrderDTO orderDto)
 	{
 		User user = userDao.getById(orderDto.getUser().getUserId());
 		Order order = new Order();
 		order.setPaymentMode(orderDto.getPaymentMode());
-		order.setStatusType(orderDto.getStatusType());
+		order.setStatusType("Placed");
 		order.setTotalAmount(orderDto.getTotalAmount());
 		order.setOrderDateTime(new Date());
 		order.setUser(user);
 		
 		order = orderDao.save(order);
+		System.out.println("after order saved");
+		Cart cart = cartDao.findByUserId(user.getUserId());
+		List<CartDetail> CartDetailList = cartDetailDao.findByCartId(cart.getCartId());
 		
 		
-		if(orderDto.getOrderDetailList() != null)
+		
+		if(CartDetailList != null)
 		{
-			for (OrderDetail od : orderDto.getOrderDetailList()) {
+			for (CartDetail cd : CartDetailList) {
 				OrderDetail orderDetail = new OrderDetail();
-				if(od.getProduct() != null)
+				if(cd.getProductId() != 0)
 				{
-					Product product = productDao.getById(od.getProduct().getProductId());
+					Product product = productDao.getById(cd.getProductId());
 					orderDetail.setProduct(product);
 				}
-				if(od.getCombo() != null)
+				if(cd.getComboId() != 0)
 				{
-					Combo combo = comboDao.getById(od.getCombo().getComboId());
+					Combo combo = comboDao.getById(cd.getComboId());
 					orderDetail.setCombo(combo);
 				}
-				if(od.getTopping() != null)
+				if(cd.getToppingId() != 0)
 				{
-					Topping topping = toppingDao.getById(od.getCombo().getComboId());
+					Topping topping = toppingDao.getById(cd.getComboId());
 					orderDetail.setTopping(topping);
 				}
 				orderDetail.setOrder(order);
-				orderDetail.setAmount(od.getAmount());
-				orderDetail.setQuantity(od.getQuantity());
+				orderDetail.setAmount(cd.getPrice() * cd.getQuantity());
+				orderDetail.setQuantity(cd.getQuantity());
+				//System.out.println(orderDetail);
 				orderDetail = orderDetailDao.save(orderDetail);
 			}
 		}
+		
+			cartDao.delete(cart);
+		
 		return Collections.singletonMap("inserted id", order.getOrderId());
 		
 	}
+	
+	
 	
 	public Map<String, Object> saveFeedback(FeedbackDTO feedbackDto){
 		Feedback feedback = converter.toFeedbackEntity(feedbackDto);
@@ -396,4 +452,25 @@ public class OrderServiceImpl {
 		}
 		return Collections.singletonMap("updated id", order.getOrderId());
 	}
+	
+	
+	
+	public OrderDTO getAssignedOrder(int userId)
+	{
+		AssignOrder assignOrder = assignOrderDao.findByUserId(userId);
+		if(assignOrder != null)
+			return converter.toOrderDto(assignOrder.getOrder());
+		
+		return null;
+	}
+	
+	
+	public String getOrderDetails(int orderId)
+	{
+		Order order = orderDao.getById(orderId);
+			return order.getStatusType();
+	}
+	
+	
+	
 }

@@ -181,4 +181,13 @@ public class UserServiceImpl {
 		return Collections.singletonMap("Updated rows", 0);
 	}
 	
+	
+	public UserDTO getUserDetails(int userId)
+	{
+		User user = userDao.getById(userId);
+		
+		if(user != null)
+			return converter.toUserDto(user);
+		return null;
+	}
 }

@@ -21,6 +21,10 @@ import GetFeedback from './pages/Admin_Pages/Getallfeedback'
 import Checkout from './pages/Customer_Pages/Checkout/Checkout'
 import Cart1 from './pages/Customer_Pages/Cart/Cart1'
 import AdminOrder from './pages/Admin_Pages/AllOrders/AdminOrder'
+import CustomerOrder from './pages/Customer_Pages/Orders/CustomerOrder'
+import Payment from './pages/Customer_Pages/Payment/Payment'
+import EmpOrder from './pages/Employee_Pages/EmpOrders/EmpOrders'
+import Tracking from './pages/Customer_Pages/Tracking/Tracking'
 
 // import CustomerFeedback from './pages/Admin_Pages/CustomerFeedback'
 
@@ -53,6 +57,12 @@ function App() {
           <Route path = "/checkout" element = {<Checkout/>}/>
           <Route path = "/cart" element = {<Cart1/>}/>
           <Route path = "/admin-order" element = {<AdminOrder/>}/>
+          <Route path = "/customer-order" element = {<CustomerOrder/>}/>
+          <Route path = "/payment" element = {<Payment/>}/>
+          <Route path = "/tracking" element = {<Tracking/>}/>
+
+           {/* employee routes */}
+           <Route path = "/employee-order" element = {<EmpOrder/>}/>
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="colored" />

@@ -3,9 +3,9 @@ import { toast } from "react-toastify";
 import { URL } from "../../config";
 import axios from "axios";
 
-const CartItem = ({item , changeQuantity}) => {
+const CartItem = ({item}) => {
 
-  const [qty,setQty] = useState(item.quantity);
+  
 
   // useEffect(()=>{
   //   console.log("in useeffect")
@@ -24,9 +24,8 @@ const CartItem = ({item , changeQuantity}) => {
   
         if (result["status"] == "success") {
             console.log('added to cart');
-            //document.location.reload();
-            setQty(qty+1)
-            changeQuantity(qty)
+   
+            window.location.reload();
             
         } else {
           toast.error(result["error"]);
@@ -39,8 +38,7 @@ const CartItem = ({item , changeQuantity}) => {
 
   const decrement = () =>{
     console.log('decrement count')
-    setQty(qty-1)
-    changeQuantity(qty)
+   
     const url = `${URL}/order/decrement-quantity/${item.cartDetailId}`;
 
     axios.put(url).then((response) => {
@@ -49,8 +47,8 @@ const CartItem = ({item , changeQuantity}) => {
   
         if (result["status"] == "success") {
             console.log('remove from cart');
-            setQty(qty+1)
-            changeQuantity(qty)
+        
+            window.location.reload();
            
         } else {
           toast.error(result["error"]);
@@ -59,8 +57,7 @@ const CartItem = ({item , changeQuantity}) => {
   }
 
   const removeItem = () =>{
-    setQty(-1)
-    changeQuantity(qty)
+   
     console.log('remove count')
     const url = `${URL}/order/delete-item/${item.cartDetailId}`;
 
@@ -70,6 +67,7 @@ const CartItem = ({item , changeQuantity}) => {
   
         if (result["status"] == "success") {
             console.log('deleted from cart');
+            window.location.reload();
            
         } else {
           toast.error(result["error"]);

@@ -10,19 +10,19 @@ import { URL } from "../../../config";
 
 const Cart1 = () => {
   const [ cart,setCart] = useState('');
-  const [ qty,setqty] = useState(0);
+  // const [ qty,setqty] = useState(0);
   const navigate = useNavigate()
 
 useEffect(()=>{
   getCartItems()
   console.log('in effect')
 }  
-,[qty])
+,[])
 
-const changeQuantity = (item) => {
-    setqty(item)
-    console.log('in chnage qty')
-}
+// const changeQuantity = (item) => {
+//     setqty(item)
+//     console.log('in chnage qty')
+// }
 
 const getCartItems = () => {
 
@@ -52,13 +52,9 @@ if(cart.length !== 0 )
       <div className="container-cart row">
         <Scrollbars>
           {cart.cartDetailList.map((curItem) => {
-                return <CartItem key={curItem.cartDetailId} item ={curItem} changeQuantity = {changeQuantity} />;
+                return <CartItem key={curItem.cartDetailId} item ={curItem}  />;
               })}
-            {/* <CartItem/>
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>  */}
+   
         </Scrollbars>
       </div>
 
