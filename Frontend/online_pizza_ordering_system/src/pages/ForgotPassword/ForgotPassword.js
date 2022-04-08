@@ -21,7 +21,10 @@ const ForgotPassword = () =>{
   }
 
   const resetPassword = () => {
-  
+      if(localStorage.getItem('email').length === 0)
+      {
+          toast.warning('Please login first..')
+      }
       if (password.length == 0) {
         toast.warning("Please enter password");
       } 
@@ -78,7 +81,7 @@ const ForgotPassword = () =>{
              </div>
         
                   <div className='row'>
-                    <h1 className="title" >Reset Password?</h1>
+                    <h1 className="title" style={{color:"white"}} >Reset Password?</h1>
                   </div>
                   <div className='row'>
                   <p className="title" style={{textAlign:"center",fontFamily:"cursive"}} >Let's get you a new one.</p>

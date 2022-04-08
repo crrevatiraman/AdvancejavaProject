@@ -35,12 +35,12 @@ const getUserDetails = () => {
     axios.get(url).then((response) => {
       // get the data from the response
       const result = response.data;
-      console.log(result);
+      //console.log(result);
       if (result["status"] == "success") {
-        console.log('result["data"]')
-        setFirstName(firstName)
-        setLastName(lastName)
-        setMobileNo(mobileNo)
+        console.log(result["data"])
+        setFirstName(result["data"].firstName)
+        setLastName(result["data"].lastName)
+        setMobileNo(result["data"].mobileNo)
         // navigate to the signin page
         // navigate("/customer-home");
       } else {
@@ -71,11 +71,11 @@ const getUserDetails = () => {
       };
 
       // url to call the api
-      const url = `${URL}/user/update-profile`;
+      const url = `${URL}/user/update-profile/${sessionStorage["userId"]}`;
 
       // http method: post
       // body: contains the data to be sent to the API
-      axios.post(url, body).then((response) => {
+      axios.put(url, body).then((response) => {
         // get the data from the response
         const result = response.data;
         console.log(result);

@@ -10,13 +10,11 @@ import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNa
 import Footer from "../../../components/Footer/Footer"
 
 const GetFeedback = () => {
-  // const { empState } = useLocation();
-  // const [email, setEmail] = useState("");
-  const [check, setCheck] = useState(false);
+
   const [employee, setEmployee] = useState([]);
  
 
-  const navigate = useNavigate();
+ 
 
   const getallfeedback = () => {
     const url = `${URL}/order/getall-feedback`;
@@ -25,7 +23,7 @@ const GetFeedback = () => {
       const result = response.data;
       if (result["status"] == "success") {
         setEmployee(result["data"]);
-        setCheck(true);
+        
        // console.log(result);
         console.log(employee);
       } 
@@ -42,7 +40,7 @@ const GetFeedback = () => {
     <div className="background-img">
       <AdminCommonNavb/>
       <div style={{marginTop:"40px"}} className="container">
-      <h1 className="title1" style={{fontFamily:"sans-serif"}}>FeedBack</h1>
+      <h1 className="title1" style={{fontFamily:"sans-serif",color:"white"}}>FeedBack</h1>
 
       <div className="row ">
         <div className="col"></div>

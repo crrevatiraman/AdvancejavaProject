@@ -9,7 +9,7 @@ import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNa
 import Footer from "../../../components/Footer/Footer"
 
 const SearchEmp = () => {
-  const { empState } = useLocation();
+ 
   const [email, setEmail] = useState("");
   const [check, setCheck] = useState(false);
   const [employee, setEmployee] = useState([]);
@@ -41,7 +41,7 @@ const SearchEmp = () => {
       <AdminCommonNavb  />
       <div style={{marginTop:"40px"}}>
 
-      <h1 className="title1">Search Employee</h1>
+      <h1 className="title1" style={{color:"white"}}>Search Employee</h1>
 
       <div className="row ">
         <div className="col"></div>

@@ -77,7 +77,7 @@ const Register = () => {
       <div className="row">
         <div className="col"></div>
         <div className="col border-register">
-        <h1 className="title"style={{fontFamily:"sans-serif"}}>Register</h1>
+        <h1 className="title"style={{fontFamily:"sans-serif",color:"white"}}>Register</h1>
         <hr/>
           <div className="form">
             <div className="mb-3">

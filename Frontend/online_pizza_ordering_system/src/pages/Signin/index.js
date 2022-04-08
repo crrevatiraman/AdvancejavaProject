@@ -14,7 +14,7 @@ const Signin = () => {
 
   const navigate = useNavigate()
 
-  const signinUser = () => {
+  const signinUser =  () => {
     if (email.length == 0) {
       toast.warning('please enter email')
     } else if (password.length == 0) {
@@ -29,13 +29,13 @@ const Signin = () => {
       const url = `${URL}/user/signin`
 
       // make api call using axios
-      axios.post(url, body).then((response) => {
+      axios.post(url, body).then((response) =>{
         // get the server result
         const result = response.data
         console.log(result)
         if (result['status'] == 'success') {
           toast.success('Welcome to the application')
-
+            sessionStorage['loginStatus'] = 1;
           // get the data sent by server
           const { userId, firstName, lastName,role } = result['data']
             console.log(role)
@@ -43,30 +43,39 @@ const Signin = () => {
           sessionStorage['userId'] = userId
           sessionStorage['firstName'] = firstName
           sessionStorage['lastName'] = lastName
+          sessionStorage['role'] = role
           sessionStorage['loginStatus'] = 1
 
+          
+          
           if(role == "employee")
           {
             navigate('/employee-order')
-            
+            window.location.reload('/employee-order')
           }
           else if(role == "admin")
           {
             navigate('/admin-home')
+            window.location.reload('/admin-home')
           }
           else{
+
             navigate('/customer-home')
+            window.location.reload('/customer-home')
           }
 
-          // navigate to home component
-          //navigate('/home')
-         // navigate('/customer-home')
-        } else {
+      } 
+      else 
+      {
           toast.error('Invalid user name or password')
-        }
+      }
       })
     }
   }
+
+
+
+
 
   return (
     <div className='background-img'>
@@ -128,7 +137,7 @@ const Signin = () => {
              
               </div>
               <div className='col' >
-                 <Link style={{textDecoration:"none"}} to="/forgot-password">Forgot Password?</Link>
+                 <Link style={{textDecoration:"none"}} to="/forgot">Forgot Password?</Link>
               
               </div>
             

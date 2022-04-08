@@ -19,14 +19,14 @@ const AddSubCategory = () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const { product } = state
+  useEffect(() => {
+    const { product } = state
     
-  //   setProductName(product.productName)
-  //   setProductId(product.productId)
-  //   setProducts(product)
+    setProductName(product.productName)
+    setProductId(product.productId)
+    setProducts(product)
   
-  // }, [])
+  }, [])
 
   const addCategory = () => {
     const body = {
@@ -70,7 +70,7 @@ const AddSubCategory = () => {
       <div className="row">
         <div className="col"></div>
         <div className="col border-sub">
-        <h1 className="title">Add Sub-Category</h1>
+        <h1 className="title" style={{color:"white"}}>Add Sub-Category</h1>
         <hr/>
           <div className="form">
             

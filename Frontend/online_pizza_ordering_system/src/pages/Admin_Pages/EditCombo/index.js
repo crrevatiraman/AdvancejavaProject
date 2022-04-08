@@ -21,16 +21,16 @@ const EditCombo= () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const { combo } = state
-  //   setComboId(combo.comboId)
-  //   setComboName(combo.comboName)
-  //   setComboImage(combo.comboImage)
-  //   setDescription(combo.description)
-  //   setComboCategory(combo.comboCategory)
-  //   setComboPrice(combo.comboPrice)
+  useEffect(() => {
+    const { combo } = state
+    setComboId(combo.comboId)
+    setComboName(combo.comboName)
+    setComboImage(combo.comboImage)
+    setDescription(combo.description)
+    setComboCategory(combo.comboCategory)
+    setComboPrice(combo.comboPrice)
   
-  // }, [])
+  }, [])
 
   const cancelEditCombo = () => {
     navigate("/home");

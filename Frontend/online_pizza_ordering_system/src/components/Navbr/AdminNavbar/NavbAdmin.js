@@ -6,6 +6,16 @@ import { useNavigate } from "react-router";
 
 const NavbAdmin = () => {
   const navigate = useNavigate();
+
+  const logout = () => {
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('loginStatus')
+    navigate("/signin");
+  }
+
   return (
     <>
       <nav className="main-nav3">
@@ -20,7 +30,7 @@ const NavbAdmin = () => {
                     <li><a href="/admin-order">Orders</a></li>
                     <li><a href="/search-emp">Update Employee Details</a></li>
                     <li><a href="/get-feedbacks">Show Feedbacks</a></li>
-                    <li><a href="/signin">Logout</a></li>
+                    <li><a style={{color:"black"}} onClick={logout}>Logout</a></li>
                 </ul>
               </li>
           </ul>

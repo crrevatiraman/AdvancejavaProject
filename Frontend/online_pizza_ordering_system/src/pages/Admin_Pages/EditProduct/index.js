@@ -24,15 +24,15 @@ const Editproduct = () => {
     navigate("/admin-home");
   };
 
-  // useEffect(() => {
-  //   const { product } = state
-  //      setProducts(product)
-  //   setProductId(product.productId)
-  //   setProductName(product.productName)
-  //   setProductImage(product.productImage)
-  //   setDescription(product.description)
+  useEffect(() => {
+    const { product } = state
+       setProducts(product)
+    setProductId(product.productId)
+    setProductName(product.productName)
+    setProductImage(product.productImage)
+    setDescription(product.description)
   
-  // }, [])
+  }, [])
 
   
   const updateProduct = () => {

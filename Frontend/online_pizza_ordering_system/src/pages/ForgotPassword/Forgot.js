@@ -106,7 +106,7 @@ const Forgot = () =>{
                             
                           </div>
                             <div className='row'>
-                              <h1 className="title" style={{marginTop:"10px"}}>Forgot Password?</h1>
+                              <h1 className="title" style={{marginTop:"10px",color:"white"}}>Forgot Password?</h1>
                             </div>
                             <div className='row'>
                             <p className="title" style={{textAlign:"center",fontFamily:"cursive"}} >You can reset your password here.</p>

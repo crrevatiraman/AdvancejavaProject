@@ -55,14 +55,15 @@ const EmpOrder = () => {
   };
 
   return (
+    <div className="tracking-bg">
     <div className="container-md">
       <div className="row">
         <div className="col">
-          <h1 style={{ color: "black" }}> Orders</h1>
+          <h1 style={{ color: "white" }}> Orders</h1>
         </div>
       </div>
 
-      {order.length !== 0 && (      <div className="container-order">
+      {order.length !== 0 && ( <div className="container-order">
         <Scrollbars>
           <div className="row">
             <div className="col-3">
@@ -164,7 +165,7 @@ const EmpOrder = () => {
               </div>
               <div className="row">
                 {order.paymentMode === "Online" && (
-                  <p style={{ color: "lightgreen" }}>Payment Received...</p>
+                  <p style={{ color: "green" }}>Payment Received...</p>
                 )}
                 {order.paymentMode === "Cash On Delivery" && (
                   <p style={{ color: "red" }}>Payment not yet received</p>
@@ -181,9 +182,10 @@ const EmpOrder = () => {
         </Scrollbars>
       </div>) }
               {order.length == 0 && (
-                <h4 style={{ color: "black" }}>you have no order assigned...... </h4>
+                <h4 style={{ color: "white" }}>you have no order assigned...... </h4>
               )}    
 
+    </div>
     </div>
   );
 };

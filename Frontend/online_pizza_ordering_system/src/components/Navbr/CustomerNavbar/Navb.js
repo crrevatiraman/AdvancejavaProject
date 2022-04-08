@@ -4,7 +4,19 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 
+
 const Navb = () => {
+
+  const logout = () => {
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('loginStatus')
+    navigate("/signin");
+  }
+
+
   const navigate = useNavigate();
   return (
     <>
@@ -30,9 +42,7 @@ const Navb = () => {
                         }} className="btn btn-warning btn-lg">Home</button>
                 </li>
                 <li>
-                <button onClick={() => {
-                          navigate("/signin");
-                        }} className="btn btn-warning btn-lg">Logout</button>
+                <button onClick={logout} className="btn btn-warning btn-lg">Logout</button>
                 </li>
             </ul>
           </div>

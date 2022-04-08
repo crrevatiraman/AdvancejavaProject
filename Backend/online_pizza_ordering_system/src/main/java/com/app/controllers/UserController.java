@@ -92,4 +92,14 @@ public class UserController {
 			 return Response.success(userDto);
 		 return Response.error("user not found");
 	 }
+	 
+	 
+	 @PutMapping("/user/update-profile/{userId}")
+		public ResponseEntity<?> registerUser(@PathVariable("userId") int userId ,@RequestBody UserDTO userDto)
+		{
+		 	Map<String,Object> result = userService.updateUser(userId,userDto);
+		 	if(result != null)
+		 		return Response.success(result);
+		 	return Response.error("user not found");
+		}
 }

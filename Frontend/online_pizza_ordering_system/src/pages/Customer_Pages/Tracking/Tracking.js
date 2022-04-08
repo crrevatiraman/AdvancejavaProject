@@ -9,17 +9,17 @@ import Footer from '../../../components/Footer/Footer'
 
 const Tracking = () =>{
     const [statusType,setStatusType] = useState('Placed');
-    //const [orderId,setOrderId] = useState(0);
+    const [orderId,setOrderId] = useState(0);
     const { state } = useLocation();
     
-    // useEffect(()=>{
+    useEffect(()=>{
         
-    //     // console.log(state)
-    //     // const { orderId } = state
-    //     // setOrderId(orderId)
-    //     // console.log(orderId)
-    //     getOrderStatus()
-    // },[])
+        console.log(state)
+        const { orderId } = state
+        setOrderId(orderId)
+        console.log(orderId)
+        getOrderStatus()
+    },[])
 
 
     const getOrderStatus = () =>{

@@ -210,7 +210,7 @@ const CItem = ({item}) => {
                         <option className="text-dark" value="Large">Large</option>
                     </select> */}
                     <select name="size" className="form-select" onChange={sizePriceHandler}>
-                   <option>--Select size type--</option>
+                   <option className="text-dark">--Select size type--</option>
                      {
                      sizes.map((sub)=>(
                          

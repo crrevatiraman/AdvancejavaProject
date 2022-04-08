@@ -18,13 +18,13 @@ const EditSubCategory = () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const { product } = state
-  //   console.log(state)
-  //   setProductName(product.productName)
-  //   setProductId(product.productId)
-  //   setProducts(product)
-  // }, [])
+  useEffect(() => {
+    const { product } = state
+    console.log(state)
+    setProductName(product.productName)
+    setProductId(product.productId)
+    setProducts(product)
+  }, [])
 
   const addCategory = () => {
     const body = {

@@ -5,6 +5,16 @@ import { useNavigate } from "react-router";
 
 const NavEditProduct = ({product}) => {
   const navigate = useNavigate();
+
+  const logout = () => {
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('loginStatus')
+    navigate("/signin");
+  }
+
   return (
     <>
       <nav className="edit-product-nav">
@@ -34,9 +44,7 @@ const NavEditProduct = ({product}) => {
                         }} className="btn btn-warning">Home</button>
                 </li>
                 <li>
-                <button onClick={() => {
-                          navigate("/signin");
-                        }} className="btn btn-warning">Logout</button>
+                <button onClick={logout} className="btn btn-warning">Logout</button>
                 </li>
             </ul>
           </div>

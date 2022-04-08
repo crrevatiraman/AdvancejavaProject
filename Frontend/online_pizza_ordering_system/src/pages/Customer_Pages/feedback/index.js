@@ -22,11 +22,11 @@ const Addfeedback = () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  // useEffect(()=>{
-  //   const {orderId} = state;
-  //   setOrderId(orderId)
-  //   console.log(orderId)
-  // },[])
+  useEffect(()=>{
+    const {orderId} = state;
+    setOrderId(orderId)
+    console.log(orderId)
+  },[])
 
 
   const addtheFeedback = () => {

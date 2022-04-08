@@ -6,6 +6,19 @@ import { useNavigate } from "react-router";
 
 const Navb1 = () => {
   const navigate = useNavigate();
+
+ 
+
+  const logout = () => {
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('lastName')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('loginStatus')
+    navigate("/signin");
+  }
+
+
   return (
     <>
       <nav className="main-nav1">
@@ -29,7 +42,7 @@ const Navb1 = () => {
                   <ul>
                     <li><a href="/customer-order">My Orders</a></li>
                     <li><a href="/update-profile">Update Profile</a></li>
-                    <li><a href="/signin">Logout</a></li>
+                    <li><a style={{color:"black"}} onClick={logout}>Logout</a></li>
                   </ul>
                 </li>
                 <li>

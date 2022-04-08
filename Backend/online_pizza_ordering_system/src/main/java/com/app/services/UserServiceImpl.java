@@ -191,4 +191,22 @@ public class UserServiceImpl {
 			return converter.toUserDto(user);
 		return null;
 	}
+	
+	
+	public Map<String,Object> updateUser(int userId,UserDTO userDto)
+	{
+		User user = userDao.getById(userId);
+		if(user != null)
+		{
+			user.setFirstName(userDto.getFirstName());
+			user.setLastName(userDto.getLastName());
+			user.setMobileNo(userDto.getMobileNo());
+			String rawPassword = userDto.getPassword();
+			String encPassword = passwordEncoder.encode(rawPassword);
+			user.setPassword(encPassword);
+			userDao.save(user);
+				return Collections.singletonMap("updated id", user.getUserId());
+		}
+		return null;
+	}
 }
