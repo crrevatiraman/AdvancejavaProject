@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import "./index.css";
 import { URL } from "../../../config";
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb"
+import Footer from "../../../components/Footer/Footer"
 
 
 
@@ -21,7 +23,7 @@ const Addcombo= () => {
   const navigate = useNavigate();
 
   const cancelAddProduct = () => {
-    navigate("/home");
+    navigate("/admin-home");
   };
   const addtheCombo = () => {
 
@@ -74,12 +76,15 @@ const Addcombo= () => {
 
 
   return (
-    <div className="background-img example">
-      <h1 className="title">Add Combo</h1>
-
+    <div className="background-img">
+      <AdminCommonNavb/>
+      <div style={{marginTop:"70px"}}>
+ 
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col border-combo">
+        <h1 className="title">Add Combo</h1>
+        <hr/>
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -150,7 +155,7 @@ const Addcombo= () => {
                 type="text"
                 className="form-control"
                 cols="40"
-                rows="5"
+                rows="3"
               ></textarea>
             </div>
 
@@ -180,6 +185,8 @@ const Addcombo= () => {
         </div>
         <div className="col"></div>
       </div>
+      </div>
+      <Footer/>
     </div>
   );
 };

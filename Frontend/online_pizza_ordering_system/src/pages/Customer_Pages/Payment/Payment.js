@@ -5,6 +5,8 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
 import "./payment.css";
 import { URL } from "../../../config";
+import Footer from "../../../components/Footer/Footer";
+import Navb from "../../../components/Navbr/CustomerNavbar/Navb"
 
 
 const Payment = () => {
@@ -26,7 +28,7 @@ const Payment = () => {
   
 
   const mystyle = {
-    color: "black",
+    
     fontFamily: "Arial, Helvetica, sans-serif",
 
   };
@@ -126,8 +128,9 @@ const Payment = () => {
   };
 
   return (
-    //  <div className="background-img example">
-    <div className="bg-payment">
+    <div className="payment-bg">
+      <Navb/>
+      <div >
       {/* <h1 style={{color:"black" ,marginLeft: "10%" }}>PAYMENT GATEWAY</h1> */}
       <h4 style={{color:"black" ,marginLeft: "10%" }}>How would you like to pay?</h4>
       <div className="row">
@@ -297,25 +300,28 @@ const Payment = () => {
        
         <div className="col-sm-4">
           <div  className="pay-amt">
-                  <h4 style={{color:"GrayText"}}>Amount : ₹ {amount}</h4> 
+                  <h4 >Amount : ₹ {amount}</h4> 
                   <br />
-                  <h4 style={{color:"GrayText"}}>Tax : ₹ {amount * 0.18}</h4> 
+                  <h4 >Tax : ₹ {amount * 0.18}</h4> 
                   <br />
-                  <h4 style={{color:"GrayText"}}>Total Amount : ₹ {amount + (amount * 0.18)}</h4>  
+                  <h4 >Total Amount : ₹ {amount + (amount * 0.18)}</h4>  
           </div>
           <div className="mt-3">
               <div className="row">
                 <div className="col">
-                  <button onClick={addthepayment} className="btn btn-warning">
+                  <button
+                  style={{width:"100%"}} 
+                  onClick={addthepayment} className="btn btn-primary">
                     PAY
                   </button>
                 </div>
                 <div className="col"></div>
-                <div className="col" style={{marginRight:"50px"}}>
+                <div className="col" style={{marginRight:"95px"}}>
                   <div >
                   <button
                     onClick={cancelAddpayment}
                     className="btn btn-danger"
+                    style={{width:"100%"}}
                   >
                     Cancel
                   </button>
@@ -326,6 +332,8 @@ const Payment = () => {
             </div>
         </div>
       </div>
+      </div>
+      <Footer/>
     </div>
   );
 };

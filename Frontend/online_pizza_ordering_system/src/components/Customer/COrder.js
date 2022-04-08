@@ -5,13 +5,15 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import moment from "moment-timezone";
 
-const COrder = ({order,deliveryBoy}) =>{
+const COrder = ({order}) =>{
     const navigate = useNavigate();
 
-  
+  const trackOrder = () =>{
+      navigate('/tracking',{state : {orderId:order.orderId}});
+  }
 
     return (
-        <div>
+        <div style={{marginBottom:"40px"}}>
         <div className="row">
             <div className="col-3">
                 <div className="row">
@@ -42,21 +44,32 @@ const COrder = ({order,deliveryBoy}) =>{
             <h5 style={{color:"black"}}>
             {moment(order.orderDateTime).format('MM/DD/YYYY h:mm a')}
             </h5>
+
+            {order.statusType === "Delivered" && (
+                        <h5 style={{color:"green",marginTop:"10%"}}>Delivered...</h5>
+                    )}
             </div>
 
             <div className="col">
-                
-                        <button 
+                   { order.statusType === "Delivered" && ( <button 
+                        style={{margin:"10px"}}
                     onClick={()=>{
                         navigate('/add-feedback', {state:{orderId:order.orderId}})
                     }}
-                    className="btn btn-outline-primary">Feedback</button>
+                    className="btn btn-outline-primary">Feedback</button>)}
+                       
+             
               
-              
-                    {order.statusType === "Delivered" && (
+                    {/* {order.statusType === "Delivered" && (
                         <h5 style={{color:"green",marginTop:"10%"}}>Delivered...</h5>
-                    )}
-               
+                    )} */}
+
+                
+                        <button 
+                         style={{margin:"10px"}}
+                    onClick={trackOrder}
+                    className="btn btn-outline-primary">Track Order</button>
+          
              
             </div>
 

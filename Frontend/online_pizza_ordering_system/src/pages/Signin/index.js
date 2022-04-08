@@ -37,17 +37,30 @@ const Signin = () => {
           toast.success('Welcome to the application')
 
           // get the data sent by server
-          const { userId, firstName, lastName } = result['data']
-
+          const { userId, firstName, lastName,role } = result['data']
+            console.log(role)
           // persist the logged in user's information for future use
           sessionStorage['userId'] = userId
           sessionStorage['firstName'] = firstName
           sessionStorage['lastName'] = lastName
           sessionStorage['loginStatus'] = 1
 
+          if(role == "employee")
+          {
+            navigate('/employee-order')
+            
+          }
+          else if(role == "admin")
+          {
+            navigate('/admin-home')
+          }
+          else{
+            navigate('/customer-home')
+          }
+
           // navigate to home component
           //navigate('/home')
-          navigate('/customer-home')
+         // navigate('/customer-home')
         } else {
           toast.error('Invalid user name or password')
         }
@@ -56,16 +69,29 @@ const Signin = () => {
   }
 
   return (
-    <div className='background-img example'>
-      <h1 className="title">Log In</h1>
+    <div className='background-img'>
+      <div className='row' style={{marginBottom:"30px"}}></div>
+      {/* <h1 className="title" style={{fontFamily:"sans-serif"}}>LogIn</h1> */}
 
       <div className="row ">
         <div className="col"></div>
 
-        <div className="col border1">
+        <div className="col border6">
+
+        <div className='row'>
+                <div className='col'></div>
+                <div className='col'><img style={{marginLeft:"25%"}} src="./images/login.png" alt="" /></div>
+                <div className='col'></div>                 
+             </div>
+        
+                   <div className='row'>
+                    <h6 style={{fontFamily:"sans-serif",textAlign:"center",marginTop:"5px"}}>Have an account?</h6>
+                  </div>
+         
+
           <div className="form">
             <div className="mb-3">
-              <label htmlFor="" className="label-control margin">
+              <label htmlFor="" className="label-control" >
                 Email
               </label>
               <input
@@ -78,7 +104,7 @@ const Signin = () => {
             </div>
 
             <div className="mb-3">
-              <label htmlFor="" className="label-control">
+              <label htmlFor="" className="label-control" >
                 Password
               </label>
               <input
@@ -91,8 +117,8 @@ const Signin = () => {
             </div>
 
             <div className="mb-3">
-              <div className='btn-margin'>
-                No account yet? <Link to="/register">Signup here</Link>
+              <div className='btn-margin' >
+                No account yet? <Link to="/register" style={{textDecoration:"none"}}>Signup here</Link>
               </div>
               <div className='row'>
               <div className='col'>
@@ -101,12 +127,12 @@ const Signin = () => {
               </button>
              
               </div>
-              <div className='col '>
-                 <Link to="/forgot-password">Forgot Password?</Link>
+              <div className='col' >
+                 <Link style={{textDecoration:"none"}} to="/forgot-password">Forgot Password?</Link>
               
               </div>
             
-              <div className='col'></div>
+              <div className='col-6'></div>
               </div>
             </div>
           </div>

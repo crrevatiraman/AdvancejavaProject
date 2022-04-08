@@ -70,12 +70,15 @@ const Register = () => {
   
 
   return (
-    <div className="background-img">
-      <h1 className="title">Register</h1>
+    <div className="background-img ">
+      <div style={{marginBottom:"15px"}}></div>
+      
 
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col border-register">
+        <h1 className="title"style={{fontFamily:"sans-serif"}}>Register</h1>
+        <hr/>
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -157,7 +160,7 @@ const Register = () => {
 
             <div className="mb-3">
               <div className="btn-margin">
-                Already have an account? <Link to="/signin">Signin here.</Link>
+                Already have an account? <Link to="/signin" style={{textDecoration:"none"}}>Signin here.</Link>
               </div>
               
               <button onClick={signupUser} className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after">

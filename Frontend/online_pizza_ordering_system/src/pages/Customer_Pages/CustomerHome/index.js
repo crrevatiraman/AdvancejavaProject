@@ -1,4 +1,3 @@
-import CHeader from "../../../components/Customer/CHeader";
 import CMenu from "../../../components/Customer/CMenu";
 import "../../../assets/css/styles.css";
 import "../../../assets/css/box.css";
@@ -6,6 +5,10 @@ import { URL } from "../../../config";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import Navb2 from "../../../components/Navbr/CustomerNavbar/Navb2";
+import Navb1 from "../../../components/Navbr/CustomerNavbar/Navb1";
+
+import Footer from "../../../components/Footer/Footer";
 
 const CustomerHome = () => {
   const [vegProductList, setVegProductList] = useState([]);
@@ -73,26 +76,31 @@ const CustomerHome = () => {
 
   return (
     <div>
-      {/* <h1 className="title" style={{color:"black"}}>Home</h1>  */}
-      <CHeader name="City Pizzeria" />
-      <CMenu
-        name="Veg"
-        desc="Tasty pizzas made with fresh ingredients"
-        check = "product"
-        menu={vegProductList}
-      />
-      <CMenu
-        name="Non-Veg"
-        desc="Tasty pizzas made with fresh ingredients"
-        menu={nonVegProductList}
-        check = "product"
-      />
-      <CMenu
-        name="Combo"
-        desc="Tasty pizzas made with fresh ingredients"
-        check='combo'
-        menu={comboList}
-      />
+      <Navb1/>
+      <Navb2/>
+      {/* <Navb3/> */}
+      
+
+      <div className="features-boxed">
+        {/* <h1 className="title" style={{color:"black"}}>Home</h1>  */}
+        
+        <CMenu
+          name="Veg"
+          check = "product"
+          menu={vegProductList}
+        />
+        <CMenu
+          name="Non-Veg"
+          menu={nonVegProductList}
+          check = "product"
+        />
+        <CMenu
+          name="Combo"
+          check='combo'
+          menu={comboList}
+        />
+      </div>
+     <Footer/>
     </div>
   );
 };

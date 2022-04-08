@@ -3,7 +3,7 @@ import Register from './pages/Register'
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import ForgotPassword from './pages/ForgotPassword'
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import './App.css';
 import SearchEmp from './pages/Admin_Pages/SearchEmp'
 import UpdateEmployee from './pages/Admin_Pages/updateEmp'
@@ -25,7 +25,8 @@ import CustomerOrder from './pages/Customer_Pages/Orders/CustomerOrder'
 import Payment from './pages/Customer_Pages/Payment/Payment'
 import EmpOrder from './pages/Employee_Pages/EmpOrders/EmpOrders'
 import Tracking from './pages/Customer_Pages/Tracking/Tracking'
-
+import UpdateProfile from './pages/Customer_Pages/UpdateProfile'
+import Forgot from './pages/ForgotPassword/Forgot'
 // import CustomerFeedback from './pages/Admin_Pages/CustomerFeedback'
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path = "/forgot" element = {<Forgot/>}/>
            {/* Admin routes */}
           <Route path="/search-emp" element={<SearchEmp />} />
           <Route path="/update-employee" element={<UpdateEmployee />} />
@@ -60,6 +62,7 @@ function App() {
           <Route path = "/customer-order" element = {<CustomerOrder/>}/>
           <Route path = "/payment" element = {<Payment/>}/>
           <Route path = "/tracking" element = {<Tracking/>}/>
+          <Route path = "/update-profile" element = {<UpdateProfile/>}/>
 
            {/* employee routes */}
            <Route path = "/employee-order" element = {<EmpOrder/>}/>

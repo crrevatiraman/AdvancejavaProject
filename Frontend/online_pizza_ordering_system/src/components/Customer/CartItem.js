@@ -4,7 +4,7 @@ import { URL } from "../../config";
 import axios from "axios";
 
 const CartItem = ({item}) => {
-
+    //const [quantity,setQuantity] = useState(0);
   
 
   // useEffect(()=>{
@@ -56,6 +56,27 @@ const CartItem = ({item}) => {
       });
   }
 
+   const updateQuantity = (quantity) =>{
+    console.log('decrement count')
+   
+    const url = `${URL}/order/update-quantity/${item.cartDetailId}/${quantity}`;
+
+    axios.put(url).then((response) => {
+        // get the data from the response
+        const result = response.data;
+  
+        if (result["status"] == "success") {
+            console.log('remove from cart');
+            
+            console.log("in axios update qty method")
+            window.location.reload();
+           
+        } else {
+          toast.error(result["error"]);
+        }
+      });
+  }
+
   const removeItem = () =>{
    
     console.log('remove count')
@@ -76,8 +97,15 @@ const CartItem = ({item}) => {
 
   }
 
+  // const incrementHandler =  () =>{
+  //        //setQuantity(quantity + 1)
+  //      updateQuantity(quantity)
+  // } 
 
-
+  // const decrementHandler = (quantity) =>{
+  //    //setQuantity(quantity - 1)
+  //    updateQuantity(quantity)
+  // } 
 
   return (
     <div>
@@ -100,15 +128,14 @@ const CartItem = ({item}) => {
             </div>)}
             <div className="col-4">
               <div className="row ">
-                  <div className="col-2">
+    
+                      <div className="col-2">
                     <img 
-                    src="./images/incr.svg" 
+                    src="./images/decr.svg" 
                     alt=""
-                    className="img-size-incr"
-                    value="Increase"
-                    onClick={increment}
+                    className="img-size-decr"
+                    onClick={decrement}
                     />
-                   
                   </div>
                   <div className="col-1">
                     
@@ -118,13 +145,16 @@ const CartItem = ({item}) => {
                         value={item.quantity}
                     />
                   </div>
+              
                   <div className="col-2">
                     <img 
-                    src="./images/decr.svg" 
+                    src="./images/incr.svg" 
                     alt=""
-                    className="img-size-decr"
-                    onClick={decrement}
+                    className="img-size-incr"
+                    value="Increase"
+                    onClick={increment}
                     />
+                   
                   </div>
                   <div className="col-2">
                     <img 

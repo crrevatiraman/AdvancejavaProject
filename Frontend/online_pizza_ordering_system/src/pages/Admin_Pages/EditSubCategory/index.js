@@ -2,7 +2,8 @@ import {useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
-
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb"
+import Footer from "../../../components/Footer/Footer";
 import { URL } from "../../../config";
 
 const EditSubCategory = () => {
@@ -17,14 +18,13 @@ const EditSubCategory = () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const { product } = state
-    
-    setProductName(product.productName)
-    setProductId(product.productId)
-    setProducts(product)
-  
-  }, [])
+  // useEffect(() => {
+  //   const { product } = state
+  //   console.log(state)
+  //   setProductName(product.productName)
+  //   setProductId(product.productId)
+  //   setProducts(product)
+  // }, [])
 
   const addCategory = () => {
     const body = {
@@ -66,12 +66,16 @@ const EditSubCategory = () => {
 
 
   return (
-    <div className="background-img example ">
-      <h1 className="title">Edit Sub-Category</h1>
+    <div className="background-img">
+      <AdminCommonNavb/>
+      <div style={{marginTop : "50px"}}>
+      
 
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col border-sub">
+        <h1 className="title">Edit Sub-Category</h1>
+        <hr/>
           <div className="form">
             
 
@@ -164,7 +168,8 @@ const EditSubCategory = () => {
         
         <div className="col"></div>
       </div>
-      
+      </div>
+      <Footer/>
     </div>
   );
 };

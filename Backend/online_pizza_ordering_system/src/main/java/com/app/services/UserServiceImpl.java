@@ -48,6 +48,7 @@ public class UserServiceImpl {
 			return result;
 		}
 		return null;
+		
 	}
 
 
@@ -63,18 +64,18 @@ public class UserServiceImpl {
 		return userDto;
 	}
 	
-	public User resetPassword(Credential cred)
+	public Map<String, Object> resetPassword(Credential cred)
 	{
-		User resetUser = userDao.findByEmailAndMobileNo(cred.getEmail(),cred.getMobileNo());
+		User resetUser = userDao.findByEmail(cred.getEmail());
 		if(resetUser != null)
 		{
 			String rawPassword = cred.getPassword();
 			String encPassword = passwordEncoder.encode(rawPassword);
 			cred.setPassword(encPassword);
-			User user = converter.toUserEntity(cred);
+			//User user = converter.toUserEntity(cred);
 			resetUser.setPassword(encPassword);
-			user = userDao.save(resetUser);
-			return user;
+			resetUser = userDao.save(resetUser);
+			return Collections.singletonMap("upadated id", resetUser.getUserId());
 		}
 		return null;
 		

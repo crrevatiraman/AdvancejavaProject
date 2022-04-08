@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import "./index.css";
 import { URL } from "../../../config";
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb"
+import Footer from "../../../components/Footer/Footer"
 
 const Addproduct = () => {
   const [productName, setProductName] = useState("");
@@ -73,12 +75,16 @@ const Addproduct = () => {
  
 
   return (
-    <div className="background-img example">
-      <h1 className="title">Add Product</h1>
+    <div className="background-img">
+      <AdminCommonNavb/>
+      <div style={{marginTop : "80px"}}>
+     
 
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col border-product">
+        <h1 className="title" style={{color:"white"}}>Add Product</h1>
+        <hr/>
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -142,7 +148,7 @@ const Addproduct = () => {
                 type="text"
                 className="form-control"
                 cols="40"
-                rows="5"
+                rows="4"
               ></textarea>
             </div>
 
@@ -173,7 +179,8 @@ const Addproduct = () => {
         </div>
         <div className="col"></div>
       </div>
-      
+      </div>
+      <Footer/>
     </div>
   );
 };

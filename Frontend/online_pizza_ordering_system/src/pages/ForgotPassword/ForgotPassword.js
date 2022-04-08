@@ -9,10 +9,10 @@ import { URL } from '../../config'
 
 const ForgotPassword = () =>{
 
-    const [email, setEmail] = useState('')
+  //const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [mobileNo, setMobileNo] = useState('')
+
 
   const navigate = useNavigate()
 
@@ -21,13 +21,8 @@ const ForgotPassword = () =>{
   }
 
   const resetPassword = () => {
-    if (email.length == 0) {
-      toast.warning('please enter email')
-    } 
-    else if (mobileNo.length == 0) {
-        toast.warning('please enter mobile no.')
-      } 
-       else if (password.length == 0) {
+  
+      if (password.length == 0) {
         toast.warning("Please enter password");
       } 
       else if (confirmPassword.length == 0) {
@@ -38,10 +33,11 @@ const ForgotPassword = () =>{
       }
      else {
       const body = {
-        email,
-        mobileNo,
+        email:localStorage.getItem('email'),
         password
       }
+
+      console.log(body)
 
       // url to make signin api call
       const url = `${URL}/user/forgot-password`
@@ -52,12 +48,13 @@ const ForgotPassword = () =>{
         const result = response.data
         console.log(result)
         if (result['status'] == 'success') {
-          toast.success('Password updated')
-
+          toast.success('Password updated successfully...')
+          localStorage.removeItem("email")
           // navigate to login 
           navigate('/signin')
         } else {
-          toast.error('Invalid user name or mobile no.')
+          localStorage.removeItem("email")
+          //toast.error('Invalid user name or mobile no.')
         }
       })
     }
@@ -66,40 +63,27 @@ const ForgotPassword = () =>{
 
 
     return (
-        <div className='background-img example'>
-          <h1 className="title">Forgot Password</h1>
+        <div className='background-img' style={{overflowX:"hidden"}}>
+          <div className='row'></div> 
+          
     
-          <div className="row ">
+          <div className="row">
             <div className="col"></div>
     
-            <div className="col border1">
+            <div className="col container-forgot-pass">
+            <div className='row'>
+                <div className='col'></div>
+                <div className='col'><img src="./images/lock.png" alt="" /></div>
+                <div className='col'></div>                 
+             </div>
+        
+                  <div className='row'>
+                    <h1 className="title" >Reset Password?</h1>
+                  </div>
+                  <div className='row'>
+                  <p className="title" style={{textAlign:"center",fontFamily:"cursive"}} >Let's get you a new one.</p>
+                  </div>
               <div className="form">
-                <div className="mb-3">
-                  <label htmlFor="" className="label-control margin">
-                    Email
-                  </label>
-                  <input
-                    onChange={(e) => {
-                      setEmail(e.target.value)
-                    }}
-                    type="email"
-                    className="form-control"
-                  />
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="" className="label-control">
-                    Mobile No.
-                  </label>
-                  <input
-                    onChange={(e) => {
-                      setMobileNo(e.target.value)
-                    }}
-                    type="number"
-                    className="form-control"
-                  />
-                </div>
-
                 <div className="mb-3">
                   <label htmlFor="" className="label-control">
                     Password
@@ -126,11 +110,11 @@ const ForgotPassword = () =>{
                   />
                 </div>
 
-                <div className="mb-3">
+                <div className="mt-4">
                   
                   <div className='row'>
                   <div className='col'>
-                  <button onClick={resetPassword} className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after">
+                  <button  onClick={resetPassword} style={{backgroundColor:"#0080ff"}} className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after">
                     Reset Password
                   </button>
                   </div>

@@ -2,8 +2,10 @@ import { useState , useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate,useLocation } from "react-router";
-import "./index.css";
+
 import { URL } from "../../../config";
+import NavEditProduct from "../../../components/Navbr/AdminNavbar/NavEditProduct"
+import Footer from "../../../components/Footer/Footer"
 
 const Editproduct = () => {
   const {state} = useLocation();
@@ -19,18 +21,18 @@ const Editproduct = () => {
   const navigate = useNavigate();
 
   const cancelUpdateProduct = () => {
-    navigate("/home");
+    navigate("/admin-home");
   };
 
-  useEffect(() => {
-    const { product } = state
-       setProducts(product)
-    setProductId(product.productId)
-    setProductName(product.productName)
-    setProductImage(product.productImage)
-    setDescription(product.description)
+  // useEffect(() => {
+  //   const { product } = state
+  //      setProducts(product)
+  //   setProductId(product.productId)
+  //   setProductName(product.productName)
+  //   setProductImage(product.productImage)
+  //   setDescription(product.description)
   
-  }, [])
+  // }, [])
 
   
   const updateProduct = () => {
@@ -89,37 +91,16 @@ const Editproduct = () => {
  
 
   return (
-    <div className="background-img example">
-
-<nav class="navbar navbar-light background-color">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <button
-            className="btn btn-secondary btn-menu"
-            onClick={()=>{
-              navigate('/edit-subcategory',{ state : {product : products}})
-            }}
-          >
-            Update SubCategory
-          </button>
-        </div>
-      </nav>
-
-      <h1 className="title">Edit Product</h1>
+    <div className="background-img">
+      <NavEditProduct product={products}/>
+      <div style={{marginTop : "80px"}}>
+      
 
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col border-product">
+        <h1 className="title">Edit Product</h1>
+        <hr/>
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -186,7 +167,7 @@ const Editproduct = () => {
                 type="text"
                 className="form-control"
                 cols="40"
-                rows="5"
+                rows="4"
               ></textarea>
             </div>
 
@@ -217,7 +198,8 @@ const Editproduct = () => {
         </div>
         <div className="col"></div>
       </div>
-      
+      </div>
+      <Footer/>
     </div>
   );
 };

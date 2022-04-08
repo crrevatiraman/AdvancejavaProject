@@ -177,4 +177,22 @@ public class ProductServiceImpl {
 		subCategory = subCategoryDao.save(subCategory);
 		return Collections.singletonMap("inserted Id", subCategory.getSubCategoryId());
 	}
+	
+	
+	public List<String> getProductPrices(int productId)
+	{
+		List<String> sizeList = subCategoryDao.getProductSize(productId);
+		if(sizeList != null)
+			return sizeList;
+		return null;
+	}
+	
+	public List<String> getProductCrustBySize(int productId,String size)
+	{
+		List<String> crustList = subCategoryDao.getProductCrustBySize(productId, size);
+		if(crustList != null)
+			return crustList;
+		return null;
+	}
+	
 }

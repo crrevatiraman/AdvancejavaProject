@@ -28,14 +28,44 @@ margin-bottom: 20px;
   margin-top: 50px;
 }
 
-.border1{
+.container-forgot{
    border-style: solid ;
  
-  margin: 30px; 
-  border-radius: 20px;
-  border: 1px solid;
-  padding: 10px;
-  box-shadow: 5px 10px 18px rgb(63, 60, 46);
+  margin: 30px 30px 30px 30px;  
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding: 30px 40px 30px 30px;
+  /* background-color: rgb(255, 255, 255); */
+  background-color: rgb(5, 1, 7);
+  box-shadow: 5px 5px 10px rgb(49, 44, 44);
+  /* box-shadow: 5px 10px 18px rgb(63, 60, 46); */
+  
+}
+
+.container-forgot-pass{
+  border-style: solid ;
+
+ margin: 70px 30px 30px 30px;  
+ border-radius: 5px;
+ border: 1px solid grey;
+ padding: 30px 40px 30px 30px;
+ /* background-color: rgb(255, 255, 255); */
+ background-color: rgb(5, 1, 7);
+ box-shadow: 5px 5px 10px rgb(49, 44, 44);
+ /* box-shadow: 5px 10px 18px rgb(63, 60, 46); */
+ 
+}
+
+
+.img-forgot{
+  align-items: center;
+  height: 100%;
+  width: 40%;
+}
+
+.bg-forgot{
+  background-color: lightgray;
+  height: 100vh;
   
 }
 
@@ -53,7 +83,8 @@ margin-bottom: 20px;
   overflow: hidden;
   border-radius: 5px;
   border: none;
-  background-color: #ff3a3a
+   background-color: #ff3a3a 
+ 
 }
 .css-button-arrow--sky1:hover {
   border-radius: 5px;
@@ -74,3 +105,4 @@ margin-bottom: 20px;
   right: -20px;
   transition: 0.4s;
 }
+

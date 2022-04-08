@@ -5,12 +5,12 @@ import { URL } from "../../../config";
 import { useState,useEffect } from 'react';
 import axios from "axios";
 import { toast } from "react-toastify";
+import CustomerOrderNav from '../../../components/Navbr/CustomerNavbar/CustomerOrderNav';
+import Footer from "../../../components/Footer/Footer"
 
 const CustomerOrder = () =>{
     const [orders,setOrders] = useState([])
     const [check,setCheck] =useState(true)
-
-
 
     useEffect(() => {
         console.log('in use effect')
@@ -61,32 +61,21 @@ const CustomerOrder = () =>{
 
 }
 
-    
-
-
     return (
-        <div className="container-md">
-            <h1 style={{color:"black"}}>Orders</h1>
-
+        <div className='customerorder-bg'>
+          <CustomerOrderNav getAllCustomerOrders={getAllCustomerOrders} getCustomerPendingOrders = {getCustomerPendingOrders}/>
+          <div className="container-md" style={{marginTop : "70px"}}>
+            
             <div className='row'>
             <div className='col'>
-            {check && (<h1 style={{color:"black"}}>Active Orders</h1>)}
-        {!check && (<h1 style={{color:"black"}}>All Orders</h1>)}
+            {check && (<h1 style={{color:"white"}}>Active Orders</h1>)}
+        {!check && (<h1 style={{color:"white"}}>All Orders</h1>)}
             </div>
-            <div className='col mt-3'>
-              <button 
-              onClick={getAllCustomerOrders}
-              className='btn btn-warning'>All Orders</button>
-            </div>
-            <div 
-            onClick={getCustomerPendingOrders}
-            className='col mt-3'>
-              <button className='btn btn-warning'>Active Orders</button>
-            </div>
+            
           </div>
         
             <div className="container-order">
-            <Scrollbars>
+            
                 <div className="row">
                     <div className="col-3">
                     <h3 style={{color:"black"}}>Order</h3>
@@ -106,20 +95,20 @@ const CustomerOrder = () =>{
                     <h3 style={{color:"black"}}>Time</h3>
                     </div>
                     <div className="col">
-                    <h3 style={{color:"black"}}>Feedback</h3>
+                    <h3 style={{color:"black"}}>Action</h3>
                     </div>
                 </div>
                 <hr />
-                
+                <Scrollbars>
+                  <div>
                 {orders.map((order) => {
                 return <COrder key={order.orderId} order ={order} />;
               })}
-                
+                </div>
                 </Scrollbars>
-
-                
-
             </div>
+            </div>
+            <Footer/>
         </div>
     )
 }

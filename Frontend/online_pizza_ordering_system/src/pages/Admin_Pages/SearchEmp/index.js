@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from "react-router";
 import { URL } from "../../../config";
 import { toast } from "react-toastify";
 import axios from "axios";
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb";
+import Footer from "../../../components/Footer/Footer"
 
 const SearchEmp = () => {
   const { empState } = useLocation();
@@ -35,39 +37,19 @@ const SearchEmp = () => {
   };
 
   return (
-    <div className="background-img example">
-      <nav class="navbar navbar-light background-color">
-        <div class="container-fluid">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <button
-            className="btn btn-secondary btn-menu"
-            onClick={() =>{
-              navigate('/home')
-            } }
-          >
-            Menu
-          </button>
-        </div>
-      </nav>
+    <div className="background-img">
+      <AdminCommonNavb  />
+      <div style={{marginTop:"40px"}}>
 
       <h1 className="title1">Search Employee</h1>
 
       <div className="row ">
         <div className="col"></div>
         <div className="col">
+          <div className="container-search">
           <div className="form">
             <div className="mb-3">
-              <label htmlFor="" className="label-control margin">
+              <label htmlFor="" className="label-control">
                 Email
               </label>
               <input
@@ -80,18 +62,21 @@ const SearchEmp = () => {
             </div>
           </div>
           <button
+          style={{backgroundColor:"#0080ff"}}
             onClick={searchEmployee}
             className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after"
           >
             Search
           </button>
+          </div>
         </div>
         <div className="col"></div>
       </div>
-      <div className="row margin-top">
-        <div className="col"></div>
-        <div className="col">
-          {check && (
+      {check && (
+      <div className="container-aftersearch">
+        <div className="row">
+
+          
             <div>
               <table class="table">
                 <thead>
@@ -125,11 +110,15 @@ const SearchEmp = () => {
                 </tbody>
               </table>
             </div>
-          )}
-        </div>
-        <div className="col"></div>
+         
+       
+       </div>
       </div>
-     
+
+)}
+
+      </div>
+      <Footer/>
     </div>
   );
 };

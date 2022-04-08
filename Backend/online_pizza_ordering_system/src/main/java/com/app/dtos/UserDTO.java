@@ -8,7 +8,7 @@ public class UserDTO {
 	private String email;
 	private String password;
 	private String mobileNo;
-	
+	private String role;
 	
 	public UserDTO() {
 	}
@@ -17,14 +17,24 @@ public class UserDTO {
 	
 
 
-	public UserDTO(int userId, String firstName, String lastName, String email, String password, String mobileNo) {
+
+
+
+
+	public UserDTO(int userId, String firstName, String lastName, String email, String password, String mobileNo,
+			String role) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.mobileNo = mobileNo;
+		this.role = role;
 	}
+
+
+
+
 
 
 
@@ -99,12 +109,39 @@ public class UserDTO {
 
 
 
-	@Override
-	public String toString() {
-		return String.format("UserDTO [userId=%s, firstName=%s, lastName=%s, email=%s, password=%s, mobileNo=%s]",
-				userId, firstName, lastName, email, password, mobileNo);
+	public String getRole() {
+		return role;
 	}
 
+
+
+
+
+
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return String.format(
+				"UserDTO [userId=%s, firstName=%s, lastName=%s, email=%s, password=%s, mobileNo=%s, role=%s]", userId,
+				firstName, lastName, email, password, mobileNo, role);
+	}
+
+
+	
 
 
 

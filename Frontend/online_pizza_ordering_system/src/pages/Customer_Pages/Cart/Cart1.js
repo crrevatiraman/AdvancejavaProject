@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 import {useNavigate} from 'react-router'
 import { toast } from "react-toastify";
 import { URL } from "../../../config";
-
+import Navb from "../../../components/Navbr/CustomerNavbar/Navb"
+import Footer from "../../../components/Footer/Footer"
 
 const Cart1 = () => {
   const [ cart,setCart] = useState('');
@@ -24,6 +25,10 @@ useEffect(()=>{
 //     console.log('in chnage qty')
 // }
 
+
+
+
+
 const getCartItems = () => {
 
     const url = `${URL}/order/getallcartitem/${sessionStorage['userId']}`;
@@ -35,20 +40,25 @@ const getCartItems = () => {
         if (result["status"] == "success") {
             setCart(result['data'])
             console.log(cart);
+            console.log("in axios get cart item method")
         } else {
-          toast.error(result["error"]);
+          //toast.error(result["error"]);
+          console.log('cart is empty');
         }
       });
 }
-if(cart.length !== 0 )
+if(cart.length !== 0)
 {
   return (
+    <div >
+      <Navb/>
     <div className="container-md">
-      <div className="row">
-        <h1 className="heading">Order Summary</h1>
+    
+        <h1 className="heading" style={{marginTop:"80px"}}>Order Summary</h1>
         <p style={{ color: "grey" }}>There are {cart.totalQuantity} items in your cart.</p>
+
         <hr />
-      </div>
+     
       <div className="container-cart row">
         <Scrollbars>
           {cart.cartDetailList.map((curItem) => {
@@ -57,27 +67,44 @@ if(cart.length !== 0 )
    
         </Scrollbars>
       </div>
+            <div className="row" style={{marginBottom:"70px"}}>
+            <div className="col"></div>
+            <div className="col"></div>
+                <div className="col">
+                <div className="amount-pos">
+                  <h3 style={{ color: "black" }}>Amount : ₹ {cart.totalAmount}</h3>
+                </div>
+                </div>
+                <div className="col">
+                <div className="btn-proceed">
+                  <button onClick={()=>{
+                    navigate('/checkout',{ state: { amount:cart.totalAmount}})
+                  }} className="btn btn-warning">Proceed</button>
+                  </div>
+                </div>
 
-      <div className="amount-pos">
-        <h3 style={{ color: "black" }}>Amount : ₹ {cart.totalAmount}</h3>
-      </div>
-      <div className="btn-proceed">
-      <button onClick={()=>{
-        navigate('/checkout')
-      }} className="btn btn-warning">Proceed</button>
-      </div>
+            </div>
+     
+      
+    </div>
+    <Footer/>
     </div>
   );
 }
 else{
   return (
+    <div>
+      <Navb/>
+   
     <div className="container-md">
          <div className="row">
-        <h1 className="heading">Order Summary</h1>
+        <h1 className="heading" style={{marginTop:"80px"}}>Order Summary</h1>
         <p style={{ color: "grey" }}>There are {cart.totalQuantity} items in your cart.</p>
         <hr />
         <h2 style={{ color: "black" }}>Cart is Empty..</h2>
       </div>
+    </div>
+    <Footer/>
     </div>
   )
 }

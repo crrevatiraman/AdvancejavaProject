@@ -17,7 +17,6 @@ import com.app.dtos.Credential;
 import com.app.dtos.Response;
 import com.app.dtos.UserAddressDTO;
 import com.app.dtos.UserDTO;
-import com.app.entities.User;
 import com.app.services.UserServiceImpl;
 
 @CrossOrigin(origins = "*")
@@ -50,8 +49,8 @@ public class UserController {
 	 @PutMapping("/user/forgot-password")
 	 public ResponseEntity<?> forgotPassword(@RequestBody Credential cred)
 	 {
-		 User user = userService.resetPassword(cred);
-		 if(user == null )
+		 Map<String,Object> result= userService.resetPassword(cred);
+		 if(result == null )
 			 return Response.error("user not found");
 		return Response.success("Password updated");
 		 

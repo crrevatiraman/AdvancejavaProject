@@ -6,9 +6,8 @@ const Menu = ({name, desc,check, menu}) => {
     return (
         <section className="features-boxed">
             <div className="container">
-                <div className="intro">
-                    <h2 className="text-center">{name}</h2>
-                    <p className="text-center">{desc}</p>
+                <div id = {name} className="intro">
+                    <h2 className="text-center" style={{border : "3px solid", width : "60%", paddingBottom : "10px", borderRadius : "20px", backgroundColor : "gray"}}>{name}</h2>
                 </div>
                 {/* <div className="row justify-content-center features">
                     {menu.map((pizza) => (

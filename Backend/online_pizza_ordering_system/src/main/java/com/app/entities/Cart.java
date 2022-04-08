@@ -25,7 +25,7 @@ public class Cart {
 	@Column(name = "user_id")
 	private int userId;
 	
-	@OneToMany(mappedBy = "cartDetailId",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cartId",cascade = CascadeType.ALL)
 	private List<CartDetail> cartDetailList;
 	
 	
@@ -33,8 +33,6 @@ public class Cart {
 
 	public Cart() {
 	}
-
-
 
 
 

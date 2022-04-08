@@ -24,6 +24,7 @@ public class DtoEntityConverter {
 		dto.setEmail(entity.getEmail());
 		dto.setPassword("********");
 		dto.setMobileNo(entity.getMobileNo());
+		dto.setRole(entity.getRole());
 		return dto;
 	}
 	

@@ -373,6 +373,7 @@ public class OrderServiceImpl {
 		}
 		cart.setTotalAmount(totalAmount);
 		cart.setTotalQuantity(totalQuantity);
+		cart.setCartDetailList(cartList);
 		cart = cartDao.save(cart);
 		return cart.getCartId();
 	}
@@ -415,17 +416,17 @@ public class OrderServiceImpl {
 		
 	}
 	
-//	public Map<String,Object> updateQuantity(int cartDetailId,)
-//	{
-//		
-//		
-//		CartDetail cartDetail = cartDetailDao.getById(cartDetailId);
-//		cartDetail.setQuantity(cartDetail.getQuantity() + 1);
-//		
-//		int cartId = updateQuantityAndAmount(cartDetail.getCartId());
-//
-//		return Collections.singletonMap("updated id",cartId);
-//	}
+	public Map<String,Object> updateQuantity(int cartDetailId,int quantity)
+	{
+		
+		
+		CartDetail cartDetail = cartDetailDao.getById(cartDetailId);
+		cartDetail.setQuantity(quantity);
+		
+		int cartId = updateQuantityAndAmount(cartDetail.getCartId());
+
+		return Collections.singletonMap("updated id",cartId);
+	}
 	
 	
 	public Map<String,Object> updateOrderStatus(int orderId,OrderDTO orderDto)

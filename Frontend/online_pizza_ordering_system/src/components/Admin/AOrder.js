@@ -59,7 +59,7 @@ const updateStatus = () =>{
 }
 
     return (
-        <div>
+        <div style={{marginBottom:"50px"}}>
         <div className="row">
             <div className="col-3">
                 <div className="row">

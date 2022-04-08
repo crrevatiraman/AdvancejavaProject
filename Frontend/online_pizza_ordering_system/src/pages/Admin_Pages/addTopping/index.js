@@ -7,7 +7,9 @@ import React ,{Component} from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import { URL } from '../../../config'
-
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb"
+import Footer from "../../../components/Footer/Footer"
+import './index.css'
 
 const AddTopping = () => {
   const [toppingName, setToppingName] = useState('')
@@ -53,16 +55,20 @@ const AddTopping = () => {
   }
 
   return (
-    <div className='background-img example'>
-      <h1 className="title">Add Topping</h1>
+    <div className='background-img'>
+      <AdminCommonNavb/>
+      <div style={{marginTop:"70px"}}>
+      
 
       <div className="row ">
         <div className="col"></div>
 
-        <div className="col border1">
+        <div className="col border-topping">
+        <h1 className="title">Add Topping</h1>
+        <hr/>
           <div className="form">
             <div className="mb-3">
-              <label htmlFor="" className="label-control margin">
+              <label htmlFor="" className="label-control">
                 Topping Name
               </label>
               <input
@@ -113,6 +119,8 @@ const AddTopping = () => {
         <div className="col"></div>
       
       </div>
+      </div>
+      <Footer/>
     </div>
   )
 }

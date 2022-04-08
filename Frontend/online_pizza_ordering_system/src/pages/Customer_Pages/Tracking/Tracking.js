@@ -2,19 +2,29 @@ import './tracking.css'
 import {useEffect, useState} from 'react'
 import axios from "axios"
 import { URL } from '../../../config'
-const Tracking = () =>{
-    const [statusType,setStatusType] = useState('');
-    const [orderId,setOrderId] = useState(0);
+import { useLocation } from 'react-router'
+import Navb from '../../../components/Navbr/CustomerNavbar/Navb'
+import Footer from '../../../components/Footer/Footer'
 
-    useEffect(()=>{
-        getOrderStatus()
-    },[])
+
+const Tracking = () =>{
+    const [statusType,setStatusType] = useState('Placed');
+    //const [orderId,setOrderId] = useState(0);
+    const { state } = useLocation();
+    
+    // useEffect(()=>{
+        
+    //     // console.log(state)
+    //     // const { orderId } = state
+    //     // setOrderId(orderId)
+    //     // console.log(orderId)
+    //     getOrderStatus()
+    // },[])
 
 
     const getOrderStatus = () =>{
-        const id = 14;
-        // const url = `${URL}/order/get-orderstatus/${orderId}`;
-        const url = `${URL}/order/get-orderstatus/${id}`;
+
+         const url = `${URL}/order/get-orderstatus/${state.orderId}`;
         axios.get(url).then((response) => {
             // get the data from the response
             const result = response.data;
@@ -32,8 +42,10 @@ const Tracking = () =>{
 
 
     return (
+        <div className='tracking-bg'>
+            <Navb/>
         <div className="container">
-            <h1 className='track-color'>Track Delivery Status</h1>
+            <div style={{marginTop:"60px"}}></div>
 
             <div className="row" >
                 <div className="col">
@@ -167,8 +179,15 @@ const Tracking = () =>{
                     </div>
                 </div>
                 <div className="col"></div>
-                    <div className="col"></div>
+                    <div className="col" >
+                        <div className='row' style={{marginTop:"50px"}}>
+                            <h1 style={{fontFamily:"cursive",color:"white"}}>Track my order...</h1>
+                        </div>
+                        <img style={{marginTop:"130px"}} src="./images/tracking/tracking.png" alt="" />
+                    </div>
             </div>
+        </div>
+        <Footer/>
         </div>
     )
 }

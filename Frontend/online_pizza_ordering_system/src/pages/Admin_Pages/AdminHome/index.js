@@ -6,6 +6,9 @@ import { URL } from "../../../config";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import NavbAdmin from '../../../components/Navbr/AdminNavbar/NavbAdmin'
+import Navb2 from '../../../components/Navbr/AdminNavbar/Navb2'
+
 
 const AdminHome = () => {
   const [vegProductList, setVegProductList] = useState([]);
@@ -74,22 +77,21 @@ const AdminHome = () => {
   return (
     <div>
       {/* <h1 className="title" style={{color:"black"}}>Home</h1>  */}
-      <Header name="City Pizzeria" />
+      {/* <Header name="City Pizzeria" /> */}
+      <NavbAdmin/>
+      <Navb2/>
       <Menu
         name="Veg"
-        desc="Tasty pizzas made with fresh ingredients"
         check = "product"
         menu={vegProductList}
       />
       <Menu
         name="Non-Veg"
-        desc="Tasty pizzas made with fresh ingredients"
         menu={nonVegProductList}
         check = "product"
       />
       <Menu
         name="Combo"
-        desc="Tasty pizzas made with fresh ingredients"
         check='combo'
         menu={comboList}
       />

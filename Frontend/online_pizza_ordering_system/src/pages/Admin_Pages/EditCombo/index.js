@@ -3,7 +3,8 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate,useLocation } from "react-router";
 import { URL } from "../../../config";
-
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb"
+import Footer from "../../../components/Footer/Footer"
 
 
 
@@ -20,16 +21,16 @@ const EditCombo= () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const { combo } = state
-    setComboId(combo.comboId)
-    setComboName(combo.comboName)
-    setComboImage(combo.comboImage)
-    setDescription(combo.description)
-    setComboCategory(combo.comboCategory)
-    setComboPrice(combo.comboPrice)
+  // useEffect(() => {
+  //   const { combo } = state
+  //   setComboId(combo.comboId)
+  //   setComboName(combo.comboName)
+  //   setComboImage(combo.comboImage)
+  //   setDescription(combo.description)
+  //   setComboCategory(combo.comboCategory)
+  //   setComboPrice(combo.comboPrice)
   
-  }, [])
+  // }, [])
 
   const cancelEditCombo = () => {
     navigate("/home");
@@ -89,12 +90,15 @@ const EditCombo= () => {
 
 
   return (
-    <div className="background-img example">
-      <h1 className="title">Add Combo</h1>
-
+    <div className="background-img">
+      <AdminCommonNavb/>
+    <div style={{marginTop:"70px"}}>
+      
       <div className="row">
         <div className="col"></div>
-        <div className="col border2">
+        <div className="col border-combo">
+        <h1 className="title">Edit Combo</h1>
+        <hr/>
           <div className="form">
             <div className="mb-3">
               <label htmlFor="" className="label-control">
@@ -169,7 +173,7 @@ const EditCombo= () => {
                 type="text"
                 className="form-control"
                 cols="40"
-                rows="5"
+                rows="3"
               ></textarea>
             </div>
 
@@ -199,6 +203,8 @@ const EditCombo= () => {
         </div>
         <div className="col"></div>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

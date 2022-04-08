@@ -98,3 +98,13 @@ h1.title5 {
   margin: 30px auto;
 } */
 
+
+.border-updateemp{
+  border-style: solid;
+  border-radius: 5px;
+  margin: 15px 30px 70px 70px;
+  padding: 5px 25px 25px 25px;
+  border-width:3px ;
+  box-shadow: 5px 10px 18px rgb(63, 60, 46);
+  height: max-content;
+ }

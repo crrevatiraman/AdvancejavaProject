@@ -2,10 +2,12 @@ import "./index.css";
 
 import { useLocation, useNavigate } from "react-router";
 import { useEffect,useState } from 'react';
-
+import { Scrollbars } from "react-custom-scrollbars-2";     
 import { URL } from "../../../config";
 import { toast } from "react-toastify";
 import axios from "axios";
+import AdminCommonNavb from "../../../components/Navbr/AdminNavbar/AdminCommonNavb"
+import Footer from "../../../components/Footer/Footer"
 
 const GetFeedback = () => {
   // const { empState } = useLocation();
@@ -37,30 +39,10 @@ const GetFeedback = () => {
 
 
   return (
-    <div className="background-img example">
-      <nav class="navbar navbar-light background-color">
-        <div class="container-fluid">
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <button
-          className="btn btn-secondary btn-menu"
-            // onClick={searchEmployee}
-          >
-            Menu
-          </button>
-        </div>
-      </nav>
-
-      <h1 className="title1">Get All FeedBack</h1>
+    <div className="background-img">
+      <AdminCommonNavb/>
+      <div style={{marginTop:"40px"}} className="container">
+      <h1 className="title1" style={{fontFamily:"sans-serif"}}>FeedBack</h1>
 
       <div className="row ">
         <div className="col"></div>
@@ -69,27 +51,27 @@ const GetFeedback = () => {
         </div>
         <div className="col"></div>
       </div>
-      <div className="row margin-top">
-        <div className="col"></div>
-        <div className="col">
-          {check && (
-            <div>
+      <div className="container-feedback"> 
+        <Scrollbars>
+        <div>
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">feedbackId</th>
-                    <th scope="col">foodQuality</th>
-                    <th scope="col">deliveryService</th>
-                    <th scope="col">orderAccuracy</th>
-                    <th scope="col">overallExperience</th>
-                    <th scope="col">comment</th>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Food Quality</th>
+                    <th scope="col">Delivery Service</th>
+                    <th scope="col">Order Accuracy</th>
+                    <th scope="col">Overall Experience</th>
+                    <th scope="col">Comment</th>
                   </tr>
                 </thead>
+              
+
                 <tbody>
                 {employee.map((val, key) => {
                     return (
                         <tr key={key}>
-                    <td>{val.feedbackId}</td>
+                    <td>{val.orderId}</td>
                     <td>{val.foodQuality}</td>
                     <td>{val.deliveryService}</td>
                     <td>{val.orderAccuracy}</td>
@@ -102,7 +84,10 @@ const GetFeedback = () => {
                 </tbody>
               </table>
             </div>
-          )}
+       
+
+        </Scrollbars>
+           
           
           {/* <button
             onClick={getallfeedback}
@@ -112,8 +97,9 @@ const GetFeedback = () => {
           </button> */}
         </div>
         <div className="col"></div>
+      
       </div>
-   
+      <Footer/>
     </div>
   );
 };

@@ -179,4 +179,25 @@ public class ProductController {
 			return Response.error("subCategory not found");
 		return Response.success(result);
 	}
+	
+	
+	@GetMapping("/product/get-productsizes/{productId}")
+	public ResponseEntity<?> getProductSizes(@PathVariable("productId") int productId)
+	{
+		List<String> sizeList = productService.getProductPrices(productId);
+		if(sizeList != null)
+			return Response.success(sizeList);
+		return Response.error("size list is empty");
+	}
+	
+	@GetMapping("/product/get-productcrust/{productId}/{size}")
+	public ResponseEntity<?> getProductCrust(@PathVariable("productId") int productId,@PathVariable("size") String size)
+	{
+		List<String> crustList = productService.getProductCrustBySize(productId,size);
+		if(crustList != null)
+			return Response.success(crustList);
+		return Response.error("size list is empty");
+	}
+	
+	
 }

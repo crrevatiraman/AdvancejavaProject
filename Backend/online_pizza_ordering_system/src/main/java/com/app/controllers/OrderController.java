@@ -150,6 +150,17 @@ public class OrderController {
 	}
 	
 	
+	@PutMapping("/order/update-quantity/{cartDetailId}/{quantity}")
+	public ResponseEntity<?> updateQuantity(@PathVariable("cartDetailId") int cartDetailId,@PathVariable("quantity") int quantity)
+	{
+		Map<String,Object> result = orderService.updateQuantity(cartDetailId,quantity);
+		if(result != null)
+			return Response.success(result);
+		return Response.error("can't decrement");
+	}
+	
+	
+	
 	//remove item from cart
 	@DeleteMapping("/order/delete-item/{cartDetailId}")
 	public ResponseEntity<?> deleteFromCart(@PathVariable("cartDetailId") int cartDetailId)

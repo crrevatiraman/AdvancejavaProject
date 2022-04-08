@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import "./index.css";
 import { URL } from "../../../config";
+import Navb from "../../../components/Navbr/CustomerNavbar/Navb"
+import Footer from '../../../components/Footer/Footer'
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Addfeedback = () => {
+  const {state} = useLocation();
   const [foodQuality, setFoodQuality] = useState("");
   const [deliveryService, setDeliveryService] = useState("");
   const [orderAccuracy, setOrderAccuracy] = useState("");
@@ -18,12 +22,15 @@ const Addfeedback = () => {
   // used to navigate from one component to another
   const navigate = useNavigate();
 
-  const cancelAddProduct = () => {
-    navigate("/home");
-  };
+  // useEffect(()=>{
+  //   const {orderId} = state;
+  //   setOrderId(orderId)
+  //   console.log(orderId)
+  // },[])
+
 
   const addtheFeedback = () => {
-    const orderId = 3 
+    
     const body = {
       foodQuality,
       deliveryService,
@@ -55,12 +62,19 @@ const Addfeedback = () => {
   };
 
   return (
-    <div className="background-img example">
-      <h1 className="title">Feedback </h1>
-
+    <div className="background-img">
+      <Navb/>
+      <Scrollbars>
+      <div style={{marginTop:'50px'}}>
+      
+       
       <div className="row">
         <div className="col"></div>
         <div className="col border3">
+       
+        <h1 className="title" style={{color:"white"}}>Feedback </h1>
+        <hr/>
+          
           <div className="form">
             <form>
               <div id="group1">
@@ -400,7 +414,7 @@ const Addfeedback = () => {
                 className="form-control"
                 name="Text1"
                 cols="40"
-                rows="5"
+                rows="3"
               ></textarea>
             </div>
 
@@ -417,7 +431,7 @@ const Addfeedback = () => {
                 <div className="col"></div>
                 <div className="col">
                   <button
-                    onClick={cancelAddProduct}
+                    onClick={()=>{navigate("/customer-order");}}
                     className="css-button-arrow--sky1 css-button-arrow--sky1:hover css-button-arrow--sky1:hover:after css-button-arrow--sky1:after top-margin1 float-end"
                   >
                     Cancel
@@ -429,6 +443,9 @@ const Addfeedback = () => {
         </div>
         <div className="col"></div>
       </div>
+    </div>
+    </Scrollbars>
+    <Footer/>
     </div>
   );
 };
