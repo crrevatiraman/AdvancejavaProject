@@ -184,12 +184,12 @@ const Checkout = (props) => {
                     </div>
                     <div className="mb-3">
                       <label htmlFor="" className="label-control">
-                        <h2 style={{ color: "black" }}>Tax : ₹ {amount * 0.18}</h2>
+                        <h2 style={{ color: "black" }}>Tax : ₹ {(amount * 0.18).toFixed(2)}</h2>
                       </label>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="" className="label-control">
-                        <h2 style={{ color: "black" }}>Total Amount : ₹ {amount + (amount * 0.18)}</h2>
+                        <h2 style={{ color: "black" }}>Total Amount : ₹ {(amount + (amount * 0.18)).toFixed(2)}</h2>
                       </label>
                     </div>
                   </div>

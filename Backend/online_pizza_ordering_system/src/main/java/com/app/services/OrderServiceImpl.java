@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.app.daos.IAssignOrderDao;
@@ -64,7 +66,8 @@ public class OrderServiceImpl {
 	private ICartDao cartDao;
 	@Autowired
 	private ICartDetailDao cartDetailDao;
-
+	@Autowired
+	private JavaMailSender sender;
 	
 	public List<OrderDTO> getAllOrders()
 	{
@@ -214,6 +217,9 @@ public class OrderServiceImpl {
 		List<CartDetail> CartDetailList = cartDetailDao.findByCartId(cart.getCartId());
 		
 		
+		StringBuilder sb = new StringBuilder();
+		sb.append("Hello "+order.getUser().getFirstName()+", \n");
+		sb.append("Your order details are : \n");
 		
 		if(CartDetailList != null)
 		{
@@ -223,11 +229,15 @@ public class OrderServiceImpl {
 				{
 					Product product = productDao.getById(cd.getProductId());
 					orderDetail.setProduct(product);
+					
+					sb.append("\n"+product.getProductName()+" = " + "Rs. "+cd.getPrice() + "( Qty. "+cd.getQuantity()+")");
 				}
 				if(cd.getComboId() != 0)
 				{
 					Combo combo = comboDao.getById(cd.getComboId());
 					orderDetail.setCombo(combo);
+					
+					sb.append("\n"+combo.getComboName()+" = " + "Rs. " +cd.getPrice() + "( Qty. "+cd.getQuantity()+")");
 				}
 				if(cd.getToppingId() != 0)
 				{
@@ -243,7 +253,21 @@ public class OrderServiceImpl {
 		}
 		
 			cartDao.delete(cart);
-		
+			
+			sb.append("\n\n"+ "Amount = Rs. "+order.getTotalAmount()+" ("+order.getOrderDateTime()+") ");
+			String message = sb.toString();
+			//send mail to customer
+//			message.concat(order.getTotalAmount()+" ("+order.getOrderDateTime()+") ");
+			System.out.println("Message sent to mail = "+message);
+			SimpleMailMessage mesg = new SimpleMailMessage();
+			mesg.setTo(user.getEmail());
+			mesg.setSubject("Your order is placed");
+			mesg.setText(message);
+			mesg.setFrom("Pizzeria_pizza_ordering");
+			mesg.setSentDate(new Date());
+			sender.send(mesg);
+			
+			
 		return Collections.singletonMap("inserted id", order.getOrderId());
 		
 	}

@@ -5,8 +5,11 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AssignOrderDTO;
 import com.app.dtos.CartDTO;
+import com.app.dtos.Email;
 import com.app.dtos.FeedbackDTO;
 import com.app.dtos.OrderDTO;
 import com.app.dtos.Response;
@@ -28,6 +32,8 @@ public class OrderController {
 
 	@Autowired
 	private OrderServiceImpl orderService;
+	@Autowired
+	private JavaMailSender sender;
 	
 	//get all orders in admin orders page
 	@GetMapping("/order/getall-orders")
@@ -209,5 +215,36 @@ public class OrderController {
 				return Response.success(orderStatus);
 		}
 	
+		
+		// this method is used to send the mail after ticket booking
+		@PostMapping("/sendMail")
+		public ResponseEntity<?> processForm(@RequestBody Email em)
+		{
+			System.out.println(em.getEmail() + "  " + em.getMessage());
+			SimpleMailMessage mesg = new SimpleMailMessage();
+			mesg.setTo(em.getEmail());
+			mesg.setSubject(em.getSubject());
+			mesg.setText(em.getMessage());
+			sender.send(mesg);
+			return Response.success(em);
+		}
+		
+		
+		
+		@ExceptionHandler(Exception.class)
+		   public ResponseEntity<?> exceptionHandler(Exception e)
+		   {
+		       System.out.println("Found Exception ..!!");
+		       e.printStackTrace();
+		       return Response.error(e.getMessage());
+		   }
+		
+		
+		
+	
+
+		
+		
+		
 	
 }

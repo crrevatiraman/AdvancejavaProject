@@ -12,17 +12,17 @@ import Navb from "../../../components/Navbr/CustomerNavbar/Navb"
 const Payment = () => {
   const [paymentMode, setPaymentMode] = useState("");
   const [cart, setCart] = useState("");
-  const [amount,setAmount] = useState(1000);
-  // const { state } = useLocation();
+  const [amount,setAmount] = useState(0);
+   const { state } = useLocation();
   let list = [];
   // const [list,setList] = useState([]);
   const navigate = useNavigate();
 
 
-  //  useEffect(()=>{
-  // //   setAmount(state.amount)
-  //     getCartItems()
-  //  },[])
+   useEffect(()=>{
+     setAmount(state.amount)
+      //getCartItems()
+   },[])
 
 
   
@@ -302,9 +302,9 @@ const Payment = () => {
           <div  className="pay-amt">
                   <h4 >Amount : ₹ {amount}</h4> 
                   <br />
-                  <h4 >Tax : ₹ {amount * 0.18}</h4> 
+                  <h4 >Tax : ₹ {(amount * 0.18).toFixed(2)}</h4> 
                   <br />
-                  <h4 >Total Amount : ₹ {amount + (amount * 0.18)}</h4>  
+                  <h4 >Total Amount : ₹ {(amount + (amount * 0.18)).toFixed(2)}</h4>  
           </div>
           <div className="mt-3">
               <div className="row">
