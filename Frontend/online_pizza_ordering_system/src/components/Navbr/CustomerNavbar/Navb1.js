@@ -29,7 +29,7 @@ const Navb1 = () => {
                     <img src="./images/icons8-pizza-64.png" alt="img"/>
                     </li>
                     <li>
-                    <h1 style={{color:'white'}}>Pizzeria</h1>
+                    <h1 style={{color:'white',cursor:"pointer"}} onClick={()=>{navigate('/customer-home')}}>Pizzeria</h1>
                     </li>
                 </ul>
               </div>

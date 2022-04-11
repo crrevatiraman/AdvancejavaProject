@@ -94,7 +94,7 @@ const UpdateEmployee = () => {
           <div className="row ">
             <div className="col"></div>
             <div className="col border-updateemp">
-              <h1 className="title5 ">Update Employee Details</h1>
+              <h1 className="title5 " style={{color:"white"}}>Update Employee Details</h1>
               <hr />
 
               <div className="form">

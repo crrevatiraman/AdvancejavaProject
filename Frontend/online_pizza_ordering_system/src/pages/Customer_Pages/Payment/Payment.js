@@ -110,11 +110,12 @@ const Payment = () => {
     // url to call the api
     const url = `${URL}/order/save-order`;
 
-   
+    toast.success("Please wait...");
     axios.post(url, body).then((response) => {
       // get the data from the response
       const result = response.data;
       console.log(result);
+      
       if (result["status"] == "success") {
         toast.success("Your order is placed");
 

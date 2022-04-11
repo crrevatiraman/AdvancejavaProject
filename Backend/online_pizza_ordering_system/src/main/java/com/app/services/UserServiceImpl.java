@@ -112,7 +112,7 @@ public class UserServiceImpl {
 					user.setGender(userAddressDto.getGender());
 					
 					user.getAddress().setUser(user);
-					user.setIsFree(false);
+					user.setIsFree(true);
 					
 					user = userDao.save(user);
 					return Collections.singletonMap("InsertedRows", 1);
@@ -126,7 +126,7 @@ public class UserServiceImpl {
 					user.setDateOfBirth(userAddressDto.getDateOfBirth());
 					user.setGender(userAddressDto.getGender());
 					user.getAddress().setUser(user);
-					user.setIsFree(false);
+					user.setIsFree(true);
 					user = userDao.save(user);
 					return Collections.singletonMap("UpdatedRows", 1);
 				}
