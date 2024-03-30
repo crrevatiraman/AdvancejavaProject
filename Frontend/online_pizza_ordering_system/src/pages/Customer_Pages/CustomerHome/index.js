@@ -8,17 +8,17 @@ import { toast } from "react-toastify";
 import Navb2 from "../../../components/Navbr/CustomerNavbar/Navb2";
 import Navb1 from "../../../components/Navbr/CustomerNavbar/Navb1";
 
-import Footer from "../../../components/Footer/Footer";
+import Footer from "../../../components/Footer/Footer.js";
 
 const CustomerHome = () => {
   const [vegProductList, setVegProductList] = useState([]);
   const [nonVegProductList, setNonVegProductList] = useState([]);
-  const [comboList, setComboList] = useState([]);
+  
 
   useEffect(() => {
     getAllVegProduct();
     getAllNonVegProduct();
-    getAllCombo();
+    
   }, []);
 
   const getAllVegProduct = () => {
@@ -56,24 +56,6 @@ const CustomerHome = () => {
   };
 
 
-  const getAllCombo = () => {
-    const url = `${URL}/product/getall-combo`;
-
-    axios.get(url).then((response) => {
-      const result = response.data;
-
-      if (result["status"] == "success") {
-        //toast.success("Successful");
-        setComboList(result["data"]);
-        console.log(response.data);
-        
-      } else {
-        toast.error(result["error"]);
-      }
-    });
-  };
-
-
   return (
     <div>
       <Navb1/>
@@ -94,11 +76,7 @@ const CustomerHome = () => {
           menu={nonVegProductList}
           check = "product"
         />
-        <CMenu
-          name="Combo"
-          check='combo'
-          menu={comboList}
-        />
+        
       </div>
      <Footer/>
     </div>

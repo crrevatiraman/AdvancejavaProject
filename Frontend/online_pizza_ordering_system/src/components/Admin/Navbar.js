@@ -24,7 +24,7 @@ const Navbar = () => {
     position: 'fixed',
     height: '60px',
     width: '100%',
-    backgroundColor: 'grey',
+    backgroundColor: 'blue',
     textAlign: 'center',
     transition: 'top 0.6s'
   }

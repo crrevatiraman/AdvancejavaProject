@@ -7,41 +7,39 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Item = ({item}) => {
-    const [crustType, setCrustType] = useState('New Hand Tossed');
-    const [size, setSize] = useState('Regular');
+    
     //const [price, setPrice] = useState('');
-    const [sizes, setSizes] = useState([]);
-    const [crusts, setCrusts] = useState([]);
+   
     const [subCategory,setSubCategory] = useState('');
     const navigate = useNavigate()
 
-    useEffect(() => {
-        getProductDefaultPrice()
-        // setProducts(product)
-        populateProductSizes()
-      }, [])
+    // useEffect(() => {
+    //     getProductDefaultPrice()
+    //     // setProducts(product)
+    //     populateProductSizes()
+    //   }, [])
 
-      const populateProductSizes= () =>{
+    //   const populateProductSizes= () =>{
        
-        item.subCategoryList.map(sub => {
-            if (sizes.indexOf(sub.size) === -1) {
-                sizes.push(sub.size)
-            }
-        });
-    } 
+    //     item.subCategoryList.map(sub => {
+    //         if (sizes.indexOf(sub.size) === -1) {
+    //             sizes.push(sub.size)
+    //         }
+    //     });
+    // } 
     
 
-    const populateProductCrusts = (cr) =>{
+    // const populateProductCrusts = (cr) =>{
        
-        let array = []
-        item.subCategoryList.map(sub => {
-           if(sub.size === cr)
-           {
-               array.push(sub.crustType)
-           }
-        });
-        setCrusts(array)
-    } 
+    //     let array = []
+    //     item.subCategoryList.map(sub => {
+    //        if(sub.size === cr)
+    //        {
+    //            array.push(sub.crustType)
+    //        }
+    //     });
+    //     setCrusts(array)
+    // } 
 
 
     const editProduct = () => {
@@ -89,24 +87,6 @@ const Item = ({item}) => {
     }
 
 
-    // const getProductPrice = async () =>{
-    //     const url = `${URL}/product/get-ProductPrice`;
-    //     const productId = item.productId;
-        
-    //     const body = {
-    //         productId,
-    //         crustType,
-    //         size
-    //     }
-    //     console.log(body);
-    //     await axios.post(url,body).then((response)=>{
-    //         const result = response.data
-    //         console.log(result);
-    //         setSubCategory(result['data'])
-    //         console.log(result['data'].price);
-    //     })
-       
-    // }
 
     const getProductPrice = () =>{
         const url = `${URL}/product/get-ProductPrice`;
@@ -114,8 +94,8 @@ const Item = ({item}) => {
         
         const body = {
             productId,
-            crustType,
-            size
+            // crustType,
+            // size
         }
         console.log(body);
         axios.post(url,body).then((response)=>{
@@ -131,26 +111,14 @@ const Item = ({item}) => {
      
         getProductPrice();
         console.log("Inside useEffect")
-    }, [size])
+    }, [])
 
     useEffect(() => {
      
         getProductPrice();
         console.log("Inside useEffect")
-    }, [crustType])
+    }, [])
 
-    const CrustPriceHandler = (e) =>{
-        console.log(e.target.value);
-        setCrustType(e.target.value);
-        //getProductPrice();
-    }
-
-    const sizePriceHandler = (e) =>{
-        console.log(e.target.value);
-        setSize(e.target.value);
-        // getProductPrice();
-        populateProductCrusts(e.target.value)
-    }
 
 
     return (
@@ -163,53 +131,14 @@ const Item = ({item}) => {
                     
                     <div className='col'>
                     <div className="mb-3">
-                    <label htmlFor="" className="label-control float-start" style={{marginBottom : "10px", color: "black"}}>
-                        Size
-                    </label>
-                    {/* <select
-                        className = "form-select"
-                        onChange={sizePriceHandler}>
-                        <option className="text-dark" value="Regular" > Regular </option>
-                        <option className="text-dark" value="Medium">Medium</option>
-                        <option className="text-dark" value="Large">Large</option>
-                    </select> */}
-                     <select name="size" className="form-select" onChange={sizePriceHandler}>
-                   <option>--Select size type--</option>
-                     {
-                     sizes.map((sub)=>(
-                         
-                   <option className="text-dark" key={sub.subCategoryId} value={sub}> {sub}</option>
-                     ))
-                    } 
-                 
-                 </select>
+                    
                 
                 </div>
                     </div>
 
                     <div className='col'>
                     <div className="mb-3">
-                    <label htmlFor="" className="label-control float-start" style={{marginBottom : "10px", color: "black"}}>
-                        Crust Type
-                    </label>
-                    {/* <select
-                        className = "form-select"
-                        onChange={CrustPriceHandler}>
-                        <option className="text-dark" value="New Hand Tossed" selected> New Hand Tossed </option>
-                        <option className="text-dark" value="Wheat Crust">Wheat Crust</option>
-                        <option className="text-dark" value="Classic Hand Tossed">Classic Hand Tossed</option>
-                        <option className="text-dark" value="Cheese Burst">Cheese Burst</option>
-                    </select> */}
-
-                    <select name="crust" className="form-select" onChange={CrustPriceHandler}>
-                   <option className="text-dark">--Select crust type--</option>
-                     {
-                     crusts.map( (sub)=>(
-                   <option className="text-dark" key={sub.subCategoryId} value={sub}> {sub}</option>
-                     ))
-                    } 
-                 
-                 </select>
+                    
 
                      
                 </div>

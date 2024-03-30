@@ -62,7 +62,7 @@ const Editproduct = () => {
 
     // url to call the api
     const url = `${URL}/product/edit-product/${productId}`;
-    //const id = 34;
+    
     //const url = `${URL}/product/edit-product/${id}`;
 
     // http method: post
@@ -99,7 +99,7 @@ const Editproduct = () => {
       <div className="row">
         <div className="col"></div>
         <div className="col border-product">
-        <h1 className="title">Edit Product</h1>
+        <h1 className="title" style={{color: 'white'}}>Edit Product</h1>
         <hr/>
           <div className="form">
             <div className="mb-3">
@@ -152,8 +152,6 @@ const Editproduct = () => {
               </select>
             </div>
             
-            
-            
             <div className="mb-3">
               <label htmlFor="" className="label-control">
                 Description
@@ -185,8 +183,9 @@ const Editproduct = () => {
                 <div className="col">
                   <div className="col"></div>
                   <button
+                    style={{backgroundColor: 'red'}}
                     onClick={cancelUpdateProduct}
-                    className="css-button-arrow--sky1 css-button-arrow--sky1:hover css-button-arrow--sky1:hover:after css-button-arrow--sky1:after"
+                    className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after"
                   >
                     Cancel
                   </button>

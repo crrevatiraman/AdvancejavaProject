@@ -5,7 +5,9 @@ public class AssignOrderDTO {
 	
 	private int orderId;
 	private int userId;
-	
+	public AssignOrderDTO() {
+		
+	}
 	
 	public AssignOrderDTO(int orderId, int userId) {
 		this.orderId = orderId;

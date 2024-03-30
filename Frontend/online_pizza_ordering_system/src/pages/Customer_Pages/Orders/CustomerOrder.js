@@ -6,7 +6,7 @@ import { useState,useEffect } from 'react';
 import axios from "axios";
 import { toast } from "react-toastify";
 import CustomerOrderNav from '../../../components/Navbr/CustomerNavbar/CustomerOrderNav';
-import Footer from "../../../components/Footer/Footer"
+import Footer from "../../../components/Footer/Footer.js"
 
 const CustomerOrder = () =>{
     const [orders,setOrders] = useState([])
@@ -14,8 +14,7 @@ const CustomerOrder = () =>{
 
     useEffect(() => {
         console.log('in use effect')
-        //getAllCustomerOrders()
-        getCustomerPendingOrders()
+        getAllCustomerOrders()
 
       }, [])
 
@@ -40,35 +39,14 @@ const CustomerOrder = () =>{
 
     }
 
-    const getCustomerPendingOrders = () =>{
-
-      const url = `${URL}/order/getcustomer-pendingorders/${sessionStorage['userId']}`;
-      axios.get(url).then((response) => {
-          // get the data from the response
-          const result = response.data;
-          console.log(result);
-          if (result["status"] == "success") {
-             
-              console.log("success")
-              setOrders(result['data'])
-              setCheck(true)
-          } else {
-            //toast.error(result["error"]);
-            setOrders([])
-            setCheck(true)
-          }
-        });
-
-}
-
     return (
         <div className='customerorder-bg'>
-          <CustomerOrderNav getAllCustomerOrders={getAllCustomerOrders} getCustomerPendingOrders = {getCustomerPendingOrders}/>
+          <CustomerOrderNav getAllCustomerOrders={getAllCustomerOrders} />
           <div className="container-md" style={{marginTop : "70px"}}>
             
             <div className='row'>
             <div className='col'>
-            {check && (<h1 style={{color:"white"}}>Active Orders</h1>)}
+            {/* {check && (<h1 style={{color:"white"}}>Active Orders</h1>)} */}
         {!check && (<h1 style={{color:"white"}}>All Orders</h1>)}
             </div>
             
@@ -90,13 +68,10 @@ const CustomerOrder = () =>{
                     <h3 style={{color:"black"}}>Address</h3>
                     </div>
                
-                    
                     <div className="col">
                     <h3 style={{color:"black"}}>Time</h3>
                     </div>
-                    <div className="col">
-                    <h3 style={{color:"black"}}>Action</h3>
-                    </div>
+                    
                 </div>
                 <hr />
                 <Scrollbars>

@@ -10,14 +10,13 @@ import AdminOrderNav from "../../../components/Navbr/AdminNavbar/AdminOrderNav";
 
 const AdminOrder = () => {
   const [orders, setOrders] = useState([]);
-  const [deliveryBoy, setdeliveryBoy] = useState([]);
+ 
   const [check, setCheck] = useState(true);
 
   useEffect(() => {
     console.log("in use effect");
-    getPendingOrders();
-
-    getAllDeliveryBoy();
+    getAllOrders();
+    
     console.log("in use effect");
   }, []);
 
@@ -37,44 +36,16 @@ const AdminOrder = () => {
     });
   };
 
-  const getPendingOrders = () => {
-    const url = `${URL}/order/get-pendingorders`;
-    axios.get(url).then((response) => {
-      // get the data from the response
-      const result = response.data;
-      console.log(result);
-      if (result["status"] == "success") {
-        console.log("success");
-        setOrders(result["data"]);
-        setCheck(true);
-      } else {
-        toast.error(result["error"]);
-      }
-    });
-  };
-
-  const getAllDeliveryBoy = () => {
-    const url = `${URL}/order/get-deliveryboy`;
-    axios.get(url).then((response) => {
-      // get the data from the response
-      const result = response.data;
-      console.log(result);
-      if (result["status"] == "success") {
-        console.log("success");
-        setdeliveryBoy(result["data"]);
-      } else {
-        toast.error(result["error"]);
-      }
-    });
-  };
-
   return (
     <div className="customerorder-bg">
-      <AdminOrderNav getAllOrders={getAllOrders} getPendingOrders = {getPendingOrders}/>
+      <AdminOrderNav 
+      getAllOrders={getAllOrders} 
+      
+      />
       <div className="container" style={{marginTop : "70px"}}>
         <div className="row">
           <div className="col">
-            {check && <h1 style={{ color: "white" }}>Pending Orders</h1>}
+            
             {!check && <h1 style={{ color: "white" }}>All Orders</h1>}
           </div>
         </div>
@@ -94,13 +65,6 @@ const AdminOrder = () => {
                 <h4 style={{ color: "black" }}>Address</h4>
               </div>
 
-              <div className="col">
-                <h4 style={{ color: "black" }}>Assign Delivery Boy</h4>
-              </div>
-
-              <div className="col">
-                <h4 style={{ color: "black" }}>Order status</h4>
-              </div>
 
               <div className="col">
                 <h4 style={{ color: "black" }}>Placed At</h4>
@@ -114,7 +78,7 @@ const AdminOrder = () => {
                 <AOrder
                   key={order.orderId}
                   order={order}
-                  deliveryBoy={deliveryBoy}
+                  
                 />
               );
             })}

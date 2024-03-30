@@ -10,8 +10,7 @@ const EditSubCategory = () => {
   const {state} = useLocation()
   const [productName, setProductName] = useState("");
   const [productId, setProductId] = useState("");
-  const [size, setSize] = useState("");
-  const [crustType, setCrustType] = useState("");
+ 
   const [price , setPrice] = useState("")
   const [products,setProducts] = useState([])
 
@@ -23,14 +22,13 @@ const EditSubCategory = () => {
     console.log(state)
     setProductName(product.productName)
     setProductId(product.productId)
+    setPrice(product.price)
     setProducts(product)
   }, [])
 
   const addCategory = () => {
     const body = {
       productId,
-      size,
-      crustType,
       price,
       product:products
     };
@@ -74,7 +72,7 @@ const EditSubCategory = () => {
       <div className="row">
         <div className="col"></div>
         <div className="col border-sub">
-        <h1 className="title">Edit Sub-Category</h1>
+        <h1 className="title" style={{color:'white'}}>Edit Sub-Category</h1>
         <hr/>
           <div className="form">
             
@@ -91,41 +89,6 @@ const EditSubCategory = () => {
             </div>
 
 
-          
-
-            <div className="mb-3">
-              <label htmlFor="" className="label-control">
-                Pizza Size
-              </label>
-              <select
-                className = "form-select"
-                onChange={(e) => {
-                  setSize(e.target.value);
-                }}>
-                  <option className="text-dark" selected> Select Size </option>
-                  <option className="text-dark" value="Regular">Regular</option>
-                  <option className="text-dark" value="Medium">Medium</option>
-                  <option className="text-dark" value="Large">Large</option>
-                </select>
-            </div>
-            
-            <div className="mb-3">
-              <label htmlFor="" className="label-control">
-                Crust Type
-              </label>
-              <select
-                className = "form-select"
-                onChange={(e) => {
-                  setCrustType(e.target.value);
-                }}>
-                  <option className="text-dark" selected> Select Crust </option>
-                  <option className="text-dark" value="New Hand Tossed">New Hand Tossed</option>
-                  <option className="text-dark" value="Wheat Crust">Wheat Crust</option>
-                  <option className="text-dark" value="Cheese Burst">Cheese Burst</option>
-                  <option className="text-dark" value="Classic Hand Tossed">Classic Hand Tossed</option>
-                </select>
-            </div>
-
             <div className="mb-3">
               <label htmlFor="" className="label-control">
                 Price
@@ -138,8 +101,6 @@ const EditSubCategory = () => {
                 className="form-control"
               />
             </div>
-
-            
 
             <div className="mb-3">
               <div className="row">
@@ -155,8 +116,9 @@ const EditSubCategory = () => {
                 <div className="col">
                   <div className="col"></div>
                   <button
+                    style={{backgroundColor: 'red'}}
                     onClick={cancelUpdateSubCategory}
-                    className="css-button-arrow--sky1 css-button-arrow--sky1:hover css-button-arrow--sky1:hover:after css-button-arrow--sky1:after"
+                    className="css-button-arrow--sky css-button-arrow--sky:hover css-button-arrow--sky:hover:after css-button-arrow--sky:after"
                   >
                     Cancel
                   </button>

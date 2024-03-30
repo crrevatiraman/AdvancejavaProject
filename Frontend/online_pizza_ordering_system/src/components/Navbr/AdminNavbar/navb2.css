@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans:600&display=swap');
 .main-nav2{
-    background-color: 	#527a7a;
+    /* background-color: 	rgb(20, 183, 224); */
+    background-color: aqua;
     width : 100%;
     height: 3rem;
     display: grid;

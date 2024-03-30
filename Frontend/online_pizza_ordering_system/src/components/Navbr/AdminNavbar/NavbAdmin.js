@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./navbAdmin.css";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
-
+import Img1 from './pizzalogo2.png'
 
 const NavbAdmin = () => {
   const navigate = useNavigate();
@@ -25,11 +25,9 @@ const NavbAdmin = () => {
                 <img style={{height : '50px'}} src="./images/menu-rounded.png" alt="img"/>
                 <ul>
                     <li><a href="/add-product">Add Product</a></li>
-                    <li><a href="/add-combo">Add Combo</a></li>
-                    <li><a href="/add-topping">Add Topping</a></li>
+                  
                     <li><a href="/admin-order">Orders</a></li>
-                    <li><a href="/search-emp">Update Employee Details</a></li>
-                    <li><a href="/get-feedbacks">Show Feedbacks</a></li>
+                    
                     <li><a style={{color:"black"}} onClick={logout}>Logout</a></li>
                 </ul>
               </li>
@@ -39,11 +37,11 @@ const NavbAdmin = () => {
               <div className="pizza-logo2">
                 <ul className="nav nav-pills">
                     <li>
-                      <img src="./images/icons8-pizza-64.png" alt="img"/>
+                    <img src={Img1} alt="img" height="46"
+                            loading="lazy"
+                            style={{ marginBottom:'18px', marginRight: '150px' }}/>
                     </li>
-                    <li>
-                      <h1 style={{color:'white',cursor:"pointer"}} onClick={()=>{navigate('/admin-home')}}>Pizzeria</h1>
-                    </li>
+                    
                 </ul>
               </div>
       </nav>

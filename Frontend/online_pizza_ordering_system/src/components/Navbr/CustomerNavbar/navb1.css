@@ -1,9 +1,9 @@
 .main-nav1{
-    background-color: 	#75a398;
+    background-color: 	#ffffff;
     height: 4rem;
     display: grid;
-    grid-template-columns: 10rem 0.5fr 1.7fr 0.4fr 10rem;
-    box-shadow: rgba(50, 93, 89, 0.25) 0px 50px 100px -20px,
+    grid-template-columns: 10rem 0.5fr 1.7fr 0.4fr 3rem;
+    box-shadow: rgba(239, 239, 239, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     position: fixed;
     width: 100%;
@@ -23,7 +23,6 @@
 .menu-link1{
     grid-column: 4/5;
 }
-
 
 
 .menu-link1 ul{

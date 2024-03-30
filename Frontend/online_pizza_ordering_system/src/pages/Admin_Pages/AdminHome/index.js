@@ -8,17 +8,17 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import NavbAdmin from '../../../components/Navbr/AdminNavbar/NavbAdmin'
 import Navb2 from '../../../components/Navbr/AdminNavbar/Navb2'
+import Imageslider from "../../../components/ImageSlider/imageslider";
 
 
 const AdminHome = () => {
   const [vegProductList, setVegProductList] = useState([]);
   const [nonVegProductList, setNonVegProductList] = useState([]);
-  const [comboList, setComboList] = useState([]);
 
   useEffect(() => {
     getAllVegProduct();
     getAllNonVegProduct();
-    getAllCombo();
+    
   }, []);
 
   const getAllVegProduct = () => {
@@ -56,30 +56,11 @@ const AdminHome = () => {
   };
 
 
-  const getAllCombo = () => {
-    const url = `${URL}/product/getall-combo`;
-
-    axios.get(url).then((response) => {
-      const result = response.data;
-
-      if (result["status"] == "success") {
-        //toast.success("Successful");
-        setComboList(result["data"]);
-        console.log(response.data);
-        
-      } else {
-        toast.error(result["error"]);
-      }
-    });
-  };
-
-
   return (
     <div>
-      {/* <h1 className="title" style={{color:"black"}}>Home</h1>  */}
-      {/* <Header name="City Pizzeria" /> */}
       <NavbAdmin/>
       <Navb2/>
+      
       <Menu
         name="Veg"
         check = "product"
@@ -90,11 +71,7 @@ const AdminHome = () => {
         menu={nonVegProductList}
         check = "product"
       />
-      <Menu
-        name="Combo"
-        check='combo'
-        menu={comboList}
-      />
+      
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Navb2 = () => {
             <ul>
                 <li><a href="#Veg" style={{color:'white', textDecoration : 'none'}}>Veg</a></li>
                 <li><a href="#Non-Veg" style={{color:'white', textDecoration : 'none'}}>Non Veg</a></li>
-                <li><a href="#Combo" style={{color:'white', textDecoration : 'none'}}>Combo</a></li>
+                {/* <li><a href="#Combo" style={{color:'white', textDecoration : 'none'}}>Combo</a></li> */}
             </ul>
             
           </div>

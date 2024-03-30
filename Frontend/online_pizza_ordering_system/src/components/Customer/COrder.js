@@ -50,28 +50,8 @@ const COrder = ({order}) =>{
                     )}
             </div>
 
-            <div className="col">
-                   { order.statusType === "Delivered" && ( <button 
-                        style={{margin:"10px"}}
-                    onClick={()=>{
-                        navigate('/add-feedback', {state:{orderId:order.orderId}})
-                    }}
-                    className="btn btn-outline-primary">Feedback</button>)}
-                       
-             
-              
-                    {/* {order.statusType === "Delivered" && (
-                        <h5 style={{color:"green",marginTop:"10%"}}>Delivered...</h5>
-                    )} */}
-
-                
-                        <button 
-                         style={{margin:"10px"}}
-                    onClick={trackOrder}
-                    className="btn btn-outline-primary">Track Order</button>
-          
-             
-            </div>
+            
+            
 
         </div> 
         <hr/>

@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router";
 import "./index.css"
 import { URL } from '../../../config'
 import Navb from "../../../components/Navbr/CustomerNavbar/Navb";
-import Footer from "../../../components/Footer/Footer";
+import Footer from "../../../components/Footer/Footer.js";
 
 
 const UpdateProfile = () => {

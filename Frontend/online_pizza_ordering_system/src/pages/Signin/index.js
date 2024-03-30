@@ -48,12 +48,8 @@ const Signin = () => {
 
           
           
-          if(role == "employee")
-          {
-            navigate('/employee-order')
-            window.location.reload('/employee-order')
-          }
-          else if(role == "admin")
+          
+          if(role == "admin")
           {
             navigate('/admin-home')
             window.location.reload('/admin-home')
@@ -136,10 +132,7 @@ const Signin = () => {
               </button>
              
               </div>
-              <div className='col' >
-                 <Link style={{textDecoration:"none"}} to="/forgot">Forgot Password?</Link>
-              
-              </div>
+             
             
               <div className='col-6'></div>
               </div>

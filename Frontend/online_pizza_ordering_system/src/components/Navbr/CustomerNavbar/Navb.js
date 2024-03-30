@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./navb.css";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
-
+import Img1 from './pizzalogo2.png'
 
 
 const Navb = () => {
@@ -26,10 +25,12 @@ const Navb = () => {
               <div className="pizza-logo">
                 <ul className="nav nav-pills">
                     <li>
-                    <img src="./images/icons8-pizza-64.png" alt="img"/>
+                    <img src={Img1} alt="img" height="46"
+                            loading="lazy"
+                            style={{ marginBottom:'5px', marginRight: '150px' }}/>
                     </li>
                     <li>
-                    <h1 style={{color:'white',cursor:"pointer"}} onClick={()=>{navigate('/customer-home')}}>Pizzeria</h1>
+                    
                     </li>
                 </ul>
               </div>
@@ -48,7 +49,7 @@ const Navb = () => {
             </ul>
           </div>
 
-          {/* 3rd button */}
+          
           <div>
 
         

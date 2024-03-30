@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { URL } from '../../../config'
-import Footer from "../../../components/Footer/Footer";
+import Footer from "../../../components/Footer/Footer.js";
 
 const Checkout = (props) => {
     const {state} = useLocation()

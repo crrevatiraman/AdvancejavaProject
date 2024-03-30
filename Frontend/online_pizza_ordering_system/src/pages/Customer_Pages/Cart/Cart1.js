@@ -7,11 +7,11 @@ import {useNavigate} from 'react-router'
 import { toast } from "react-toastify";
 import { URL } from "../../../config";
 import Navb from "../../../components/Navbr/CustomerNavbar/Navb"
-import Footer from "../../../components/Footer/Footer"
+import Footer from "../../../components/Footer/Footer.js"
 
 const Cart1 = () => {
   const [ cart,setCart] = useState('');
-  // const [ qty,setqty] = useState(0);
+  
   const navigate = useNavigate()
 
 useEffect(()=>{
@@ -19,13 +19,6 @@ useEffect(()=>{
   console.log('in effect')
 }  
 ,[])
-
-// const changeQuantity = (item) => {
-//     setqty(item)
-//     console.log('in chnage qty')
-// }
-
-
 
 
 
@@ -96,7 +89,7 @@ else{
     <div>
       <Navb/>
    
-    <div className="container-md">
+    <div className="container-md" style={{marginBottom: '500px'}}>
          <div className="row">
         <h1 className="heading" style={{marginTop:"80px"}}>Order Summary</h1>
         <p style={{ color: "grey" }}>There are {cart.totalQuantity} items in your cart.</p>

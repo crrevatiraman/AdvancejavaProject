@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import "./adminOrderNav.css"
-
+import Img1 from './pizzalogo2.png'
 
 const AdminOrderNav = ({getAllOrders, getPendingOrders}) => {
   const navigate = useNavigate();
@@ -22,11 +22,11 @@ const AdminOrderNav = ({getAllOrders, getPendingOrders}) => {
               <div className="pizza-logo">
                 <ul className="nav nav-pills">
                     <li>
-                    <img src="./images/icons8-pizza-64.png" alt="img"/>
+                    <img src={Img1} alt="img" height="46"
+                            loading="lazy"
+                            style={{ marginBottom:'15px', marginRight: '150px' }}/>
                     </li>
-                    <li>
-                    <h1 style={{color:'white',cursor:"pointer"}} onClick={()=>{navigate('/admin-home')}}>Pizzeria</h1>
-                    </li>
+                    
                 </ul>
               </div>
             
@@ -38,11 +38,7 @@ const AdminOrderNav = ({getAllOrders, getPendingOrders}) => {
               All Orders
             </button>
                 </li>
-                <li>
-                <button onClick={getPendingOrders} className="btn btn-warning">
-              Pending Orders
-            </button>
-                </li>
+               
                 <li>
                   <button onClick={() => {
                           navigate("/admin-home");
